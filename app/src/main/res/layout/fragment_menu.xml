@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="shopViewModel"
+            type="com.myniprojects.fuelmanager.ui.menu.MenuFragmentVM" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -14,8 +17,7 @@
         <Button
             android:id="@+id/butCar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="car"/>
+            android:layout_height="wrap_content" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
