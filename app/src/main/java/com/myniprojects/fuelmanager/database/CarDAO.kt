@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface CarDao
+interface CarDAO
 {
     @Insert
     fun insert(car: Car)
@@ -19,6 +19,6 @@ interface CarDao
     fun delete(car: Car)
 
     @Query("SELECT * FROM car_table ORDER BY carID ASC")
-    fun getAll(): LiveData<Car>
+    fun getAll(): LiveData<List<Car>>
 
 }

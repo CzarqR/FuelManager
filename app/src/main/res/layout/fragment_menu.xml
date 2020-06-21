@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="shopViewModel"
+            name="menuViewModel"
             type="com.myniprojects.fuelmanager.ui.menu.MenuFragmentVM" />
     </data>
 
@@ -14,8 +14,19 @@
         android:layout_height="match_parent"
         tools:context=".ui.menu.MenuFragment">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{menuViewModel.carsString}" />
+
         <Button
-            android:id="@+id/butCar"
+            android:id="@+id/butT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> menuViewModel.listAll()}" />
+
+        <Button
+            android:id="@+id/butT2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

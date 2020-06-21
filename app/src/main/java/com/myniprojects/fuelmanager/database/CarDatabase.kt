@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [Car::class], version = 1, exportSchema = false)
 abstract class CarDatabase : RoomDatabase()
 {
-    abstract val carDao: CarDao
+    abstract val carDAO: CarDAO
 
     companion object
     {
