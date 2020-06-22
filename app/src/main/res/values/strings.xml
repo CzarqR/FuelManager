@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FuelManager</string>
+    <string name="brand">Brand</string>
+    <string name="add_new_car">Add new car</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="engine">Engine</string>
+    <string name="model">Model</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_car">Add car</string>
 </resources>
