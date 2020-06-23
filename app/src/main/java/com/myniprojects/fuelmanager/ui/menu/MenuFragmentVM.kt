@@ -15,7 +15,7 @@ class MenuFragmentVM(
 ) : AndroidViewModel(application)
 {
     private lateinit var selectedCar: Car
-    private val cars = database.getAll()
+    val cars = database.getAll()
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 

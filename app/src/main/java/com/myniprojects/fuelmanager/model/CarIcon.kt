@@ -16,6 +16,7 @@ data class CarIcon(val icon: Int, val name: Int)
             CarIcon(R.drawable.car6, R.string.car6)
         )
 
+
     }
 }
 
