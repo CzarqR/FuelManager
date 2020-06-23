@@ -15,23 +15,5 @@ data class CarIcon(val icon: Int, val name: Int)
             CarIcon(R.drawable.car5, R.string.car5),
             CarIcon(R.drawable.car6, R.string.car6)
         )
-
-
     }
 }
-
-
-//        fun carsNames(resources: Resources): Array<String>
-//        {
-//            return Array(cars.size) { i -> resources.getString(cars[i].name) }
-//        }
-//
-//        fun getResource(index: Int): Int
-//        {
-//            return cars[index].icon
-//        }
-//
-//        fun getString(index: Int): Int
-//        {
-//            return cars[index].name
-//        }

@@ -73,8 +73,6 @@ class MenuFragment : Fragment()
             mDialogView.butCancel.setOnClickListener {
                 mAlertDialog.dismiss()
             }
-
-
         }
 
         val adapter = CarRecyclerAdapter()
@@ -83,12 +81,11 @@ class MenuFragment : Fragment()
 
         viewModel.cars.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
         return binding.root
     }
-
 
 }

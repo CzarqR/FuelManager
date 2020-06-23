@@ -5,21 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.model.CarIcon
 
-class CarRecyclerAdapter : RecyclerView.Adapter<CarRecyclerAdapter.ViewHolder>()
+class CarRecyclerAdapter : ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDiffCallback())
 {
-    var data = listOf<Car>()
-        set(value)
-        {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount(): Int = data.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
@@ -29,7 +23,7 @@ class CarRecyclerAdapter : RecyclerView.Adapter<CarRecyclerAdapter.ViewHolder>()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -64,5 +58,19 @@ class CarRecyclerAdapter : RecyclerView.Adapter<CarRecyclerAdapter.ViewHolder>()
 
     }
 
+
+}
+
+class CarDiffCallback : DiffUtil.ItemCallback<Car>()
+{
+    override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean
+    {
+        return oldItem.carID == newItem.carID
+    }
+
+    override fun areContentsTheSame(oldItem: Car, newItem: Car): Boolean
+    {
+        return oldItem == newItem
+    }
 
 }
