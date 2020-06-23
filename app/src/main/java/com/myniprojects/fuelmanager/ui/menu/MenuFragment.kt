@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.CarDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentMenuBinding
+import com.myniprojects.fuelmanager.utils.CarSpinnerAdapter
 import com.myniprojects.fuelmanager.utils.Log
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
@@ -46,6 +47,7 @@ class MenuFragment : Fragment()
 //            Navigation.createNavigateOnClickListener(R.id.carFragment)
 //        )
 
+
         binding.butT2.setOnClickListener {
 
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.new_car_dialog, null)
@@ -53,27 +55,16 @@ class MenuFragment : Fragment()
                 .setView(mDialogView)
             val mAlertDialog = mBuilder.show()
 
-
-//            mDialogView.
-//            //login button click of custom layout
-//            mDialogView.dialogLoginBtn.setOnClickListener {
-//                //dismiss dialog
-//                mAlertDialog.dismiss()
-//                //get text from EditTexts of custom layout
-//                val name = mDialogView.dialogNameEt.text.toString()
-//                val email = mDialogView.dialogEmailEt.text.toString()
-//                val password = mDialogView.dialogPasswEt.text.toString()
-//                //set the input text in TextView
-//                mainInfoTv.setText("Name:"+ name +"\nEmail: "+ email +"\nPassword: "+ password)
-//            }
-//            //cancel button click of custom layout
+            val adapter = CarSpinnerAdapter(requireContext())
+            mDialogView.spinCar.adapter = adapter
 
             mDialogView.butAddCar.setOnClickListener {
                 viewModel.addCar(
                     mDialogView.edTxtBrand.text.toString(),
                     mDialogView.edTxtModel.text.toString(),
                     mDialogView.edTxtEngine.text.toString(),
-                    mDialogView.edTxtFuelType.text.toString()
+                    mDialogView.edTxtFuelType.text.toString(),
+                    mDialogView.spinCar.selectedItemPosition.toByte()
                 )
             }
 

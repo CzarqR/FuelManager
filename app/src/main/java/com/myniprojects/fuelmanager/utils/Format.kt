@@ -18,6 +18,7 @@ fun formatCars(cars: List<Car>, resources: Resources): Spanned
             append(it.model + ". ")
             append(it.engine + ", ")
             append(it.fuelType)
+            append(". Icon: ${it.iconID}")
             append("<br>")
         }
     }

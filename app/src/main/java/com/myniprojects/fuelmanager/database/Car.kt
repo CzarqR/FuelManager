@@ -19,5 +19,8 @@ data class Car(
     val engine: String = "2",
 
     @ColumnInfo(name = "fuel_type")
-    val fuelType: String = "3"
+    val fuelType: String = "3",
+
+    @ColumnInfo(name = "icon_id")
+    val iconID: Byte = 0
 )

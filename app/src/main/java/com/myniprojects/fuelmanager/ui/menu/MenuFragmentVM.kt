@@ -36,10 +36,18 @@ class MenuFragmentVM(
         }
     }
 
-    fun addCar(brand: String, model: String, engine: String, fuelType: String)
+    fun addCar(brand: String, model: String, engine: String, fuelType: String, iconID: Byte)
     {
         uiScope.launch {
-            insert(Car(brand = brand, model = model, engine = engine, fuelType = fuelType))
+            insert(
+                Car(
+                    brand = brand,
+                    model = model,
+                    engine = engine,
+                    fuelType = fuelType,
+                    iconID = iconID
+                )
+            )
         }
     }
 
