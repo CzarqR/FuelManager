@@ -7,9 +7,14 @@
         <variable
             name="car"
             type="com.myniprojects.fuelmanager.database.Car" />
+
+        <variable
+            name="clickListener"
+            type="com.myniprojects.fuelmanager.utils.CarListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{()-> clickListener.onClick(car)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

@@ -9,9 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.CarDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentMenuBinding
+import com.myniprojects.fuelmanager.utils.CarListener
 import com.myniprojects.fuelmanager.utils.CarRecyclerAdapter
 import com.myniprojects.fuelmanager.utils.CarSpinnerAdapter
 import com.myniprojects.fuelmanager.utils.Log
@@ -44,12 +46,7 @@ class MenuFragment : Fragment()
 
         binding.lifecycleOwner = this
 
-        // navigate
-//        binding.butT1.setOnClickListener(
-//            Navigation.createNavigateOnClickListener(R.id.carFragment)
-//        )
-
-
+        // add car dialog
         binding.butT2.setOnClickListener {
 
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.new_car_dialog, null)
@@ -75,8 +72,20 @@ class MenuFragment : Fragment()
             }
         }
 
-        val adapter = CarRecyclerAdapter()
+        // listener for clicked car
+        val adapter = CarRecyclerAdapter(CarListener {
+            viewModel.carClicked(it)
+        })
 
+        viewModel.navigateToCar.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController()
+                    .navigate(MenuFragmentDirections.actionMenuFragmentToCarFragment(it))
+                viewModel.carNavigated()
+            }
+        })
+
+        // RecyclerView setup
         binding.recViewCar.adapter = adapter
 
         viewModel.cars.observe(viewLifecycleOwner, Observer {

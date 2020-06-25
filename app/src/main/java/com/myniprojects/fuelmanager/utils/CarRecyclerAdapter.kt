@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.CarRecyclerBinding
 
-class CarRecyclerAdapter : ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDiffCallback())
+class CarRecyclerAdapter(private val clickListener: CarListener) :
+        ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDiffCallback())
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -19,10 +20,7 @@ class CarRecyclerAdapter : ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        val item = getItem(
-            position
-        )
-        holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
 
@@ -42,10 +40,12 @@ class CarRecyclerAdapter : ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDi
 
 
         fun bind(
-            car: Car
+            car: Car,
+            clickListener: CarListener
         )
         {
             binding.car = car
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 

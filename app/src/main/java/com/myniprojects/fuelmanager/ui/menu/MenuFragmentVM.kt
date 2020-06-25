@@ -2,6 +2,7 @@ package com.myniprojects.fuelmanager.ui.menu
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
@@ -14,7 +15,6 @@ class MenuFragmentVM(
     application: Application
 ) : AndroidViewModel(application)
 {
-    private lateinit var selectedCar: Car
     val cars = database.getAll()
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -26,7 +26,7 @@ class MenuFragmentVM(
 
     init
     {
-        Log.d("VM Create")
+        Log.d("VM menu Create")
     }
 
     private suspend fun insert(car: Car)
@@ -64,4 +64,19 @@ class MenuFragmentVM(
         Log.d("VM destroyed")
         viewModelJob.cancel()
     }
+
+    private val _navigateToCar = MutableLiveData<Long>()
+    val navigateToCar
+        get() = _navigateToCar
+
+    fun carClicked(carID: Long)
+    {
+        _navigateToCar.value = carID
+    }
+
+    fun carNavigated()
+    {
+        _navigateToCar.value = null
+    }
+
 }

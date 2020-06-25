@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.myniprojects.fuelmanager.R
+import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.model.CarIcon
 import kotlinx.android.synthetic.main.spinner_car.view.*
 
@@ -43,4 +44,10 @@ class CarSpinnerAdapter(context: Context) : BaseAdapter()
             p1
         }
     }
+}
+
+
+class CarListener(val clickListener: (carId: Long) -> Unit)
+{
+    fun onClick(car: Car) = clickListener(car.carID)
 }

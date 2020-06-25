@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/carFragment"
         android:name="com.myniprojects.fuelmanager.ui.car.CarFragment"
-        android:label="CarFragment" />
+        android:label="CarFragment">
+        <argument
+            android:name="carID"
+            app:argType="long" />
+    </fragment>
 </navigation>
