@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
 
-    <TextView
-        android:id="@+id/txtTitle"
+        <variable
+            name="car"
+            type="com.myniprojects.fuelmanager.database.Car" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Audi E3x"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgCar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:contentDescription="@string/car_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-        app:srcCompat="@drawable/car0" />
-
-    <TextView
-        android:id="@+id/txtEngine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imgCar"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
-
-    <TextView
-        android:id="@+id/txtFuel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imgCar"
-        app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
+        android:orientation="vertical">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:carTitle="@{car}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgCar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:contentDescription="@string/car_icon"
+            app:carIcon="@{car}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:srcCompat="@drawable/car0" />
+
+        <TextView
+            android:id="@+id/txtEngine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:carEngine="@{car}"
+            app:layout_constraintStart_toEndOf="@+id/imgCar"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:carFuel="@{car}"
+            app:layout_constraintStart_toEndOf="@+id/imgCar"
+            app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
