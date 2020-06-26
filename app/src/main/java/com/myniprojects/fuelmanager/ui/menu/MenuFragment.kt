@@ -13,9 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentMenuBinding
-import com.myniprojects.fuelmanager.utils.CarListener
-import com.myniprojects.fuelmanager.utils.CarRecyclerAdapter
-import com.myniprojects.fuelmanager.utils.CarSpinnerAdapter
 import com.myniprojects.fuelmanager.utils.Log
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
@@ -54,7 +51,9 @@ class MenuFragment : Fragment()
                 .setView(mDialogView)
             val mAlertDialog = mBuilder.show()
 
-            val adapter = CarSpinnerAdapter(requireContext())
+            val adapter = CarSpinnerAdapter(
+                requireContext()
+            )
             mDialogView.spinCar.adapter = adapter
 
             mDialogView.butAddCar.setOnClickListener {
@@ -73,9 +72,10 @@ class MenuFragment : Fragment()
         }
 
         // listener for clicked car
-        val adapter = CarRecyclerAdapter(CarListener {
-            viewModel.carClicked(it)
-        })
+        val adapter =
+            CarRecyclerAdapter(CarListener {
+                viewModel.carClicked(it)
+            })
 
         viewModel.navigateToCar.observe(viewLifecycleOwner, Observer {
             it?.let {

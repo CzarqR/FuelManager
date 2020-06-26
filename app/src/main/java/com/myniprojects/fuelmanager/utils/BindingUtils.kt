@@ -5,7 +5,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
+import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.model.CarIcon
+
+
+// region Menu Fragment
 
 @BindingAdapter("carTitle")
 fun TextView.setTitle(car: Car?)
@@ -38,3 +42,25 @@ fun ImageView.setCarIcon(car: Car?)
         setImageResource(CarIcon.cars[car.iconID.toInt()].icon)
     }
 }
+
+// endregion
+
+// region Refueling Fragment
+
+@BindingAdapter("refuelingLitres")
+fun TextView.setRefuelingLitres(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.litres.toString()
+    }
+}
+
+@BindingAdapter("refuelingPrice")
+fun TextView.setRefuelingPrice(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.price.toString()
+    }
+}
+
+// endregion

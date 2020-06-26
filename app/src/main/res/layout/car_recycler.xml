@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="com.myniprojects.fuelmanager.utils.CarListener" />
+            type="com.myniprojects.fuelmanager.ui.menu.CarListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

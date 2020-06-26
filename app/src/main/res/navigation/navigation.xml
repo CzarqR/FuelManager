@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/carFragment"
-        android:name="com.myniprojects.fuelmanager.ui.car.CarFragment"
+        android:name="com.myniprojects.fuelmanager.ui.refueling.RefuelingFragment"
         android:label="CarFragment">
         <argument
             android:name="carID"

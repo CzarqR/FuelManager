@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.utils
+package com.myniprojects.fuelmanager.ui.menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,12 +9,16 @@ import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.CarRecyclerBinding
 
 class CarRecyclerAdapter(private val clickListener: CarListener) :
-        ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(CarDiffCallback())
+        ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(
+            CarDiffCallback()
+        )
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(
+            parent
+        )
     }
 
 
@@ -34,7 +38,9 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CarRecyclerBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
+                return ViewHolder(
+                    binding
+                )
             }
         }
 
@@ -66,4 +72,10 @@ class CarDiffCallback : DiffUtil.ItemCallback<Car>()
         return oldItem == newItem
     }
 
+}
+
+
+class CarListener(val clickListener: (carId: Long) -> Unit)
+{
+    fun onClick(car: Car) = clickListener(car.carID)
 }

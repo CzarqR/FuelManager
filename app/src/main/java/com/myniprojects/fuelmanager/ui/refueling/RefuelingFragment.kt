@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.ui.car
+package com.myniprojects.fuelmanager.ui.refueling
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,14 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
-import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
+import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
 import com.myniprojects.fuelmanager.utils.Log
 
 
-class CarFragment : Fragment() {
+class RefuelingFragment : Fragment()
+{
 
-    private lateinit var viewModel: CarFragmentVM
-    private lateinit var binding: FragmentCarBinding
+    private lateinit var viewModel: RefuelingFragmentVM
+    private lateinit var binding: FragmentRefuelingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,15 +29,15 @@ class CarFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_car, container, false
+            R.layout.fragment_refueling, container, false
         )
 
         //init viewModel
-        val arguments = CarFragmentArgs.fromBundle(requireArguments())
+        val arguments = RefuelingFragmentArgs.fromBundle(requireArguments())
         val application = requireNotNull(this.activity).application
         val dataSource = AppDatabase.getInstance(application).refuelingDAO
-        val viewModelFactory = CarFragmentVMFactory(dataSource, arguments.carID, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(CarFragmentVM::class.java)
+        val viewModelFactory = RefuelingFragmentVMFactory(dataSource, arguments.carID, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RefuelingFragmentVM::class.java)
         binding.carViewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -49,8 +50,18 @@ class CarFragment : Fragment() {
             viewModel.addRefueling()
         }
 
+
+        val adapter =
+            RefuelingRecyclerAdapter(RefuelingListener {
+                viewModel.refuelingClicked(it)
+            })
+
+        binding.recViewRefueling.adapter = adapter
+
         viewModel.refueling.observe(viewLifecycleOwner, Observer {
-            Log.d("Block of code which is executed every time LiveData changes")
+            it?.let {
+                adapter.submitList(it)
+            }
         })
 
         return binding.root
