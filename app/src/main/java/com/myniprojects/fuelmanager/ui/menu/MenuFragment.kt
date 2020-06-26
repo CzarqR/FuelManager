@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.myniprojects.fuelmanager.R
-import com.myniprojects.fuelmanager.database.CarDatabase
+import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentMenuBinding
 import com.myniprojects.fuelmanager.utils.CarListener
 import com.myniprojects.fuelmanager.utils.CarRecyclerAdapter
@@ -39,7 +39,7 @@ class MenuFragment : Fragment()
 
         // Init view model
         val application = requireNotNull(this.activity).application
-        val dataSource = CarDatabase.getInstance(application).carDAO
+        val dataSource = AppDatabase.getInstance(application).carDAO
         val viewModelFactory = MenuFragmentVMFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MenuFragmentVM::class.java)
         binding.menuViewModel = viewModel

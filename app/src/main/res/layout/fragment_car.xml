@@ -9,12 +9,24 @@
             type="com.myniprojects.fuelmanager.ui.car.CarFragmentVM" />
     </data>
 
-    <FrameLayout
 
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.car.CarFragment">
+        android:orientation="vertical"
+        tools:context=".ui.menu.MenuFragment">
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/buttonTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>
