@@ -19,6 +19,13 @@
     <string name="car5">Car 5</string>
     <string name="car6">Car 6</string>
     <string name="car_icon">Car icon</string>
+    <string name="add_new_refueling">Add new refueling</string>
+    <string name="litres">Litres</string>
+    <string name="comment">Comment</string>
+    <string name="place">Place</string>
+    <string name="odometer_reading">Odometer reading</string>
+    <string name="price">Price</string>
+    <string name="add_refueling">Add refueling</string>
 
 
 </resources>

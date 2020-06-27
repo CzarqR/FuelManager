@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.ui.menu
+package com.myniprojects.fuelmanager.ui.car
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

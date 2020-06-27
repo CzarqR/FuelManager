@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
 import com.myniprojects.fuelmanager.utils.Log
+import kotlinx.android.synthetic.main.new_refueling_dialog.view.*
 
 
 class RefuelingFragment : Fragment()
@@ -47,7 +49,30 @@ class RefuelingFragment : Fragment()
         }
 
         binding.buttt2.setOnClickListener {
-            viewModel.addRefueling()
+
+            val mDialogView =
+                LayoutInflater.from(context).inflate(R.layout.new_refueling_dialog, null)
+            val mBuilder = AlertDialog.Builder(requireContext())
+                .setView(mDialogView)
+            val mAlertDialog = mBuilder.show()
+
+            mDialogView.butAddRefueling.setOnClickListener {
+                with(mDialogView)
+                {
+                    viewModel.addRefueling(
+                        edTxtLitres.text.toString().toDouble(),
+                        edTxtPrice.text.toString().toDouble(),
+                        edTxtPreviousState.text.toString().toByte(),
+                        edTxtPlace.text.toString(),
+                        edTxtComment.text.toString()
+                    )
+                    mAlertDialog.dismiss()
+                }
+            }
+
+            mDialogView.butCancelRef.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
         }
 
 

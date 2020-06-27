@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.ui.menu
+package com.myniprojects.fuelmanager.ui.car
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -10,7 +10,7 @@ import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.formatCars
 import kotlinx.coroutines.*
 
-class MenuFragmentVM(
+class CarFragmentVM(
     private val database: CarDAO,
     application: Application
 ) : AndroidViewModel(application)

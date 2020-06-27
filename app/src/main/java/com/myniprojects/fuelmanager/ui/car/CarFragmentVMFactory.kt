@@ -1,11 +1,11 @@
-package com.myniprojects.fuelmanager.ui.menu
+package com.myniprojects.fuelmanager.ui.car
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.database.CarDAO
 
-class MenuFragmentVMFactory(
+class CarFragmentVMFactory(
     private val dataSource: CarDAO,
     private val application: Application
 ) : ViewModelProvider.Factory
@@ -13,9 +13,9 @@ class MenuFragmentVMFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T
     {
-        if (modelClass.isAssignableFrom(MenuFragmentVM::class.java))
+        if (modelClass.isAssignableFrom(CarFragmentVM::class.java))
         {
-            return MenuFragmentVM(dataSource, application) as T
+            return CarFragmentVM(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

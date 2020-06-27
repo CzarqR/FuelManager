@@ -25,15 +25,19 @@ class RefuelingFragmentVM(
         }
     }
 
-    fun addRefueling()
+    fun addRefueling(litres: Double, price: Double, state: Byte, place: String, comment: String)
     {
-        val ref = Refueling(
-            carID = carID,
-            litres = 12.4,
-            price = 13.5
-        )
         uiScope.launch {
-            insert(ref)
+            insert(
+                Refueling(
+                    carID = carID,
+                    litres = litres,
+                    price = price,
+                    previousState = state,
+                    place = place,
+                    comment = comment
+                )
+            )
         }
     }
 

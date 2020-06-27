@@ -21,7 +21,8 @@
         android:autofillHints="brand"
         android:hint="@string/brand"
         android:inputType="text"
-        android:maxLength="20" />
+        android:maxLength="20"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/edTxtModel"
@@ -30,7 +31,8 @@
         android:autofillHints="model"
         android:hint="@string/model"
         android:inputType="text"
-        android:maxLength="20" />
+        android:maxLength="20"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/edTxtEngine"
@@ -39,7 +41,8 @@
         android:autofillHints="engine"
         android:hint="@string/engine"
         android:inputType="text"
-        android:maxLength="20" />
+        android:maxLength="20"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/edTxtFuelType"
@@ -48,7 +51,8 @@
         android:autofillHints="fuel"
         android:hint="@string/fuel_type"
         android:inputType="text"
-        android:maxLength="20" />
+        android:maxLength="20"
+        android:singleLine="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

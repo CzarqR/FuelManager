@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.menu.MenuFragment">
+        tools:context=".ui.car.CarFragment">
 
         <Button
             android:id="@+id/buttonTest"

@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.ui.menu
+package com.myniprojects.fuelmanager.ui.car
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +16,10 @@ import com.myniprojects.fuelmanager.databinding.FragmentMenuBinding
 import com.myniprojects.fuelmanager.utils.Log
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
-class MenuFragment : Fragment()
+class CarFragment : Fragment()
 {
 
-    private lateinit var viewModel: MenuFragmentVM
+    private lateinit var viewModel: CarFragmentVM
     private lateinit var binding: FragmentMenuBinding
 
     override fun onCreateView(
@@ -37,8 +37,8 @@ class MenuFragment : Fragment()
         // Init view model
         val application = requireNotNull(this.activity).application
         val dataSource = AppDatabase.getInstance(application).carDAO
-        val viewModelFactory = MenuFragmentVMFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MenuFragmentVM::class.java)
+        val viewModelFactory = CarFragmentVMFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CarFragmentVM::class.java)
         binding.menuViewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -64,6 +64,7 @@ class MenuFragment : Fragment()
                     mDialogView.edTxtFuelType.text.toString(),
                     mDialogView.spinCar.selectedItemPosition.toByte()
                 )
+                mAlertDialog.dismiss()
             }
 
             mDialogView.butCancel.setOnClickListener {
@@ -80,7 +81,7 @@ class MenuFragment : Fragment()
         viewModel.navigateToCar.observe(viewLifecycleOwner, Observer {
             it?.let {
                 this.findNavController()
-                    .navigate(MenuFragmentDirections.actionMenuFragmentToCarFragment(it))
+                    .navigate(CarFragmentDirections.actionMenuFragmentToCarFragment(it))
                 viewModel.carNavigated()
             }
         })

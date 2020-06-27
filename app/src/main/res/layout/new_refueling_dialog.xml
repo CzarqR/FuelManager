@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/add_new_refueling"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/edTxtLitres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/litres"
+        android:hint="@string/litres"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edTxtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/price"
+        android:hint="@string/price"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edTxtPreviousState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/odometer_reading"
+        android:hint="@string/odometer_reading"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edTxtPlace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/place"
+        android:hint="@string/place"
+        android:inputType="textAutoComplete"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edTxtComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/comment"
+        android:hint="@string/comment"
+        android:inputType="textAutoComplete"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/butAddRefueling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_refueling" />
+
+    <Button
+        android:id="@+id/butCancelRef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

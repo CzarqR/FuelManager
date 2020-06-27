@@ -7,14 +7,14 @@
 
         <variable
             name="menuViewModel"
-            type="com.myniprojects.fuelmanager.ui.menu.MenuFragmentVM" />
+            type="com.myniprojects.fuelmanager.ui.car.CarFragmentVM" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.menu.MenuFragment">
+        tools:context=".ui.car.CarFragment">
 
         <Button
             android:id="@+id/butT1"
