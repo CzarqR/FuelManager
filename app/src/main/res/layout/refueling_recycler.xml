@@ -33,6 +33,24 @@
             android:layout_height="wrap_content"
             app:refuelingPrice="@{refueling}" />
 
+        <TextView
+            android:id="@+id/txtState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:refuelingState="@{refueling}" />
+
+
+        <TextView
+            android:id="@+id/txtPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:refuelingPlace="@{refueling}" />
+
+        <TextView
+            android:id="@+id/txtComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:refuelingComment="@{refueling}" />
 
     </LinearLayout>
 </layout>

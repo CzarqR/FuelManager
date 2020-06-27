@@ -63,4 +63,28 @@ fun TextView.setRefuelingPrice(refueling: Refueling?)
     }
 }
 
+@BindingAdapter("refuelingState")
+fun TextView.setRefuelingState(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.previousState.toString()
+    }
+}
+
+@BindingAdapter("refuelingPlace")
+fun TextView.setRefuelingPlace(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.place
+    }
+}
+
+@BindingAdapter("refuelingComment")
+fun TextView.setRefuelingComment(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.comment
+    }
+}
+
 // endregion

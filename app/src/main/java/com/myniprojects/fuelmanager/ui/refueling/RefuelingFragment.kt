@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
@@ -48,6 +49,7 @@ class RefuelingFragment : Fragment()
             viewModel.listAll()
         }
 
+        // add refueling dialog
         binding.buttt2.setOnClickListener {
 
             val mDialogView =
@@ -75,19 +77,27 @@ class RefuelingFragment : Fragment()
             }
         }
 
-
+        // set RecyclerView
         val adapter =
             RefuelingRecyclerAdapter(RefuelingListener {
                 viewModel.refuelingClicked(it)
             })
 
         binding.recViewRefueling.adapter = adapter
+        binding.recViewRefueling.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         viewModel.refueling.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
         })
+
+
 
         return binding.root
     }
