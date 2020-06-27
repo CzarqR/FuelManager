@@ -81,7 +81,7 @@ class CarFragment : Fragment()
         viewModel.navigateToCar.observe(viewLifecycleOwner, Observer {
             it?.let {
                 this.findNavController()
-                    .navigate(CarFragmentDirections.actionMenuFragmentToCarFragment(it))
+                    .navigate(CarFragmentDirections.actionCarToRefueling(it))
                 viewModel.carNavigated()
             }
         })

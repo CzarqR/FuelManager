@@ -8,7 +8,7 @@
         android:name="com.myniprojects.fuelmanager.ui.car.CarFragment"
         android:label="MenuFragment" >
         <action
-            android:id="@+id/action_menuFragment_to_carFragment"
+            android:id="@+id/action_car_to_refueling"
             app:destination="@id/carFragment" />
     </fragment>
     <fragment
@@ -17,6 +17,17 @@
         android:label="CarFragment">
         <argument
             android:name="carID"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_refueling_to_detail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.myniprojects.fuelmanager.ui.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="refuelingID"
             app:argType="long" />
     </fragment>
 </navigation>

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
@@ -28,7 +29,7 @@ class RefuelingFragment : Fragment()
         savedInstanceState: Bundle?
     ): View?
     {
-        Log.d("onCreateView Car")
+        Log.d("onCreateView Refueling")
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -82,6 +83,14 @@ class RefuelingFragment : Fragment()
             RefuelingRecyclerAdapter(RefuelingListener {
                 viewModel.refuelingClicked(it)
             })
+
+        viewModel.navigateToRefueling.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController()
+                    .navigate(RefuelingFragmentDirections.actionRefuelingToDetail(it))
+                viewModel.refuelingNavigated()
+            }
+        })
 
         binding.recViewRefueling.adapter = adapter
         binding.recViewRefueling.addItemDecoration(

@@ -2,6 +2,7 @@ package com.myniprojects.fuelmanager.ui.refueling
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.utils.Log
@@ -61,8 +62,22 @@ class RefuelingFragmentVM(
         viewModelJob.cancel()
     }
 
-    fun refuelingClicked(it: Long)
+    // region navigation
+
+    private val _navigateToRefueling = MutableLiveData<Long>()
+    val navigateToRefueling
+        get() = _navigateToRefueling
+
+    fun refuelingClicked(refuelingID: Long)
     {
-        Log.d(it)
+        _navigateToRefueling.value = refuelingID
     }
+
+    fun refuelingNavigated()
+    {
+        _navigateToRefueling.value = null
+    }
+
+    // endregion
+
 }

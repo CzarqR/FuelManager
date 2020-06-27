@@ -65,6 +65,8 @@ class CarFragmentVM(
         viewModelJob.cancel()
     }
 
+    // region navigation
+
     private val _navigateToCar = MutableLiveData<Long>()
     val navigateToCar
         get() = _navigateToCar
@@ -78,5 +80,7 @@ class CarFragmentVM(
     {
         _navigateToCar.value = null
     }
+
+    // endregion
 
 }
