@@ -24,4 +24,7 @@ interface RefuelingDAO
     @Query("SELECT * FROM refueling_table WHERE carID = :carID ORDER BY refuelingID DESC")
     fun getAll(carID: Long): LiveData<List<Refueling>>
 
+
+    @Query("SELECT * FROM refueling_table WHERE refuelingID = :refuelingID")
+    fun getOne(refuelingID: Long): LiveData<Refueling>
 }

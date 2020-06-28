@@ -19,6 +19,7 @@ class CarFragmentVM(
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+
     val carsString = Transformations.map(cars) {
         formatCars(it, application.resources)
     }
@@ -65,7 +66,7 @@ class CarFragmentVM(
         viewModelJob.cancel()
     }
 
-    // region navigation
+    // region navigation click
 
     private val _navigateToCar = MutableLiveData<Long>()
     val navigateToCar
@@ -80,6 +81,15 @@ class CarFragmentVM(
     {
         _navigateToCar.value = null
     }
+
+    // endregion
+
+    // region long click
+
+    private val _showSelection = MutableLiveData<Boolean>()
+    val showSelection
+        get() = _showSelection
+
 
     // endregion
 

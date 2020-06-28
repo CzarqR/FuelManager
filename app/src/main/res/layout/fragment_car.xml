@@ -17,13 +17,13 @@
         tools:context=".ui.car.CarFragment">
 
         <Button
-            android:id="@+id/butT1"
+            android:id="@+id/butAddCar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()-> menuViewModel.listAll()}" />
 
         <Button
-            android:id="@+id/butT2"
+            android:id="@+id/butSelectedMany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
