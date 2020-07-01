@@ -17,55 +17,69 @@
         android:id="@+id/carBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="#BF360C">
 
 
-        <TextView
-            android:id="@+id/txtTitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:carTitle="@{car}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-
-            android:id="@+id/imgCar"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:contentDescription="@string/car_icon"
-            app:carIcon="@{car}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-            app:srcCompat="@drawable/car0" />
-
-        <TextView
-            android:id="@+id/txtEngine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:carEngine="@{car}"
-            app:layout_constraintStart_toEndOf="@+id/imgCar"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:carFuel="@{car}"
-            app:layout_constraintStart_toEndOf="@+id/imgCar"
-            app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
-
-        <CheckBox
-            android:id="@+id/chBoxSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="0dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:carTitle="@{car}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+
+                android:id="@+id/imgCar"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:contentDescription="@string/car_icon"
+                app:carIcon="@{car}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                app:srcCompat="@drawable/car0" />
+
+            <TextView
+                android:id="@+id/txtEngine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:carEngine="@{car}"
+                app:layout_constraintStart_toEndOf="@+id/imgCar"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:carFuel="@{car}"
+                app:layout_constraintStart_toEndOf="@+id/imgCar"
+                app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
+
+            <CheckBox
+                android:id="@+id/chBoxSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -112,6 +112,8 @@ class CarFragment : Fragment()
         })
 
 
+        //binding.recViewCar.addOnItemTouchListener(adapter)
+
 
         return binding.root
     }
