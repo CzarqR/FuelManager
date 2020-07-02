@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="img_add_car_size">128dp</dimen>
+    <dimen name="recycler_view_width">125px</dimen>
 </resources>

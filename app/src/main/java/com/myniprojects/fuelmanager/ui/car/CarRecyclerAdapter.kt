@@ -14,6 +14,7 @@ import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.CarRecyclerBinding
 import com.myniprojects.fuelmanager.utils.Log
 import kotlin.math.abs
+import kotlin.math.min
 
 
 class CarRecyclerAdapter(private val clickListener: CarListener) :
@@ -52,8 +53,11 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
         private val handler: Handler = Handler()
         private val LONG_CLICK_TIME = 1000L
         private val CLICK_DISTANCE = 75
+        private val PANEL_SIZE = 125
         private var isLongClickCanceled = false
         private var wasLongClicked = false
+
+        private var status = 0
 
         companion object
         {
@@ -95,7 +99,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
             binding.car = car
 
-            binding.carBackground.setOnClickListener {
+            binding.rootCL.setOnClickListener {
 //                if (selectedCars.value!!.size == 0)
 //                {
 //                    Log.d("Empty")
@@ -110,14 +114,21 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
             }
 
 
-            binding.carBackground.setOnLongClickListener {
+            binding.rootCL.setOnLongClickListener {
 //                selectCar()
                 Log.d("Long Click")
                 true
             }
 
+            binding.rootCL.setOnTouchListener(this)
 
-            binding.carBackground.setOnTouchListener(this)
+            binding.linLayDelete.setOnClickListener {
+                Log.d("Delete click")
+            }
+
+            binding.linLaySelect.setOnClickListener {
+                Log.d("Select click")
+            }
 
             binding.executePendingBindings()
 
@@ -155,13 +166,89 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                                 v.performClick()
                             }
                         }
+                        else
+                        {
+                            val leftPanel = (v as ViewGroup).getChildAt(0)
+                            val rightPanel = v.getChildAt(1)
+
+                            val paramsLP = leftPanel.layoutParams
+                            val paramsRP = rightPanel.layoutParams
+
+                            when
+                            {
+                                status > (PANEL_SIZE / 2) ->
+                                {
+                                    paramsLP.width = PANEL_SIZE
+                                    paramsRP.width = 1
+                                }
+                                status < -(PANEL_SIZE / 2) ->
+                                {
+                                    paramsRP.width = PANEL_SIZE
+                                    paramsLP.width = 1
+                                }
+                                else ->
+                                {
+                                    paramsLP.width = 1
+                                    paramsRP.width = 1
+                                }
+                            }
+
+                            leftPanel.layoutParams = paramsLP
+                            rightPanel.layoutParams = paramsRP
+                        }
                     }
 
                     MotionEvent.ACTION_MOVE ->
                     {
+                        Log.d("START")
+                        Log.d("Pos start $xStart")
+                        Log.d("Pos ${event.x}")
+                        Log.d("DELTA TO INT ${(event.x - xStart).toInt()}")
                         if (!wasLongClicked)
                         {
-                            Log.d("MOVE")
+
+                            if (isLongClickCanceled)
+                            {
+                                val deltaX = (event.x - xStart).toInt()
+
+                                if (abs(deltaX) > 75)
+                                {
+                                    if (deltaX > 0)
+                                    {
+                                        status = (deltaX - CLICK_DISTANCE)
+                                        Log.d("status $status")
+
+                                        val leftPanel = (v as ViewGroup).getChildAt(0)
+                                        val rightPanel = v.getChildAt(1)
+
+                                        val paramsLP = leftPanel.layoutParams
+                                        val paramsRP = rightPanel.layoutParams
+
+                                        paramsLP.width = min(status, PANEL_SIZE)
+                                        paramsRP.width = 1
+
+                                        leftPanel.layoutParams = paramsLP
+                                        rightPanel.layoutParams = paramsRP
+                                    }
+                                    else if (deltaX < 0)
+                                    {
+                                        status = (deltaX + CLICK_DISTANCE)
+                                        Log.d("status $status")
+                                        val rightPanel = (v as ViewGroup).getChildAt(1)
+                                        val leftPanel = v.getChildAt(0)
+
+                                        val paramsLP = leftPanel.layoutParams
+                                        val paramsRP = rightPanel.layoutParams
+
+                                        paramsRP.width = min(-status, PANEL_SIZE)
+                                        paramsLP.width = 1
+
+                                        leftPanel.layoutParams = paramsLP
+                                        rightPanel.layoutParams = paramsRP
+                                    }
+                                }
+                            }
+
                             if (!isLongClickCanceled && abs(xStart - event.x) >= CLICK_DISTANCE)
                             {
                                 Log.d("Cancel long click")
@@ -169,6 +256,8 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                                 handler.removeCallbacksAndMessages(null)
                             }
                         }
+                        Log.d("END")
+
                     }
                 }
             }
