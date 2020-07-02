@@ -81,6 +81,11 @@ class CarFragment : Fragment()
         val adapter =
             CarRecyclerAdapter(carListener)
 
+        binding.butSelectedMany.setOnClickListener {
+            adapter.selectedCars.value!!.forEach {
+                Log.d("CarIn $it")
+            }
+        }
 
         adapter.selectedCars.observe(viewLifecycleOwner, Observer {
             Log.d("Selected cars observed")
@@ -112,7 +117,6 @@ class CarFragment : Fragment()
         })
 
 
-        //binding.recViewCar.addOnItemTouchListener(adapter)
 
 
         return binding.root

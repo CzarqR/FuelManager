@@ -27,6 +27,21 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     val selectedCars: LiveData<ArrayList<Long>>
         get() = _selectedCars
 
+    private fun selectCar(carID: Long, add: Boolean)
+    {
+        if (add)
+        {
+            _selectedCars.value!!.add(carID)
+            _selectedCars.value = _selectedCars.value
+        }
+        else
+        {
+            _selectedCars.value!!.remove(carID)
+            _selectedCars.value = _selectedCars.value
+        }
+
+    }
+
     init
     {
         _selectedCars.value = ArrayList()
@@ -36,17 +51,20 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     {
         return ViewHolder.from(
             parent
-        )
+        ) { carID, add -> selectCar(carID, add) }
     }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(getItem(position)!!, clickListener, _selectedCars)
+        holder.bind(getItem(position)!!)
     }
 
 
-    class ViewHolder private constructor(private val binding: CarRecyclerBinding) :
+    class ViewHolder private constructor(
+        private val binding: CarRecyclerBinding,
+        private val selectCar: (carID: Long, add: Boolean) -> Unit
+    ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
         private var xStart = 0F
@@ -61,40 +79,38 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
         companion object
         {
-            fun from(parent: ViewGroup): ViewHolder
+            fun from(parent: ViewGroup, selectCar: (carID: Long, add: Boolean) -> Unit): ViewHolder
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CarRecyclerBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
-                    binding
+                    binding, selectCar
                 )
             }
         }
 
         fun bind(
-            car: Car,
-            clickListener: CarListener,
-            selectedCars: MutableLiveData<ArrayList<Long>>
+            car: Car
         )
         {
-            fun selectCar()
-            {
-                with(binding.chBoxSelect)
-                {
-                    isChecked = !isChecked
-                    visibility = if (isChecked)
-                    {
-                        selectedCars.value!!.add(car.carID)
-                        View.VISIBLE
-                    }
-                    else
-                    {
-                        selectedCars.value!!.remove(car.carID)
-                        View.GONE
-                    }
-                    selectedCars.value = selectedCars.value
-                }
-            }
+//            fun selectCar()
+//            {
+//                with(binding.chBoxSelect)
+//                {
+//                    isChecked = !isChecked
+//                    visibility = if (isChecked)
+//                    {
+//                        selectedCars.value!!.add(car.carID)
+//                        View.VISIBLE
+//                    }
+//                    else
+//                    {
+//                        selectedCars.value!!.remove(car.carID)
+//                        View.GONE
+//                    }
+//                    selectedCars.value = selectedCars.value
+//                }
+//            }
 
 
             binding.car = car
@@ -150,6 +166,19 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                         wasLongClicked = false
                         handler.postDelayed({ //long click
                             wasLongClicked = true
+
+                            val leftPanel = (v as ViewGroup).getChildAt(0)
+                            val rightPanel = v.getChildAt(1)
+
+                            val paramsLP = leftPanel.layoutParams
+                            val paramsRP = rightPanel.layoutParams
+
+                            paramsLP.width = 1
+                            paramsRP.width = 1
+
+                            leftPanel.layoutParams = paramsLP
+                            rightPanel.layoutParams = paramsRP
+
                             v.performLongClick()
                         }, LONG_CLICK_TIME)
                         xStart = event.x
@@ -163,7 +192,26 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                         {
                             if ((event.eventTime - event.downTime) < LONG_CLICK_TIME) //click
                             {
-                                v.performClick()
+                                if (status == 0)
+                                {
+                                    v.performClick()
+                                }
+                                else
+                                {
+                                    val leftPanel = (v as ViewGroup).getChildAt(0)
+                                    val rightPanel = v.getChildAt(1)
+
+                                    val paramsLP = leftPanel.layoutParams
+                                    val paramsRP = rightPanel.layoutParams
+
+                                    paramsLP.width = 1
+                                    paramsRP.width = 1
+
+                                    leftPanel.layoutParams = paramsLP
+                                    rightPanel.layoutParams = paramsRP
+
+                                    selectCar(binding.car!!.carID, false)
+                                }
                             }
                         }
                         else
@@ -180,16 +228,20 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                                 {
                                     paramsLP.width = PANEL_SIZE
                                     paramsRP.width = 1
+                                    selectCar(binding.car!!.carID, false)
                                 }
                                 status < -(PANEL_SIZE / 2) ->
                                 {
                                     paramsRP.width = PANEL_SIZE
                                     paramsLP.width = 1
+                                    selectCar(binding.car!!.carID, true)
                                 }
                                 else ->
                                 {
                                     paramsLP.width = 1
                                     paramsRP.width = 1
+                                    status = 0
+                                    selectCar(binding.car!!.carID, false)
                                 }
                             }
 
@@ -200,10 +252,6 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
                     MotionEvent.ACTION_MOVE ->
                     {
-                        Log.d("START")
-                        Log.d("Pos start $xStart")
-                        Log.d("Pos ${event.x}")
-                        Log.d("DELTA TO INT ${(event.x - xStart).toInt()}")
                         if (!wasLongClicked)
                         {
 
@@ -213,51 +261,36 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
                                 if (abs(deltaX) > 75)
                                 {
+                                    val leftPanel = (v as ViewGroup).getChildAt(0)
+                                    val rightPanel = v.getChildAt(1)
+
+                                    val paramsLP = leftPanel.layoutParams
+                                    val paramsRP = rightPanel.layoutParams
+
                                     if (deltaX > 0)
                                     {
                                         status = (deltaX - CLICK_DISTANCE)
-                                        Log.d("status $status")
-
-                                        val leftPanel = (v as ViewGroup).getChildAt(0)
-                                        val rightPanel = v.getChildAt(1)
-
-                                        val paramsLP = leftPanel.layoutParams
-                                        val paramsRP = rightPanel.layoutParams
-
                                         paramsLP.width = min(status, PANEL_SIZE)
                                         paramsRP.width = 1
-
-                                        leftPanel.layoutParams = paramsLP
-                                        rightPanel.layoutParams = paramsRP
                                     }
                                     else if (deltaX < 0)
                                     {
                                         status = (deltaX + CLICK_DISTANCE)
-                                        Log.d("status $status")
-                                        val rightPanel = (v as ViewGroup).getChildAt(1)
-                                        val leftPanel = v.getChildAt(0)
-
-                                        val paramsLP = leftPanel.layoutParams
-                                        val paramsRP = rightPanel.layoutParams
-
                                         paramsRP.width = min(-status, PANEL_SIZE)
                                         paramsLP.width = 1
-
-                                        leftPanel.layoutParams = paramsLP
-                                        rightPanel.layoutParams = paramsRP
                                     }
+
+                                    leftPanel.layoutParams = paramsLP
+                                    rightPanel.layoutParams = paramsRP
                                 }
                             }
 
                             if (!isLongClickCanceled && abs(xStart - event.x) >= CLICK_DISTANCE)
                             {
-                                Log.d("Cancel long click")
                                 isLongClickCanceled = true
                                 handler.removeCallbacksAndMessages(null)
                             }
                         }
-                        Log.d("END")
-
                     }
                 }
             }
@@ -283,8 +316,8 @@ class CarDiffCallback : DiffUtil.ItemCallback<Car>()
 
 
 class CarListener(
-    val clickListener: (carId: Long) -> Unit
+    val clickDeleteListener: (carId: Long) -> Unit
 )
 {
-    fun onClick(car: Car) = clickListener(car.carID)
+    fun onClick(car: Car) = clickDeleteListener(car.carID)
 }
