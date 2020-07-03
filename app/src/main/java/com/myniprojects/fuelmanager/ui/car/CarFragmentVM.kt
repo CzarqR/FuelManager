@@ -30,12 +30,34 @@ class CarFragmentVM(
         Log.d("VM menu Create")
     }
 
+    private suspend fun get(carID: Long): Car
+    {
+        return withContext(Dispatchers.IO) {
+            database.get(carID)
+        }
+    }
+
+    private suspend fun update(car: Car)
+    {
+        withContext(Dispatchers.IO) {
+            database.update(car)
+        }
+    }
+
     private suspend fun insert(car: Car)
     {
         withContext(Dispatchers.IO) {
             database.insert(car)
         }
     }
+
+    private suspend fun delete(carID: Long)
+    {
+        withContext(Dispatchers.IO) {
+            database.delete(carID)
+        }
+    }
+
 
     fun addCar(brand: String, model: String, engine: String, fuelType: String, iconID: Byte)
     {
@@ -80,6 +102,9 @@ class CarFragmentVM(
     fun deleteCar(carID: Long)
     {
         Log.d("Delete car with id $carID")
+        uiScope.launch {
+            delete(carID)
+        }
     }
 
     fun carNavigated()
@@ -87,15 +112,35 @@ class CarFragmentVM(
         _navigateToCar.value = null
     }
 
+    fun editCar(
+        brand: String,
+        model: String,
+        engine: String,
+        fuelType: String,
+        iconID: Byte,
+        carID: Long
+    )
+    {
+        uiScope.launch {
+            update(
+                Car(
+                    carID = carID,
+                    brand = brand,
+                    model = model,
+                    engine = engine,
+                    fuelType = fuelType,
+                    iconID = iconID
+                )
+            )
+        }
+    }
+
+
+    fun getCar(carID: Long): Car = runBlocking {
+        get(carID)
+    }
+
     // endregion
 
-    // region long click
-
-    private val _showSelection = MutableLiveData<Boolean>()
-    val showSelection
-        get() = _showSelection
-
-
-    // endregion
 
 }

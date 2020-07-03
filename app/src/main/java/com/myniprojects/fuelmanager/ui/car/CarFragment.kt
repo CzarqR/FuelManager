@@ -16,6 +16,7 @@ import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
 import com.myniprojects.fuelmanager.utils.Log
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
+
 class CarFragment : Fragment()
 {
 
@@ -45,7 +46,6 @@ class CarFragment : Fragment()
 
         // add car dialog
         binding.butAddCar.setOnClickListener {
-
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.new_car_dialog, null)
             val mBuilder = AlertDialog.Builder(requireContext())
                 .setView(mDialogView)
@@ -54,7 +54,10 @@ class CarFragment : Fragment()
             val adapter = CarSpinnerAdapter(
                 requireContext()
             )
+
             mDialogView.spinCar.adapter = adapter
+            mDialogView.txtTitle.text = getString(R.string.add_new_car)
+            mDialogView.butAddCar.text = getString(R.string.add_car)
 
             mDialogView.butAddCar.setOnClickListener {
                 viewModel.addCar(
@@ -74,10 +77,15 @@ class CarFragment : Fragment()
 
         // listener for clicked car
 
+
         val carListener = CarListener(
             { carID -> viewModel.carClicked(carID) },
-            { carID -> Log.d("Edit car $carID") },
-            { carID -> viewModel.deleteCar(carID) }
+            { carID -> editCarDialog(carID) },
+            { carID -> showConfirmation(carID) },
+            { dy ->
+                Log.d("Scroll $dy")
+                binding.recViewCar.scrollBy(0, dy)
+            }
         )
 
         val adapter =
@@ -122,6 +130,72 @@ class CarFragment : Fragment()
 
 
         return binding.root
+    }
+
+    private fun editCarDialog(carID: Long)
+    {
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.new_car_dialog, null)
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+
+        val adapter = CarSpinnerAdapter(
+            requireContext()
+        )
+
+        mDialogView.spinCar.adapter = adapter
+        mDialogView.txtTitle.text = getString(R.string.edit_car)
+        mDialogView.butAddCar.text = getString(R.string.update)
+
+        val car = viewModel.getCar(carID)
+
+        mDialogView.edTxtBrand.setText(car.brand)
+        mDialogView.edTxtModel.setText(car.model)
+        mDialogView.edTxtEngine.setText(car.engine)
+        mDialogView.edTxtFuelType.setText(car.fuelType)
+
+        mDialogView.spinCar.setSelection(car.iconID.toInt())
+
+        mDialogView.butAddCar.setOnClickListener {
+            viewModel.editCar(
+                mDialogView.edTxtBrand.text.toString(),
+                mDialogView.edTxtModel.text.toString(),
+                mDialogView.edTxtEngine.text.toString(),
+                mDialogView.edTxtFuelType.text.toString(),
+                mDialogView.spinCar.selectedItemPosition.toByte(),
+                carID
+            )
+            mAlertDialog.dismiss()
+        }
+
+        mDialogView.butCancel.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+    }
+
+    private fun showConfirmation(carID: Long)
+    {
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Confirm")
+        builder.setMessage("Are you sure?")
+
+        builder.setPositiveButton(
+            "YES"
+        ) { dialog, _ ->
+            viewModel.deleteCar(carID)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton(
+            "NO"
+        ) { dialog, _ -> // Do nothing
+            Log.d("No")
+            dialog.dismiss()
+        }
+
+        val alert = builder.create()
+        alert.show()
     }
 
 }

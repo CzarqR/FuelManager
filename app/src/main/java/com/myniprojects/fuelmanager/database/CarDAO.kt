@@ -1,7 +1,10 @@
 package com.myniprojects.fuelmanager.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface CarDAO
@@ -15,8 +18,8 @@ interface CarDAO
     @Query("SELECT * FROM car_table WHERE carID = :key")
     fun get(key: Long): Car
 
-    @Delete
-    fun delete(car: Car)
+    @Query("DELETE FROM car_table WHERE carID = :carID")
+    fun delete(carID: Long)
 
     @Query("SELECT * FROM car_table ORDER BY carID ASC")
     fun getAll(): LiveData<List<Car>>

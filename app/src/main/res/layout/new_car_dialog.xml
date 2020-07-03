@@ -8,10 +8,10 @@
 
 
     <TextView
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/add_new_car"
         android:textSize="18sp" />
 
     <EditText
@@ -86,8 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:background="@drawable/button_dialog_shape"
-                android:text="@string/add_car" />
+                android:background="@drawable/button_dialog_shape" />
 
             <Button
                 android:id="@+id/butCancel"

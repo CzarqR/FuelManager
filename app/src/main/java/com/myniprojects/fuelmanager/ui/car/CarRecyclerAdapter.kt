@@ -50,8 +50,9 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         return ViewHolder.from(
-            parent
-        ) { carID, add -> selectCar(carID, add) }
+            parent,
+            { carID, add -> selectCar(carID, add) },
+            { dy -> clickListener.scroll(dy) })
     }
 
 
@@ -63,11 +64,13 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
     class ViewHolder private constructor(
         private val binding: CarRecyclerBinding,
-        private val selectCar: (carID: Long, add: Boolean) -> Unit
+        private val selectCar: (carID: Long, add: Boolean) -> Unit,
+        private val scroll: (dy: Int) -> Unit
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
         private var xStart = 0F
+        private var lastY = 0F
         private val handler: Handler = Handler()
         private val LONG_CLICK_TIME = 700L
         private val CLICK_DISTANCE = 75
@@ -79,12 +82,16 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
         companion object
         {
-            fun from(parent: ViewGroup, selectCar: (carID: Long, add: Boolean) -> Unit): ViewHolder
+            fun from(
+                parent: ViewGroup,
+                selectCar: (carID: Long, add: Boolean) -> Unit,
+                scroll: (dy: Int) -> Unit
+            ): ViewHolder
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CarRecyclerBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
-                    binding, selectCar
+                    binding, selectCar, scroll
                 )
             }
         }
@@ -118,6 +125,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                     MotionEvent.ACTION_DOWN ->
                     {
                         Log.d("Down")
+                        lastY = event.rawY
                         xStart = event.x
                         isLongClickCanceled = false
                         wasLongClicked = false
@@ -136,7 +144,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                             leftPanel.layoutParams = paramsLP
                             rightPanel.layoutParams = paramsRP
 
-                            v.performLongClick()
+                            //v.performLongClick()
                         }, LONG_CLICK_TIME)
                         xStart = event.x
                     }
@@ -211,6 +219,9 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
                     MotionEvent.ACTION_MOVE ->
                     {
+                        scroll((lastY - event.rawY).toInt())
+                        lastY = event.rawY
+                        Log.d(event.y)
                         if (!wasLongClicked)
                         {
 
@@ -278,7 +289,8 @@ class CarDiffCallback : DiffUtil.ItemCallback<Car>()
 class CarListener(
     val clickListener: (carId: Long) -> Unit,
     val clickLongListener: (carId: Long) -> Unit,
-    val clickDeleteListener: (carId: Long) -> Unit
+    val clickDeleteListener: (carId: Long) -> Unit,
+    val scroll: (dy: Int) -> Unit
 )
 {
     fun onClick(car: Car) = clickListener(car.carID)
