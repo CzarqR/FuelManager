@@ -77,6 +77,11 @@ class CarFragmentVM(
         _navigateToCar.value = carID
     }
 
+    fun deleteCar(carID: Long)
+    {
+        Log.d("Delete car with id $carID")
+    }
+
     fun carNavigated()
     {
         _navigateToCar.value = null

@@ -57,7 +57,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
 
@@ -69,7 +69,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     {
         private var xStart = 0F
         private val handler: Handler = Handler()
-        private val LONG_CLICK_TIME = 1000L
+        private val LONG_CLICK_TIME = 700L
         private val CLICK_DISTANCE = 75
         private val PANEL_SIZE = 125
         private var isLongClickCanceled = false
@@ -90,65 +90,22 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
         }
 
         fun bind(
-            car: Car
+            car: Car,
+            carListener: CarListener
         )
         {
-//            fun selectCar()
-//            {
-//                with(binding.chBoxSelect)
-//                {
-//                    isChecked = !isChecked
-//                    visibility = if (isChecked)
-//                    {
-//                        selectedCars.value!!.add(car.carID)
-//                        View.VISIBLE
-//                    }
-//                    else
-//                    {
-//                        selectedCars.value!!.remove(car.carID)
-//                        View.GONE
-//                    }
-//                    selectedCars.value = selectedCars.value
-//                }
-//            }
-
-
             binding.car = car
-
-            binding.rootCL.setOnClickListener {
-//                if (selectedCars.value!!.size == 0)
-//                {
-//                    Log.d("Empty")
-//                    clickListener.onClick(car)
-//                }
-//                else
-//                {
-//                    Log.d("Not empty")
-//                    selectCar()
-//                }
-                Log.d("Click")
-            }
-
+            binding.clickListener = carListener
 
             binding.rootCL.setOnLongClickListener {
-//                selectCar()
-                Log.d("Long Click")
+                carListener.clickLongListener(car.carID)
                 true
             }
 
             binding.rootCL.setOnTouchListener(this)
 
-            binding.linLayDelete.setOnClickListener {
-                Log.d("Delete click")
-            }
-
-            binding.linLaySelect.setOnClickListener {
-                Log.d("Select click")
-            }
 
             binding.executePendingBindings()
-
-
         }
 
         override fun onTouch(v: View?, event: MotionEvent?): Boolean
@@ -192,6 +149,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                         {
                             if ((event.eventTime - event.downTime) < LONG_CLICK_TIME) //click
                             {
+                                Log.d("Status $status")
                                 if (status == 0)
                                 {
                                     v.performClick()
@@ -210,6 +168,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                                     leftPanel.layoutParams = paramsLP
                                     rightPanel.layoutParams = paramsRP
 
+                                    status = 0
                                     selectCar(binding.car!!.carID, false)
                                 }
                             }
@@ -296,6 +255,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
             }
             return true
         }
+
     }
 
 }
@@ -316,8 +276,11 @@ class CarDiffCallback : DiffUtil.ItemCallback<Car>()
 
 
 class CarListener(
+    val clickListener: (carId: Long) -> Unit,
+    val clickLongListener: (carId: Long) -> Unit,
     val clickDeleteListener: (carId: Long) -> Unit
 )
 {
-    fun onClick(car: Car) = clickDeleteListener(car.carID)
+    fun onClick(car: Car) = clickListener(car.carID)
+    fun onDeleteClick(car: Car) = clickDeleteListener(car.carID)
 }

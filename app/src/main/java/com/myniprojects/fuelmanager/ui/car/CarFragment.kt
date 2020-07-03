@@ -74,9 +74,11 @@ class CarFragment : Fragment()
 
         // listener for clicked car
 
-        val carListener: CarListener = CarListener {
-            viewModel.carClicked(it)
-        }
+        val carListener = CarListener(
+            { carID -> viewModel.carClicked(carID) },
+            { carID -> Log.d("Edit car $carID") },
+            { carID -> viewModel.deleteCar(carID) }
+        )
 
         val adapter =
             CarRecyclerAdapter(carListener)

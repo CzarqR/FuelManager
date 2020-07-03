@@ -20,12 +20,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rootCL"
+            android:onClick="@{()-> clickListener.onClick(car)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:onClick="@{()-> clickListener.onDeleteClick(car)}"
                 android:id="@+id/linLayDelete"
                 android:layout_width="1px"
                 android:layout_height="112dp"
