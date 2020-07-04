@@ -1,5 +1,6 @@
 package com.myniprojects.fuelmanager.ui.car
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -62,6 +63,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     }
 
 
+
     class ViewHolder private constructor(
         private val binding: CarRecyclerBinding,
         private val selectCar: (carID: Long, add: Boolean) -> Unit,
@@ -69,15 +71,14 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
+
         private var xStart = 0F
         private var lastY = 0F
+        private var yStart = 0F
         private val handler: Handler = Handler()
-        private val LONG_CLICK_TIME = 700L
-        private val CLICK_DISTANCE = 75
-        private val PANEL_SIZE = 125
         private var isLongClickCanceled = false
         private var wasLongClicked = false
-
+        private var startScrolling = false
         private var status = 0
 
         companion object
@@ -94,8 +95,14 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                     binding, selectCar, scroll
                 )
             }
+
+            private const val LONG_CLICK_TIME = 700L
+            private const val CLICK_DISTANCE = 75
+            private const val PANEL_SIZE = 125
         }
 
+
+        @SuppressLint("ClickableViewAccessibility")
         fun bind(
             car: Car,
             carListener: CarListener
@@ -125,10 +132,11 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                     MotionEvent.ACTION_DOWN ->
                     {
                         Log.d("Down")
-                        lastY = event.rawY
                         xStart = event.x
+                        yStart = event.y
                         isLongClickCanceled = false
                         wasLongClicked = false
+                        startScrolling = false
                         handler.postDelayed({ //long click
                             wasLongClicked = true
 
@@ -144,7 +152,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                             leftPanel.layoutParams = paramsLP
                             rightPanel.layoutParams = paramsRP
 
-                            //v.performLongClick()
+                            v.performLongClick()
                         }, LONG_CLICK_TIME)
                         xStart = event.x
                     }
@@ -152,8 +160,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
                     {
                         Log.d("Up")
                         handler.removeCallbacksAndMessages(null)
-                        val deltaX = event.x - xStart
-                        if (abs(deltaX) < CLICK_DISTANCE)
+                        if (!startScrolling && !isLongClickCanceled && !wasLongClicked)
                         {
                             if ((event.eventTime - event.downTime) < LONG_CLICK_TIME) //click
                             {
@@ -219,48 +226,59 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
                     MotionEvent.ACTION_MOVE ->
                     {
-                        scroll((lastY - event.rawY).toInt())
-                        lastY = event.rawY
-                        Log.d(event.y)
-                        if (!wasLongClicked)
+                        if (startScrolling)
                         {
-
-                            if (isLongClickCanceled)
+                            scroll((lastY - event.rawY).toInt())
+                            lastY = event.rawY
+                        }
+                        else
+                        {
+                            if (!wasLongClicked)
                             {
-                                val deltaX = (event.x - xStart).toInt()
 
-                                if (abs(deltaX) > 75)
+                                if (isLongClickCanceled)
                                 {
-                                    val leftPanel = (v as ViewGroup).getChildAt(0)
-                                    val rightPanel = v.getChildAt(1)
+                                    val deltaX = (event.x - xStart).toInt()
 
-                                    val paramsLP = leftPanel.layoutParams
-                                    val paramsRP = rightPanel.layoutParams
-
-                                    if (deltaX > 0)
+                                    if (abs(deltaX) > 75)
                                     {
-                                        status = (deltaX - CLICK_DISTANCE)
-                                        paramsLP.width = min(status, PANEL_SIZE)
-                                        paramsRP.width = 1
-                                    }
-                                    else if (deltaX < 0)
-                                    {
-                                        status = (deltaX + CLICK_DISTANCE)
-                                        paramsRP.width = min(-status, PANEL_SIZE)
-                                        paramsLP.width = 1
-                                    }
+                                        val leftPanel = (v as ViewGroup).getChildAt(0)
+                                        val rightPanel = v.getChildAt(1)
 
-                                    leftPanel.layoutParams = paramsLP
-                                    rightPanel.layoutParams = paramsRP
+                                        val paramsLP = leftPanel.layoutParams
+                                        val paramsRP = rightPanel.layoutParams
+
+                                        if (deltaX > 0)
+                                        {
+                                            status = (deltaX - CLICK_DISTANCE)
+                                            paramsLP.width = min(status, PANEL_SIZE)
+                                            paramsRP.width = 1
+                                        }
+                                        else if (deltaX < 0)
+                                        {
+                                            status = (deltaX + CLICK_DISTANCE)
+                                            paramsRP.width = min(-status, PANEL_SIZE)
+                                            paramsLP.width = 1
+                                        }
+
+                                        leftPanel.layoutParams = paramsLP
+                                        rightPanel.layoutParams = paramsRP
+                                    }
+                                }
+                                else if (abs(yStart - event.y) > CLICK_DISTANCE)
+                                {
+                                    lastY = event.rawY
+                                    startScrolling = true
+                                    handler.removeCallbacksAndMessages(null)
+                                }
+                                else if (!isLongClickCanceled && abs(xStart - event.x) >= CLICK_DISTANCE)
+                                {
+                                    isLongClickCanceled = true
+                                    handler.removeCallbacksAndMessages(null)
                                 }
                             }
-
-                            if (!isLongClickCanceled && abs(xStart - event.x) >= CLICK_DISTANCE)
-                            {
-                                isLongClickCanceled = true
-                                handler.removeCallbacksAndMessages(null)
-                            }
                         }
+
                     }
                 }
             }

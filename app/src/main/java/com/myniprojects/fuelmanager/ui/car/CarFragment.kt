@@ -82,10 +82,7 @@ class CarFragment : Fragment()
             { carID -> viewModel.carClicked(carID) },
             { carID -> editCarDialog(carID) },
             { carID -> showConfirmation(carID) },
-            { dy ->
-                Log.d("Scroll $dy")
-                binding.recViewCar.scrollBy(0, dy)
-            }
+            { dy -> binding.recViewCar.scrollBy(0, dy) }
         )
 
         val adapter =
