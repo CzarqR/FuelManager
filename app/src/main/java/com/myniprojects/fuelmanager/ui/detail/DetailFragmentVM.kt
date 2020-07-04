@@ -14,12 +14,23 @@ class DetailFragmentVM(
     application: Application
 ) : AndroidViewModel(application)
 {
-    private val _refueling: MutableLiveData<Refueling> = MutableLiveData()
-    val refueling: LiveData<Refueling>
-        get() = _refueling
+    val refueling: LiveData<Refueling> = database.get(refuelingID)
+
+    private val _editState: MutableLiveData<Boolean> = MutableLiveData()
+    val editState: LiveData<Boolean>
+        get() = _editState
+
 
     init
     {
         Log.d("Detail VM create")
+        _editState.value = false
     }
+
+    fun changeState()
+    {
+        _editState.value = !_editState.value!!
+    }
+
+
 }

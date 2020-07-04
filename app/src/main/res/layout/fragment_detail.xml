@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,18 +10,115 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.detail.DetailFragment">
+        android:layout_height="match_parent">
 
-        <TextView
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".ui.detail.DetailFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtLitres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/litres" />
+
+            <EditText
+                android:id="@+id/edTxtLitres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/litres"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/litres"
+                android:inputType="textMultiLine"
+                android:text="@{String.valueOf(detailViewModel.refueling.litres)}" />
+
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price" />
+
+            <EditText
+                android:id="@+id/edTxtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/price"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/price"
+                android:inputType="textMultiLine"
+                android:text="@{String.valueOf(detailViewModel.refueling.price)}" />
+
+            <TextView
+                android:id="@+id/txtPreviousState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/odometer_reading" />
+
+            <EditText
+                android:id="@+id/edTxtPreviousState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/odometer_reading"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/odometer_reading"
+                android:inputType="textMultiLine"
+                android:text="@{String.valueOf(detailViewModel.refueling.previousState)}" />
+
+
+            <TextView
+                android:id="@+id/txtPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place" />
+
+            <EditText
+                android:id="@+id/edTxtPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/place"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/place"
+                android:inputType="textMultiLine"
+                android:text="@{detailViewModel.refueling.place}" />
+
+            <TextView
+                android:id="@+id/txtComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comment" />
+
+            <EditText
+                android:id="@+id/edTxtComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/comment"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/comment"
+                android:inputType="textMultiLine"
+                android:text="@{detailViewModel.refueling.comment}" />
+
+            <Button
+                android:id="@+id/butEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:onClick="@{()-> detailViewModel.changeState()}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
 
 </layout>

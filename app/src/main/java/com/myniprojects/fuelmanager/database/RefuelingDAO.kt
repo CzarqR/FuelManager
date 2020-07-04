@@ -13,7 +13,7 @@ interface RefuelingDAO
     fun update(refueling: Refueling)
 
     @Query("SELECT * FROM refueling_table WHERE refuelingID = :key")
-    fun get(key: Long): Refueling
+    fun get(key: Long): LiveData<Refueling>
 
     @Delete
     fun delete(refueling: Refueling)

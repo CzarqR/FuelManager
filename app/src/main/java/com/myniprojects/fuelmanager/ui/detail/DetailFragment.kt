@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
@@ -16,6 +17,7 @@ class DetailFragment : Fragment()
 {
     private lateinit var viewModel: DetailFragmentVM
     private lateinit var binding: FragmentDetailBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,18 @@ class DetailFragment : Fragment()
         binding.detailViewModel = viewModel
 
         binding.lifecycleOwner = this
+
+        viewModel.editState.observe(viewLifecycleOwner, Observer {
+            binding.butEdit.text = if (it)
+            {
+                getString(R.string.save)
+            }
+            else
+            {
+                getString(R.string.edit)
+            }
+        })
+
 
         return binding.root
     }

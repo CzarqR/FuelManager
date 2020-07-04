@@ -21,7 +21,6 @@
     <string name="car_icon">Car icon</string>
     <string name="add_new_refueling">Add new refueling</string>
     <string name="litres">Litres</string>
-    <string name="comment">Comment</string>
     <string name="place">Place</string>
     <string name="odometer_reading">Odometer reading</string>
     <string name="price">Price</string>
@@ -32,6 +31,9 @@
     <string name="delete_item">Delete item</string>
     <string name="edit_car">Edit car</string>
     <string name="update">Update</string>
+    <string name="comment">Comment</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
 
 
 </resources>

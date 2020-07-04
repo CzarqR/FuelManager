@@ -154,7 +154,6 @@ class CarRecyclerAdapter(private val clickListener: CarListener) :
 
                             v.performLongClick()
                         }, LONG_CLICK_TIME)
-                        xStart = event.x
                     }
                     MotionEvent.ACTION_UP ->
                     {
