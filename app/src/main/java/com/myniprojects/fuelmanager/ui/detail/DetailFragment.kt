@@ -59,7 +59,7 @@ class DetailFragment : Fragment()
         binding.butEdit.setOnClickListener {
             if (viewModel.editState.value!!)
             {
-                showConfirmation()
+                showEditConfirmation()
             }
             viewModel.changeState()
         }
@@ -74,11 +74,15 @@ class DetailFragment : Fragment()
         }
 
 
+        binding.butDelete.setOnClickListener {
+            showDeleteConfirmation()
+        }
+
         return binding.root
     }
 
 
-    private fun showConfirmation()
+    private fun showEditConfirmation()
     {
         val builder = AlertDialog.Builder(requireContext())
 
@@ -96,6 +100,32 @@ class DetailFragment : Fragment()
                 binding.edTxtComment.text.toString()
             )
             dialog.dismiss()
+        }
+
+        builder.setNegativeButton(
+            "NO"
+        ) { dialog, _ -> // Do nothing
+            Log.d("No")
+            dialog.dismiss()
+        }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
+    private fun showDeleteConfirmation()
+    {
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Confirm")
+        builder.setMessage("Are you sure?")
+
+        builder.setPositiveButton(
+            "YES"
+        ) { dialog, _ ->
+            viewModel.deleteRefueling()
+            dialog.dismiss()
+            requireActivity().onBackPressed()
         }
 
         builder.setNegativeButton(

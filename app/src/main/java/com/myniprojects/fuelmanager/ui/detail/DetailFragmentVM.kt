@@ -31,10 +31,17 @@ class DetailFragmentVM(
         }
     }
 
-    private suspend fun delete(refuelingID: Long)
+    private suspend fun delete()
     {
         withContext(Dispatchers.IO) {
             database.delete(refuelingID)
+        }
+    }
+
+    fun deleteRefueling()
+    {
+        uiScope.launch {
+            delete()
         }
     }
 
