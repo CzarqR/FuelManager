@@ -84,7 +84,7 @@ class CarFragmentVM(
     override fun onCleared()
     {
         super.onCleared()
-        Log.d("VM destroyed")
+        Log.d("VM Car destroyed")
         viewModelJob.cancel()
     }
 
