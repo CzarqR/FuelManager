@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager
+package com.myniprojects.fuelmanager.ui.refueling
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.FragmentCarInfoBinding
 

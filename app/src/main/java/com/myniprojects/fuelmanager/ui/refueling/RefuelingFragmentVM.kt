@@ -9,6 +9,7 @@ import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.formatCars
 import kotlinx.coroutines.*
 
 class RefuelingFragmentVM(
@@ -19,7 +20,7 @@ class RefuelingFragmentVM(
 ) :
         AndroidViewModel(application)
 {
-    val refueling = databaseRefueling.getAll(carID[0]) //todo
+    val refueling = databaseRefueling.getAll(carID)
 
     private val _car: MutableLiveData<Car> = MutableLiveData()
     val car: LiveData<Car>
@@ -27,6 +28,13 @@ class RefuelingFragmentVM(
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    val type: Boolean //true 1 car
+        get() = carID.size == 1
+
+
+    val carString = formatCars(getCars(), application.resources)
+
 
     private suspend fun getCarSuspend(carID: Long): Car
     {
@@ -92,6 +100,16 @@ class RefuelingFragmentVM(
     {
         _navigateToRefueling.value = null
     }
+
+    private fun getCars(): ArrayList<Car>
+    {
+        val list: ArrayList<Car> = ArrayList()
+        carID.forEach {
+            list.add(getCar(it))
+        }
+        return list
+    }
+
 
     // endregion
 

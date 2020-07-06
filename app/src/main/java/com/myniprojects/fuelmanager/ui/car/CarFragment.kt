@@ -79,19 +79,18 @@ class CarFragment : Fragment()
 
 
         val carListener = CarListener(
-            { carID -> viewModel.carClicked(carID) },
-            { carID -> editCarDialog(carID) },
-            { carID -> showConfirmation(carID) },
-            { dy -> binding.recViewCar.scrollBy(0, dy) }
+            { carID -> viewModel.carClicked(longArrayOf(carID)) }, // click
+            { carID -> editCarDialog(carID) }, // long click
+            { carID -> showConfirmation(carID) }, // delete
+            { dy -> binding.recViewCar.scrollBy(0, dy) } // scroll
         )
 
         val adapter =
             CarRecyclerAdapter(carListener)
 
         binding.butSelectedMany.setOnClickListener {
-            adapter.selectedCars.value!!.forEach {
-                Log.d("CarIn $it")
-            }
+            val longArray: LongArray = adapter.selectedCars.value!!.toLongArray()
+            viewModel.carClicked(longArray)
         }
 
         adapter.selectedCars.observe(viewLifecycleOwner, Observer {

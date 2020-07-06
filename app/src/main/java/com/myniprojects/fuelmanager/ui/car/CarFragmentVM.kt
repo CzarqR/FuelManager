@@ -92,9 +92,9 @@ class CarFragmentVM(
     val navigateToCar
         get() = _navigateToCar
 
-    fun carClicked(carID: Long)
+    fun carClicked(carID: LongArray)
     {
-        _navigateToCar.value = longArrayOf(carID)
+        _navigateToCar.value = carID
     }
 
     fun deleteCar(carID: Long)
@@ -137,6 +137,7 @@ class CarFragmentVM(
     fun getCar(carID: Long): Car = runBlocking {
         get(carID)
     }
+
 
     // endregion
 
