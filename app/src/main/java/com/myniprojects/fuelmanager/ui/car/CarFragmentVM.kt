@@ -3,11 +3,9 @@ package com.myniprojects.fuelmanager.ui.car
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.formatCars
 import kotlinx.coroutines.*
 
 class CarFragmentVM(
@@ -20,9 +18,9 @@ class CarFragmentVM(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-    val carsString = Transformations.map(cars) {
-        formatCars(it, application.resources)
-    }
+//    val carsString = Transformations.map(cars) {
+//        formatCars(it, application.resources)
+//    }
 
 
     init
@@ -90,13 +88,13 @@ class CarFragmentVM(
 
     // region navigation click
 
-    private val _navigateToCar = MutableLiveData<Long>()
+    private val _navigateToCar = MutableLiveData<LongArray>()
     val navigateToCar
         get() = _navigateToCar
 
     fun carClicked(carID: Long)
     {
-        _navigateToCar.value = carID
+        _navigateToCar.value = longArrayOf(carID)
     }
 
     fun deleteCar(carID: Long)

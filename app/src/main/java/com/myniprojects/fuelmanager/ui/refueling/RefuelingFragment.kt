@@ -39,19 +39,22 @@ class RefuelingFragment : Fragment()
         //init viewModel
         val arguments = RefuelingFragmentArgs.fromBundle(requireArguments())
         val application = requireNotNull(this.activity).application
-        val dataSource = AppDatabase.getInstance(application).refuelingDAO
-        val viewModelFactory = RefuelingFragmentVMFactory(dataSource, arguments.carID, application)
+        val dataSourceRefueling = AppDatabase.getInstance(application).refuelingDAO
+        val dataSourceCar = AppDatabase.getInstance(application).carDAO
+        val viewModelFactory = RefuelingFragmentVMFactory(
+            dataSourceRefueling,
+            dataSourceCar,
+            arguments.carID,
+            application
+        )
         viewModel = ViewModelProvider(this, viewModelFactory).get(RefuelingFragmentVM::class.java)
         binding.carViewModel = viewModel
 
         binding.lifecycleOwner = this
 
-        binding.buttonTest.setOnClickListener {
-            viewModel.listAll()
-        }
 
         // add refueling dialog
-        binding.buttt2.setOnClickListener {
+        binding.butAddRefueling.setOnClickListener {
 
             val mDialogView =
                 LayoutInflater.from(context).inflate(R.layout.new_refueling_dialog, null)

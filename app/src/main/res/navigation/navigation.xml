@@ -17,7 +17,7 @@
         android:label="CarFragment">
         <argument
             android:name="carID"
-            app:argType="long" />
+            app:argType="long[]" />
         <action
             android:id="@+id/action_refueling_to_detail"
             app:destination="@id/detailFragment" />

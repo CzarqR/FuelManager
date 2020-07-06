@@ -11,6 +11,7 @@ abstract class AppDatabase : RoomDatabase()
     abstract val carDAO: CarDAO
     abstract val refuelingDAO: RefuelingDAO
 
+
     companion object
     {
         @Volatile
