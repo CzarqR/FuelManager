@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.myniprojects.fuelmanager.CarInfoFragment
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
@@ -114,5 +115,14 @@ class RefuelingFragment : Fragment()
         return binding.root
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        val carInfoFragment = CarInfoFragment(viewModel.car.value!!)
+
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
+    }
 
 }

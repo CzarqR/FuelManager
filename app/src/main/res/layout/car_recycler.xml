@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
 
     <data>
 
@@ -20,19 +22,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rootCL"
-            android:onClick="@{()-> clickListener.onClick(car)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{()-> clickListener.onClick(car)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:onClick="@{()-> clickListener.onDeleteClick(car)}"
                 android:id="@+id/linLayDelete"
                 android:layout_width="1px"
                 android:layout_height="112dp"
                 android:layout_gravity="center"
                 android:background="#B71C1C"
+                android:onClick="@{()-> clickListener.onDeleteClick(car)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -93,10 +95,10 @@
                     android:layout_height="96dp"
                     android:contentDescription="@string/car_icon"
                     app:carIcon="@{car}"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/txtEngine"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-                    app:srcCompat="@drawable/car0" />
+                    tools:srcCompat="@drawable/car0" />
 
                 <TextView
                     android:id="@+id/txtEngine"
@@ -112,18 +114,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
                     app:carFuel="@{car}"
-                    app:layout_constraintEnd_toStartOf="@+id/chBoxSelect"
+                    app:layout_constraintEnd_toStartOf="@+id/imgCar"
                     app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
 
-                <CheckBox
-                    android:id="@+id/chBoxSelect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
