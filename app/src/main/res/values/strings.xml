@@ -35,6 +35,7 @@
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="show_selected">Show selected</string>
 
 
 </resources>
