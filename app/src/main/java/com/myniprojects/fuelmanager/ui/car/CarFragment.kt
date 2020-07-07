@@ -156,6 +156,11 @@ class CarFragment : Fragment()
                 item.isChecked = !item.isChecked
                 true
             }
+            R.id.ourApps ->
+            {
+                Log.d("Our apps")
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
