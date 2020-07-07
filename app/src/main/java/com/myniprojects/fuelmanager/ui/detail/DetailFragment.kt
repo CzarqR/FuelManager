@@ -1,10 +1,10 @@
 package com.myniprojects.fuelmanager.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -78,6 +78,8 @@ class DetailFragment : Fragment()
             showDeleteConfirmation()
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -137,6 +139,45 @@ class DetailFragment : Fragment()
 
         val alert = builder.create()
         alert.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.share_menu, menu)
+
+        // check if phone can handle sharing plain text
+        if (null == getShareIntent().resolveActivity(requireActivity().packageManager))
+        {
+            menu.findItem(R.id.share)?.isVisible = false
+        }
+    }
+
+
+    private fun getShareIntent(): Intent
+    {
+        return ShareCompat.IntentBuilder.from(requireActivity())
+            .setText(getString(R.string.share_message, "Place", "11.98"))
+            .setType("text/plain").intent
+    }
+
+
+    private fun shareFuel()
+    {
+        startActivity(getShareIntent())
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        return when (item.itemId)
+        {
+            R.id.share ->
+            {
+                shareFuel()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

@@ -36,6 +36,10 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="show_selected">Show selected</string>
+    <string name="help">Help</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="share">Share</string>
+    <string name="share_message">I bought fuel in %1$s for %2$s $</string>
 
 
 </resources>

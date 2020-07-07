@@ -1,15 +1,15 @@
 package com.myniprojects.fuelmanager.ui.car
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
@@ -77,7 +77,6 @@ class CarFragment : Fragment()
 
         // listener for clicked car
 
-
         val carListener = CarListener(
             { carID -> viewModel.carClicked(longArrayOf(carID)) }, // click
             { carID -> editCarDialog(carID) }, // long click
@@ -123,9 +122,42 @@ class CarFragment : Fragment()
         })
 
 
+        // options bar
+        setHasOptionsMenu(true)
 
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        return when (item.itemId)
+        {
+            R.id.aboutFragment -> NavigationUI.onNavDestinationSelected(
+                item,
+                requireView().findNavController()
+            )
+            R.id.darkMode ->
+            {
+                if (item.isChecked) //change to day colors
+                {
+                    Log.d("Change to day")
+                }
+                else //change to dark mode
+                {
+                    Log.d("Change to dark")
+                }
+                item.isChecked = !item.isChecked
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun editCarDialog(carID: Long)
