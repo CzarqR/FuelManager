@@ -50,6 +50,7 @@ class DetailFragmentVM(
         price: Double,
         previousState: Byte,
         place: String,
+        odometerReading: Double,
         comment: String
     )
     {
@@ -62,6 +63,7 @@ class DetailFragmentVM(
                     price,
                     place,
                     previousState,
+                    odometerReading,
                     comment
                 )
             )

@@ -68,9 +68,10 @@ class RefuelingFragment : Fragment()
                     viewModel.addRefueling(
                         edTxtLitres.text.toString().toDouble(),
                         edTxtPrice.text.toString().toDouble(),
-                        edTxtPreviousState.text.toString().toByte(),
+                        edTxtTankState.text.toString().toByte(),
                         edTxtPlace.text.toString(),
-                        edTxtComment.text.toString()
+                        edTxtComment.text.toString(),
+                        edTxtOdometerReading.text.toString().toDouble()
                     )
                     mAlertDialog.dismiss()
                 }

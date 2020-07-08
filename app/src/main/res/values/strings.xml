@@ -44,6 +44,7 @@
     <string name="empty" />
     <string name="our_apps">Our Apps</string>
     <string name="cannot_open_our_apps">Your phone cannot open web page or Googe Play Store</string>
+    <string name="tank_state">Tank state in %</string>
 
 
 </resources>

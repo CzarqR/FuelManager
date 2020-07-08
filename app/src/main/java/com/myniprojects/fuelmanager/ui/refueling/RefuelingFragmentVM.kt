@@ -33,8 +33,14 @@ class RefuelingFragmentVM(
         get() = carID.size == 1
 
 
-    val carString = formatCars(getCars(), application.resources)
+    var carString = formatCars(getCars(), application.resources)
 
+    init
+    {
+        Log.d("VM car created. CarID: ${carID[0]}")
+        _car.value = getCar(carID[0])
+        Log.d(_car.value!!)
+    }
 
     private suspend fun getCarSuspend(carID: Long): Car
     {
@@ -47,6 +53,36 @@ class RefuelingFragmentVM(
         getCarSuspend(carID)
     }
 
+    private fun getCars(): ArrayList<Car>
+    {
+        val list: ArrayList<Car> = ArrayList()
+        carID.forEach {
+            list.add(getCar(it))
+        }
+        return list
+    }
+
+//    private suspend fun getCarSuspend(carID: LongArray): LiveData<List<Car>>
+//    {
+//        return withContext(Dispatchers.IO) {
+//            databaseCar.get(carID)
+//        }
+//    }
+//
+//    private fun getCars(carID: LongArray): LiveData<List<Car>> = runBlocking {
+//        getCarSuspend(carID)
+//    }
+//
+//    private fun getCars(): ArrayList<Car>
+//    {
+//        val list: ArrayList<Car> = ArrayList()
+//        carID.forEach {
+//            list.add(getCar(it))
+//        }
+//        return list
+//    }
+
+
     private suspend fun insertRefueling(refueling: Refueling)
     {
         withContext(Dispatchers.IO) {
@@ -54,7 +90,14 @@ class RefuelingFragmentVM(
         }
     }
 
-    fun addRefueling(litres: Double, price: Double, state: Byte, place: String, comment: String)
+    fun addRefueling(
+        litres: Double,
+        price: Double,
+        state: Byte,
+        place: String,
+        comment: String,
+        odometerReading: Double
+    )
     {
         uiScope.launch {
             insertRefueling(
@@ -62,7 +105,8 @@ class RefuelingFragmentVM(
                     carID = carID[0],
                     litres = litres,
                     price = price,
-                    previousState = state,
+                    previousTankState = state,
+                    previousOdometerReading = odometerReading,
                     place = place,
                     comment = comment
                 )
@@ -70,13 +114,6 @@ class RefuelingFragmentVM(
         }
     }
 
-
-    init
-    {
-        Log.d("VM car created. CarID: ${carID[0]}")
-        _car.value = getCar(carID[0])
-        Log.d(_car.value!!)
-    }
 
     override fun onCleared()
     {
@@ -93,21 +130,14 @@ class RefuelingFragmentVM(
 
     fun refuelingClicked(refuelingID: Long)
     {
+
+
         _navigateToRefueling.value = refuelingID
     }
 
     fun refuelingNavigated()
     {
         _navigateToRefueling.value = null
-    }
-
-    private fun getCars(): ArrayList<Car>
-    {
-        val list: ArrayList<Car> = ArrayList()
-        carID.forEach {
-            list.add(getCar(it))
-        }
-        return list
     }
 
 

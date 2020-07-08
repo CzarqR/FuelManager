@@ -29,8 +29,11 @@ data class Refueling(
     @ColumnInfo(name = "place")
     val place: String = "",
 
-    @ColumnInfo(name = "previous_state")
-    val previousState: Byte = 0,
+    @ColumnInfo(name = "previous_tank_state")
+    val previousTankState: Byte = 0,
+
+    @ColumnInfo(name = "previous_odometer_reading")
+    val previousOdometerReading: Double = 0.0,
 
     @ColumnInfo(name = "comment")
     val comment: String = ""

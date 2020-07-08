@@ -39,6 +39,12 @@
             android:layout_height="wrap_content"
             app:refuelingState="@{refueling}" />
 
+        <TextView
+            android:id="@+id/txtOdometerReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:refuelingOdometerReading="@{refueling}" />
+
 
         <TextView
             android:id="@+id/txtPlace"

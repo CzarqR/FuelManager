@@ -67,7 +67,15 @@ fun TextView.setRefuelingPrice(refueling: Refueling?)
 fun TextView.setRefuelingState(refueling: Refueling?)
 {
     refueling?.let {
-        text = refueling.previousState.toString()
+        text = refueling.previousTankState.toString()
+    }
+}
+
+@BindingAdapter("refuelingOdometerReading")
+fun TextView.setOdometerReading(refueling: Refueling?)
+{
+    refueling?.let {
+        text = refueling.previousOdometerReading.toString()
     }
 }
 

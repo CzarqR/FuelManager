@@ -66,11 +66,15 @@ class DetailFragment : Fragment()
 
         binding.butCancel.setOnClickListener {
             viewModel.changeState()
-            binding.edTxtLitres.setText(viewModel.refueling.value!!.litres.toString())
-            binding.edTxtPrice.setText(viewModel.refueling.value!!.price.toString())
-            binding.edTxtPreviousState.setText(viewModel.refueling.value!!.previousState.toString())
-            binding.edTxtPlace.setText(viewModel.refueling.value!!.place)
-            binding.edTxtComment.setText(viewModel.refueling.value!!.comment)
+            with(binding)
+            {
+                edTxtLitres.setText(viewModel.refueling.value!!.litres.toString())
+                edTxtPrice.setText(viewModel.refueling.value!!.price.toString())
+                edTxtPreviousState.setText(viewModel.refueling.value!!.previousTankState.toString())
+                edTxtPlace.setText(viewModel.refueling.value!!.place)
+                edTxtOdometerReading.setText(viewModel.refueling.value!!.previousOdometerReading.toString())
+                edTxtComment.setText(viewModel.refueling.value!!.comment)
+            }
         }
 
 
@@ -99,6 +103,7 @@ class DetailFragment : Fragment()
                 binding.edTxtPrice.text.toString().toDouble(),
                 binding.edTxtPreviousState.text.toString().toByte(),
                 binding.edTxtPlace.text.toString(),
+                binding.edTxtOdometerReading.text.toString().toDouble(),
                 binding.edTxtComment.text.toString()
             )
             dialog.dismiss()

@@ -30,11 +30,20 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/edTxtPreviousState"
+        android:id="@+id/edTxtOdometerReading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="@string/odometer_reading"
         android:hint="@string/odometer_reading"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edTxtTankState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/tank_state"
+        android:hint="@string/tank_state"
         android:inputType="number"
         android:singleLine="true" />
 

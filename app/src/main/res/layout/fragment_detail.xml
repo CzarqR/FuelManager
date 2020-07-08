@@ -59,10 +59,27 @@
                 android:text="@{String.valueOf(detailViewModel.refueling.price)}" />
 
             <TextView
-                android:id="@+id/txtPreviousState"
+                android:id="@+id/txtOdometerReading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/odometer_reading" />
+
+            <EditText
+                android:id="@+id/edTxtOdometerReading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/odometer_reading"
+                android:ems="10"
+                android:enabled="@{detailViewModel.editState}"
+                android:hint="@string/odometer_reading"
+                android:inputType="textMultiLine"
+                android:text="@{String.valueOf(detailViewModel.refueling.previousOdometerReading)}" />
+
+            <TextView
+                android:id="@+id/txtPreviousState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tank_state" />
 
             <EditText
                 android:id="@+id/edTxtPreviousState"
@@ -71,10 +88,9 @@
                 android:autofillHints="@string/odometer_reading"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
-                android:hint="@string/odometer_reading"
+                android:hint="@string/tank_state"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(detailViewModel.refueling.previousState)}" />
-
+                android:text="@{String.valueOf(detailViewModel.refueling.previousTankState)}" />
 
             <TextView
                 android:id="@+id/txtPlace"
@@ -92,6 +108,7 @@
                 android:hint="@string/place"
                 android:inputType="textMultiLine"
                 android:text="@{detailViewModel.refueling.place}" />
+
 
             <TextView
                 android:id="@+id/txtComment"
