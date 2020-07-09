@@ -1,6 +1,6 @@
 package com.myniprojects.fuelmanager.utils
 
-import android.content.res.Resources
+import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
@@ -8,14 +8,29 @@ import androidx.core.text.HtmlCompat
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 
-fun formatCars(cars: List<Car>, resources: Resources): Spanned
+fun formatCars(cars: List<Car>, context: Context): Spanned
 {
     val sb = StringBuilder()
+
+    val carColors = context.resources.getIntArray(R.array.car_colors)
+
     sb.apply {
-        cars.forEach {
-            append("<b> ${resources.getString(R.string.car_title, it.brand, it.model)} </b> | ")
+
+        for ((index, value) in cars.withIndex())
+        {
+
+            Log.d("${carColors[index]} Color")
+            append(
+                "<span style=\"color:${carColors[index]}\"> ${context.getString(
+                    R.string.car_title,
+                    value.brand,
+                    value.model
+                )} </span> <br> "
+            )
         }
+
     }
+
     sb.replace(sb.length - 3, sb.length - 1, "")
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
     {

@@ -22,6 +22,7 @@ class RefuelingFragmentVM(
 {
     val refueling = databaseRefueling.getAll(carID)
 
+
     private val _car: MutableLiveData<Car> = MutableLiveData()
     val car: LiveData<Car>
         get() = _car
@@ -33,13 +34,14 @@ class RefuelingFragmentVM(
         get() = carID.size == 1
 
 
-    var carString = formatCars(getCars(), application.resources)
+    var carString = formatCars(getCars(), application.applicationContext)
 
     init
     {
         Log.d("VM car created. CarID: ${carID[0]}")
         _car.value = getCar(carID[0])
         Log.d(_car.value!!)
+
     }
 
     private suspend fun getCarSuspend(carID: Long): Car
@@ -130,7 +132,8 @@ class RefuelingFragmentVM(
 
     fun refuelingClicked(refuelingID: Long)
     {
-
+        //Log.d(refueling.value!![0])
+        Log.d(car)
 
         _navigateToRefueling.value = refuelingID
     }
