@@ -18,6 +18,7 @@ interface CarDAO
     @Query("SELECT * FROM car_table WHERE carID = :key")
     fun get(key: Long): Car
 
+
     @Query("SELECT * FROM car_table WHERE carID IN (:keys)")
     fun get(keys: LongArray): LiveData<List<Car>>
 

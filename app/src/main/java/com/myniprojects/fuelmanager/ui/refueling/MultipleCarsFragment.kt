@@ -1,31 +1,43 @@
 package com.myniprojects.fuelmanager.ui.refueling
 
 import android.os.Bundle
-import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.myniprojects.fuelmanager.R
-import kotlinx.android.synthetic.main.fragment_multiple_cars.*
+import com.myniprojects.fuelmanager.database.Car
+import com.myniprojects.fuelmanager.databinding.FragmentMultipleCarsBinding
+import com.myniprojects.fuelmanager.utils.formatCars
 
 
-class MultipleCarsFragment(private val cars: Spanned) : Fragment()
+class MultipleCarsFragment(private val cars: LiveData<List<Car>>) : Fragment()
 {
+
+    private lateinit var binding: FragmentMultipleCarsBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multiple_cars, container, false)
-    }
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_multiple_cars, container, false
+        )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
-        txtCars.text = cars
+        binding.lifecycleOwner = this
+
+
+        cars.observe(viewLifecycleOwner, Observer {
+            binding.txtCars.text = formatCars(it, requireContext())
+        })
+
+        return binding.root
     }
 
 

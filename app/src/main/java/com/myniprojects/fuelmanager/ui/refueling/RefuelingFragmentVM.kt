@@ -2,14 +2,11 @@ package com.myniprojects.fuelmanager.ui.refueling
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.formatCars
 import kotlinx.coroutines.*
 
 class RefuelingFragmentVM(
@@ -22,10 +19,11 @@ class RefuelingFragmentVM(
 {
     val refueling = databaseRefueling.getAll(carID)
 
+    val cars = databaseCar.get(carID)
 
-    private val _car: MutableLiveData<Car> = MutableLiveData()
-    val car: LiveData<Car>
-        get() = _car
+//    private val _car: MutableLiveData<Car> = MutableLiveData()
+//    val car: LiveData<Car>
+//        get() = _car
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -34,35 +32,32 @@ class RefuelingFragmentVM(
         get() = carID.size == 1
 
 
-    var carString = formatCars(getCars(), application.applicationContext)
+    //var carString = formatCars(getCars(), application.applicationContext)
 
     init
     {
         Log.d("VM car created. CarID: ${carID[0]}")
-        _car.value = getCar(carID[0])
-        Log.d(_car.value!!)
-
     }
 
-    private suspend fun getCarSuspend(carID: Long): Car
-    {
-        return withContext(Dispatchers.IO) {
-            databaseCar.get(carID)
-        }
-    }
+//    private suspend fun getCarSuspend(carID: Long): Car
+//    {
+//        return withContext(Dispatchers.IO) {
+//            databaseCar.get(carID)
+//        }
+//    }
+//
+//    private fun getCar(carID: Long): Car = runBlocking {
+//        getCarSuspend(carID)
+//    }
 
-    private fun getCar(carID: Long): Car = runBlocking {
-        getCarSuspend(carID)
-    }
-
-    private fun getCars(): ArrayList<Car>
-    {
-        val list: ArrayList<Car> = ArrayList()
-        carID.forEach {
-            list.add(getCar(it))
-        }
-        return list
-    }
+//    private fun getCars(): ArrayList<Car>
+//    {
+//        val list: ArrayList<Car> = ArrayList()
+//        carID.forEach {
+//            list.add(getCar(it))
+//        }
+//        return list
+//    }
 
 //    private suspend fun getCarSuspend(carID: LongArray): LiveData<List<Car>>
 //    {
@@ -132,8 +127,9 @@ class RefuelingFragmentVM(
 
     fun refuelingClicked(refuelingID: Long)
     {
-        //Log.d(refueling.value!![0])
-        Log.d(car)
+        cars.value!!.forEach {
+            Log.d("Car: $it")
+        }
 
         _navigateToRefueling.value = refuelingID
     }

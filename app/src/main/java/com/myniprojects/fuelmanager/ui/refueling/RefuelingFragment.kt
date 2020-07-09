@@ -23,6 +23,7 @@ class RefuelingFragment : Fragment()
 
     private lateinit var viewModel: RefuelingFragmentVM
     private lateinit var binding: FragmentRefuelingBinding
+    private lateinit var carsNames: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -116,7 +117,6 @@ class RefuelingFragment : Fragment()
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
@@ -124,7 +124,7 @@ class RefuelingFragment : Fragment()
         {
             val carInfoFragment =
                 CarInfoFragment(
-                    viewModel.car.value!!
+                    viewModel.cars
                 )
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
@@ -133,7 +133,7 @@ class RefuelingFragment : Fragment()
         {
             val multipleCarsFragment =
                 MultipleCarsFragment(
-                    viewModel.carString
+                    viewModel.cars
                 )
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, multipleCarsFragment).commit()
