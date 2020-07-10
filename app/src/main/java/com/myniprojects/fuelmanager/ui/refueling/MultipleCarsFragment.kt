@@ -32,6 +32,14 @@ class MultipleCarsFragment(private val cars: LiveData<List<Car>>) : Fragment()
 
         binding.lifecycleOwner = this
 
+        binding.scrollRoot.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            binding.txtCars.lineHeight * 3 + 10
+        )
+
+
+
+
 
         cars.observe(viewLifecycleOwner, Observer {
             binding.txtCars.text = formatCars(it, requireContext())

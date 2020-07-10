@@ -18,8 +18,6 @@ fun formatCars(cars: List<Car>, context: Context): Spanned
 
         for ((index, value) in cars.withIndex())
         {
-
-            Log.d("${carColors[index]} Color")
             append(
                 "<span style=\"color:${carColors[index]}\"> ${context.getString(
                     R.string.car_title,
@@ -40,4 +38,34 @@ fun formatCars(cars: List<Car>, context: Context): Spanned
     {
         HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
+}
+
+fun getCarNames(cars: List<Car>, context: Context): ArrayList<Spanned>
+{
+
+    val carColors = context.resources.getIntArray(R.array.car_colors)
+
+    val carNames = ArrayList<Spanned>()
+
+    for ((index, value) in cars.withIndex())
+    {
+        val s = "<span style=\"color:${carColors[index]}\"> ${context.getString(
+            R.string.car_title,
+            value.brand,
+            value.model
+        )} </span>"
+
+        carNames.add(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            {
+                Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY)
+            }
+            else
+            {
+                HtmlCompat.fromHtml(s, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            }
+        )
+    }
+
+    return carNames
 }

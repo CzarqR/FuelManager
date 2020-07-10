@@ -93,13 +93,14 @@ class RefuelingFragmentVM(
         state: Byte,
         place: String,
         comment: String,
-        odometerReading: Double
+        odometerReading: Double,
+        selectedCar: Int
     )
     {
         uiScope.launch {
             insertRefueling(
                 Refueling(
-                    carID = carID[0],
+                    carID = carID[selectedCar],
                     litres = litres,
                     price = price,
                     previousTankState = state,
