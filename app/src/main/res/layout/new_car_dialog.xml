@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/newCarBack"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alegreya_sans"
         android:gravity="center_horizontal"
         android:textSize="18sp" />
 
@@ -19,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="brand"
+        android:fontFamily="@font/alegreya_sans"
         android:hint="@string/brand"
         android:inputType="text"
         android:maxLength="20"
@@ -29,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="model"
+        android:fontFamily="@font/alegreya_sans"
         android:hint="@string/model"
         android:inputType="text"
         android:maxLength="20"
@@ -39,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="engine"
+        android:fontFamily="@font/alegreya_sans"
         android:hint="@string/engine"
         android:inputType="text"
         android:maxLength="20"
@@ -49,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="fuel"
+        android:fontFamily="@font/alegreya_sans"
         android:hint="@string/fuel_type"
         android:inputType="text"
         android:maxLength="20"
@@ -60,6 +66,7 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:background="@color/newCarSpinner"
             android:id="@+id/spinCar"
             android:layout_width="@dimen/img_add_car_size"
             android:layout_height="@dimen/img_add_car_size"
@@ -85,7 +92,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:background="@drawable/button_dialog_shape" />
+                android:background="@drawable/button_dialog_shape"
+                android:fontFamily="@font/alegreya_sans"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/butCancel"
@@ -93,7 +102,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_dialog_shape"
-                android:text="@string/cancel" />
+                android:fontFamily="@font/alegreya_sans"
+                android:text="@string/cancel"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

@@ -4,10 +4,19 @@
     <color name="colorPrimaryDark">#577590</color>
     <color name="colorAccent">#bee3db</color>
 
+    //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>
     <color name="colorRecyclerItemHead">#023e7d</color>
     <color name="colorRecyclerItemImage">#002855</color>
     <color name="colorFont">#222020</color>
+
+    //New car dialog
+    <color name="newCarBack">#ffff3f</color>
+
+    <color name="newCarButtonFrame">#64B5F6</color>
+    <color name="newCarButton1Color">#BA68C8</color>
+    <color name="newCarButton2Color">#9575CD</color>
+    <color name="newCarSpinner">#FFD54F</color>
 
 
 </resources>

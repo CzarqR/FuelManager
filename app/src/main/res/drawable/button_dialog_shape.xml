@@ -4,12 +4,12 @@
 
     <stroke
         android:width="4dp"
-        android:color="@color/colorAccent" />
+        android:color="@color/newCarButtonFrame" />
 
     <gradient
-        android:angle="45"
-        android:endColor="#80FF00FF"
-        android:startColor="#FFFF0000" />
+        android:angle="0"
+        android:endColor="@color/newCarButton2Color"
+        android:startColor="@color/newCarButton1Color" />
 
     <padding
         android:bottom="7dp"
