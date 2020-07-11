@@ -18,9 +18,10 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_height="match_parent"
             android:id="@+id/recViewCar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/butSelectedMany"
             app:layout_constraintEnd_toEndOf="parent"

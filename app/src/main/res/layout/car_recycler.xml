@@ -28,41 +28,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <FrameLayout
+
                 android:id="@+id/linLayDelete"
                 android:layout_width="1px"
-                android:layout_height="112dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:background="#B71C1C"
                 android:onClick="@{()-> clickListener.onDeleteClick(car)}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@string/delete_item"
                     app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            </LinearLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/linLaySelect"
                 android:layout_width="1px"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:background="#1B5E20"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="112dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@string/delete_item"
                     app:srcCompat="@drawable/ic_launcher_foreground" />
 
@@ -71,8 +74,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/carBackground"
                 android:layout_width="0dp"
-                android:layout_height="112dp"
-                android:background="#FFFFFF"
+                android:layout_height="wrap_content"
+                android:background="@color/colorRecyclerItem"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/linLaySelect"
                 app:layout_constraintStart_toEndOf="@id/linLayDelete"
@@ -82,43 +85,56 @@
                 <TextView
                     android:id="@+id/txtTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="16dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorRecyclerItemHead"
+                    android:fontFamily="@font/alegreya_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
                     app:carTitle="@{car}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Mercedes Benz" />
 
                 <ImageView
-
                     android:id="@+id/imgCar"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
+                    android:background="@color/colorRecyclerItemImage"
                     android:contentDescription="@string/car_icon"
                     app:carIcon="@{car}"
-                    app:layout_constraintEnd_toStartOf="@+id/txtEngine"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-                    tools:srcCompat="@drawable/car0" />
+                    tools:srcCompat="@drawable/car6" />
 
                 <TextView
                     android:id="@+id/txtEngine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:textColor="@color/colorFont"
+                    android:textSize="16sp"
                     app:carEngine="@{car}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+                    app:layout_constraintStart_toEndOf="@+id/imgCar"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                    tools:text="1.6 TDI" />
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/textFuel"
+                    android:layout_width="48dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:textColor="@color/colorFont"
+                    android:textSize="16sp"
                     app:carFuel="@{car}"
-                    app:layout_constraintEnd_toStartOf="@+id/imgCar"
-                    app:layout_constraintTop_toBottomOf="@+id/txtEngine" />
-
+                    app:layout_constraintStart_toEndOf="@+id/imgCar"
+                    app:layout_constraintTop_toBottomOf="@+id/txtEngine"
+                    tools:text="Petrol 98" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

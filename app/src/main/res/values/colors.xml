@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#006064</color>
-    <color name="colorPrimaryDark">#E65100</color>
-    <color name="colorAccent">#0D47A1</color>
+    <color name="colorPrimary">#355070</color>
+    <color name="colorPrimaryDark">#577590</color>
+    <color name="colorAccent">#bee3db</color>
+
+    <color name="colorRecyclerItem">#0353a4</color>
+    <color name="colorRecyclerItemHead">#023e7d</color>
+    <color name="colorRecyclerItemImage">#002855</color>
+    <color name="colorFont">#222020</color>
 
 
 </resources>
