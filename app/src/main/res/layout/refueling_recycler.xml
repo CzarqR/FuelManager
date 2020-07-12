@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
@@ -25,38 +26,55 @@
             android:id="@+id/txtLitres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingLitres="@{refueling}" />
+            android:lines="1"
+            android:text="@{@string/litres_format(refueling.litres)}"
+            tools:text="Litres: 13.56" />
 
         <TextView
-            android:id="@+id/txtPrice"
+            android:id="@+id/txtLiterPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingPrice="@{refueling}" />
+            android:lines="1"
+            android:text="@{@string/liter_price_format(refueling.price)}"
+            tools:text="Liter price: 4.14" />
 
         <TextView
             android:id="@+id/txtState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingState="@{refueling}" />
+            android:lines="1"
+            android:text="@{@string/state_format(refueling.previousTankState)}"
+            tools:text="Tank tate: 21%" />
 
         <TextView
             android:id="@+id/txtOdometerReading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingOdometerReading="@{refueling}" />
+            android:lines="1"
+            android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading)}"
+            tools:text="Odometer Reading: 256 999.5 km" />
 
+
+        <TextView
+            android:id="@+id/txtDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:refuelingDateTime="@{refueling}"
+            tools:text="31/01.1998 15:10:99" />
 
         <TextView
             android:id="@+id/txtPlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingPlace="@{refueling}" />
+            app:refuelingPlace="@{refueling}"
+            tools:text="Warsaw Orlen road 13a" />
 
         <TextView
             android:id="@+id/txtComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:refuelingComment="@{refueling}" />
+            app:refuelingComment="@{refueling}"
+            tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />
 
     </LinearLayout>
 </layout>

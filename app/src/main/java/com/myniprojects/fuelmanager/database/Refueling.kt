@@ -36,5 +36,9 @@ data class Refueling(
     val previousOdometerReading: Double = 0.0,
 
     @ColumnInfo(name = "comment")
-    val comment: String = ""
+    val comment: String = "",
+
+    @ColumnInfo(name = "date_time")
+    val dateTimeMillis: Long = 0
+
 )

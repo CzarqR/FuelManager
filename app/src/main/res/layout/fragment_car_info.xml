@@ -10,30 +10,38 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/carBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8B8EAF">
+        android:background="@color/colorRecyclerItem"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorRecyclerItemHead"
+            android:fontFamily="@font/alegreya_sans_medium"
             android:gravity="center"
+            android:textColor="@color/colorFont"
+            android:textSize="18sp"
             app:carTitle="@{car}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Audi A8" />
+            tools:text="Mercedes Benz" />
 
         <ImageView
             android:id="@+id/imgCar"
             android:layout_width="96dp"
             android:layout_height="96dp"
+            android:background="@color/colorRecyclerItemImage"
             android:contentDescription="@string/car_icon"
             app:carIcon="@{car}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            tools:srcCompat="@drawable/car0" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            tools:srcCompat="@drawable/car6" />
 
         <TextView
             android:id="@+id/txtEngine"
@@ -41,22 +49,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/alegreya_sans"
+            android:textColor="@color/colorFont"
+            android:textSize="16sp"
             app:carEngine="@{car}"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
             tools:text="1.6 TDI" />
 
         <TextView
-            android:id="@+id/txtFuel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/textFuel"
+            android:layout_width="48dp"
+            android:layout_height="18dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/alegreya_sans"
+            android:textColor="@color/colorFont"
+            android:textSize="16sp"
             app:carFuel="@{car}"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/txtEngine"
-            tools:text="V-Power 98" />
+            tools:text="Petrol 98" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

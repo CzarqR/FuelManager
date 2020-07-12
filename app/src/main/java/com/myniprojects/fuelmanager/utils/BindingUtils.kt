@@ -7,6 +7,8 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.model.CarIcon
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // region Menu Fragment
@@ -47,37 +49,47 @@ fun ImageView.setCarIcon(car: Car?)
 
 // region Refueling Fragment
 
-@BindingAdapter("refuelingLitres")
-fun TextView.setRefuelingLitres(refueling: Refueling?)
-{
-    refueling?.let {
-        text = refueling.litres.toString()
-    }
-}
-
-@BindingAdapter("refuelingPrice")
-fun TextView.setRefuelingPrice(refueling: Refueling?)
-{
-    refueling?.let {
-        text = refueling.price.toString()
-    }
-}
-
-@BindingAdapter("refuelingState")
-fun TextView.setRefuelingState(refueling: Refueling?)
-{
-    refueling?.let {
-        text = refueling.previousTankState.toString()
-    }
-}
-
-@BindingAdapter("refuelingOdometerReading")
-fun TextView.setOdometerReading(refueling: Refueling?)
-{
-    refueling?.let {
-        text = refueling.previousOdometerReading.toString()
-    }
-}
+//@BindingAdapter("refuelingLitres")
+//fun TextView.setRefuelingLitres(refueling: Refueling?)
+//{
+//    refueling?.let {
+//        text = refueling.litres.toString()
+//    }
+//}
+//
+//@BindingAdapter("refuelingFullPrice")
+//fun TextView.setRefuelingFullPrice(refueling: Refueling?)
+//{
+//    refueling?.let {
+//        text = refueling.price.toString()
+//    }
+//}
+//
+//@BindingAdapter("refuelingLiterPrice")
+//fun TextView.setRefuelingLiterPrice(refueling: Refueling?)
+//{
+//    refueling?.let {
+//
+//        text = refueling.price.div(refueling.litres).toString()
+//    }
+//}
+//
+//
+//@BindingAdapter("refuelingState")
+//fun TextView.setRefuelingState(refueling: Refueling?)
+//{
+//    refueling?.let {
+//        text = refueling.previousTankState.toString()
+//    }
+//}
+//
+//@BindingAdapter("refuelingOdometerReading")
+//fun TextView.setOdometerReading(refueling: Refueling?)
+//{
+//    refueling?.let {
+//        text = refueling.previousOdometerReading.toString()
+//    }
+//}
 
 @BindingAdapter("refuelingPlace")
 fun TextView.setRefuelingPlace(refueling: Refueling?)
@@ -93,6 +105,23 @@ fun TextView.setRefuelingComment(refueling: Refueling?)
     refueling?.let {
         text = refueling.comment
     }
+}
+
+@BindingAdapter("refuelingDateTime")
+fun TextView.setRefuelingDateTime(refueling: Refueling?)
+{
+    refueling?.let {
+        text = getDate(refueling.dateTimeMillis, "dd/MM/yyyy hh:mm:ss", Locale.getDefault())
+    }
+}
+
+fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String?
+{
+    val formatter = SimpleDateFormat(dateFormat, locale)
+
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = milliSeconds
+    return formatter.format(calendar.time)
 }
 
 // endregion

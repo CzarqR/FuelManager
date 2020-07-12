@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#577590</color>
     <color name="colorAccent">#bee3db</color>
 
+
+    <color name="leftPanel">#FFF176</color>
+
     //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>
     <color name="colorRecyclerItemHead">#023e7d</color>
@@ -18,5 +21,9 @@
     <color name="newCarButton2Color">#9575CD</color>
     <color name="newCarSpinner">#FFD54F</color>
 
+
+    //Menu
+    <color name="menuTextColor">#615D5D</color>
+    <color name="menuTextBackground">#D16F4F</color>
 
 </resources>

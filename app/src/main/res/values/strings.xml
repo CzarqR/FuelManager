@@ -43,9 +43,14 @@
     <string name="navigation_header">Navigation header</string>
     <string name="empty" />
     <string name="our_apps">Our Apps</string>
-    <string name="cannot_open_our_apps">Your phone cannot open web page or Googe Play Store</string>
+    <string name="cannot_open_our_apps">Your phone cannot open web page or Google Play Store</string>
     <string name="tank_state">Tank state in %</string>
     <string name="selected_car">Selected car:</string>
 
+
+    <string name="litres_format">Litres: %.2f</string>
+    <string name="liter_price_format">Liter price: %.2f</string>
+    <string name="state_format">Tank state: %1$d%%</string>
+    <string name="odometer_reading_format">Odometer reading: %.1f</string>
 
 </resources>

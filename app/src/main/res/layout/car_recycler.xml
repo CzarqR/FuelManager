@@ -76,7 +76,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorRecyclerItem"
-                android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/linLaySelect"
                 app:layout_constraintStart_toEndOf="@id/linLayDelete"
                 app:layout_constraintTop_toTopOf="parent">

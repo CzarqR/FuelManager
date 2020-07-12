@@ -94,7 +94,8 @@ class RefuelingFragmentVM(
         place: String,
         comment: String,
         odometerReading: Double,
-        selectedCar: Int
+        selectedCar: Int,
+        dateTime: Long = -1L
     )
     {
         uiScope.launch {
@@ -106,7 +107,8 @@ class RefuelingFragmentVM(
                     previousTankState = state,
                     previousOdometerReading = odometerReading,
                     place = place,
-                    comment = comment
+                    comment = comment,
+                    dateTimeMillis = if (dateTime == -1L) System.currentTimeMillis() else dateTime
                 )
             )
         }
@@ -128,7 +130,7 @@ class RefuelingFragmentVM(
 
     fun refuelingClicked(refuelingID: Long)
     {
-        cars.value!!.forEach {
+        refueling.value!!.forEach {
             Log.d("Car: $it")
         }
 
