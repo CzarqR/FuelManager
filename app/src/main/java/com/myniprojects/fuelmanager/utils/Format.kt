@@ -7,6 +7,9 @@ import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 fun formatCars(cars: List<Car>, context: Context): Spanned
 {
@@ -68,4 +71,14 @@ fun getCarNames(cars: List<Car>, context: Context): ArrayList<Spanned>
     }
 
     return carNames
+}
+
+fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
+{
+    val formatter = SimpleDateFormat(dateFormat, locale)
+
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = milliSeconds
+
+    return formatter.format(calendar.time)
 }

@@ -17,62 +17,42 @@
     </data>
 
     <LinearLayout
+        android:background="@color/recyclerBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(refueling)}"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/standardHeight"
+            android:text="@{@string/date_time_place(refueling.dateTimeString, refueling.place)}"
+            app:autoSizeTextType="uniform"
+            tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
+
+        <TextView
             android:id="@+id/txtLitres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
             android:lines="1"
-            android:text="@{@string/litres_format(refueling.litres)}"
-            tools:text="Litres: 13.56" />
-
-        <TextView
-            android:id="@+id/txtLiterPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:text="@{@string/liter_price_format(refueling.price)}"
-            tools:text="Liter price: 4.14" />
-
-        <TextView
-            android:id="@+id/txtState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:text="@{@string/state_format(refueling.previousTankState)}"
-            tools:text="Tank tate: 21%" />
+            android:text="@{@string/litres_format(refueling.litres, refueling.price, refueling.litres * refueling.price)}"
+            app:autoSizeTextType="uniform"
+            tools:text="13.56 litres for 14.67. Total price: 44.91" />
 
         <TextView
             android:id="@+id/txtOdometerReading"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading)}"
-            tools:text="Odometer Reading: 256 999.5 km" />
-
-
-        <TextView
-            android:id="@+id/txtDateTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:refuelingDateTime="@{refueling}"
-            tools:text="31/01.1998 15:10:99" />
-
-        <TextView
-            android:id="@+id/txtPlace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:refuelingPlace="@{refueling}"
-            tools:text="Warsaw Orlen road 13a" />
+            android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
+            tools:text="Odometer Reading: 256 999.5 km with tank state 20%" />
 
         <TextView
             android:id="@+id/txtComment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             app:refuelingComment="@{refueling}"
             tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />
 

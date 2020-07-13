@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.myniprojects.fuelmanager.utils.getDate
+import java.util.*
 
 @Entity(
     tableName = "refueling_table", foreignKeys = [ForeignKey(
@@ -40,5 +42,8 @@ data class Refueling(
 
     @ColumnInfo(name = "date_time")
     val dateTimeMillis: Long = 0
-
 )
+{
+    val dateTimeString: String
+        get() = getDate(this.dateTimeMillis, "dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+}

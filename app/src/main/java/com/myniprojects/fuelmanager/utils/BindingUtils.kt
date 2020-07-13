@@ -7,7 +7,6 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.model.CarIcon
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -107,21 +106,18 @@ fun TextView.setRefuelingComment(refueling: Refueling?)
     }
 }
 
-@BindingAdapter("refuelingDateTime")
-fun TextView.setRefuelingDateTime(refueling: Refueling?)
+@BindingAdapter("refuelingDateTimePlace")
+fun TextView.setRefuelingDateTimePlace(refueling: Refueling?)
 {
     refueling?.let {
-        text = getDate(refueling.dateTimeMillis, "dd/MM/yyyy hh:mm:ss", Locale.getDefault())
+        text = "${getDate(
+            refueling.dateTimeMillis,
+            "dd/MM/yyyy HH:mm:ss",
+            Locale.getDefault()
+        )} ${refueling.place}"
     }
 }
 
-fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String?
-{
-    val formatter = SimpleDateFormat(dateFormat, locale)
 
-    val calendar: Calendar = Calendar.getInstance()
-    calendar.timeInMillis = milliSeconds
-    return formatter.format(calendar.time)
-}
 
 // endregion

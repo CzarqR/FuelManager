@@ -26,4 +26,8 @@
     <color name="menuTextColor">#615D5D</color>
     <color name="menuTextBackground">#D16F4F</color>
 
+    //Refueling recycler
+    <color name="recyclerBackground">#81D4FA</color>
+
+
 </resources>
