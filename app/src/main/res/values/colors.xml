@@ -29,5 +29,8 @@
     //Refueling recycler
     <color name="recyclerBackground">#81D4FA</color>
 
+    //Multiple cars
+    <color name="multipleCarsBack">#C7D1D6</color>
+
 
 </resources>

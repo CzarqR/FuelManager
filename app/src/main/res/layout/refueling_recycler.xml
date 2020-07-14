@@ -17,9 +17,9 @@
     </data>
 
     <LinearLayout
-        android:background="@color/recyclerBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/recyclerBackground"
         android:onClick="@{() -> clickListener.onClick(refueling)}"
         android:orientation="vertical">
 
@@ -43,9 +43,10 @@
         <TextView
             android:id="@+id/txtOdometerReading"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/standardHeight"
             android:lines="1"
             android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
+            app:autoSizeTextType="uniform"
             tools:text="Odometer Reading: 256 999.5 km with tank state 20%" />
 
         <TextView
