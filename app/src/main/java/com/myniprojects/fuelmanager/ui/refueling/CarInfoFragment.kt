@@ -35,6 +35,7 @@ class CarInfoFragment(private val cars: LiveData<List<Car>>) : Fragment()
             binding.car = it[0]
         })
 
+
         return binding.root
     }
 

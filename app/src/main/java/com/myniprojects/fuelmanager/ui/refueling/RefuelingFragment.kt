@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -118,7 +119,20 @@ class RefuelingFragment : Fragment()
             }
         })
 
-
+        viewModel.cars.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it.size > 1)
+                {
+                    (activity as AppCompatActivity?)!!.supportActionBar?.title =
+                        getString(R.string.refueling_many_fragment_title)
+                }
+                else
+                {
+                    (activity as AppCompatActivity?)!!.supportActionBar?.title =
+                        getString(R.string.refueling_1_fragment_title)
+                }
+            }
+        })
 
         return binding.root
     }

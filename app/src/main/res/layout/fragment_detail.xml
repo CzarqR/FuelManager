@@ -13,7 +13,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -27,7 +28,8 @@
                 android:id="@+id/txtLitres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/litres" />
+                android:text="@string/litres"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtLitres"
@@ -38,14 +40,16 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/litres"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(detailViewModel.refueling.litres)}" />
+                android:text="@{String.valueOf(detailViewModel.refueling.litres)}"
+                android:textColor="@color/colorFont" />
 
 
             <TextView
                 android:id="@+id/txtFullPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/price" />
+                android:text="@string/price"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtPrice"
@@ -56,13 +60,15 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/price"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(detailViewModel.refueling.price)}" />
+                android:text="@{String.valueOf(detailViewModel.refueling.price)}"
+                android:textColor="@color/colorFont" />
 
             <TextView
                 android:id="@+id/txtOdometerReading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/odometer_reading" />
+                android:text="@string/odometer_reading"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtOdometerReading"
@@ -73,13 +79,15 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/odometer_reading"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(detailViewModel.refueling.previousOdometerReading)}" />
+                android:text="@{String.valueOf(detailViewModel.refueling.previousOdometerReading)}"
+                android:textColor="@color/colorFont" />
 
             <TextView
                 android:id="@+id/txtPreviousState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tank_state" />
+                android:text="@string/tank_state"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtPreviousState"
@@ -90,13 +98,15 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/tank_state"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(detailViewModel.refueling.previousTankState)}" />
+                android:text="@{String.valueOf(detailViewModel.refueling.previousTankState)}"
+                android:textColor="@color/colorFont" />
 
             <TextView
                 android:id="@+id/txtPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/place" />
+                android:text="@string/place"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtPlace"
@@ -107,14 +117,16 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/place"
                 android:inputType="textMultiLine"
-                android:text="@{detailViewModel.refueling.place}" />
+                android:text="@{detailViewModel.refueling.place}"
+                android:textColor="@color/colorFont" />
 
 
             <TextView
                 android:id="@+id/txtComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/comment" />
+                android:text="@string/comment"
+                android:textColor="@color/headTextColor" />
 
             <EditText
                 android:id="@+id/edTxtComment"
@@ -125,7 +137,8 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/comment"
                 android:inputType="textMultiLine"
-                android:text="@{detailViewModel.refueling.comment}" />
+                android:text="@{detailViewModel.refueling.comment}"
+                android:textColor="@color/colorFont" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -139,6 +152,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/button_dialog_shape"
                     android:text="@string/cancel"
                     app:layout_constraintEnd_toStartOf="@+id/butEdit"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -148,7 +163,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_margin="4dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/button_dialog_shape"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Edit" />
@@ -157,7 +174,9 @@
                     android:id="@+id/butDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
                     android:layout_marginStart="8dp"
+                    android:background="@drawable/button_dialog_shape"
                     android:text="@string/delete"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

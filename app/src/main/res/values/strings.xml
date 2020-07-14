@@ -51,5 +51,10 @@
     <string name="litres_format">%.2f litres for %.2f. Total price %.2f</string>
     <string name="odometer_reading_format">Odometer reading: %.1f with tank state %2$d%%</string>
     <string name="date_time_place">%1$s %2$s</string>
+    <string name="detail_fragment_title">Refueling details</string>
+    <string name="car_fragment_title">Select car</string>
+    <string name="refueling_1_fragment_title">Selected car refuelings</string>
+    <string name="refueling_many_fragment_title">Selected cars refuelings</string>
+    <string name="help_fragment_title">Help</string>
 
 </resources>

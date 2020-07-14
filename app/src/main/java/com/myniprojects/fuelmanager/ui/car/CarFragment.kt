@@ -3,6 +3,7 @@ package com.myniprojects.fuelmanager.ui.car
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -133,6 +134,8 @@ class CarFragment : Fragment()
         // options bar
         setHasOptionsMenu(true)
 
+        (activity as AppCompatActivity?)!!.supportActionBar?.title =
+            getString(R.string.car_fragment_title)
 
         return binding.root
     }

@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#577590</color>
     <color name="colorAccent">#bee3db</color>
 
+    <color name="action_bar_color">#FFC107</color>
 
     <color name="leftPanel">#FFF176</color>
+
+    <color name="text_fragment_name">#FF5722</color>
 
     //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>
@@ -31,6 +34,9 @@
 
     //Multiple cars
     <color name="multipleCarsBack">#C7D1D6</color>
+
+    // Detail fragment
+    <color name="headTextColor">#FFCCBC</color>
 
 
 </resources>

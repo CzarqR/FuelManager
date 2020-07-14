@@ -6,6 +6,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/menuTextColor</item>
         <item name="android:itemBackground">@color/menuTextBackground</item>
+        <item name="android:navigationBarColor">@color/action_bar_color</item>
+        <item name="android:textColorPrimary">@color/text_fragment_name</item>
     </style>
 
 

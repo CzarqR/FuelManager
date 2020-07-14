@@ -1,4 +1,4 @@
-package com.myniprojects.fuelmanager.ui
+package com.myniprojects.fuelmanager.ui.main
 
 import android.content.Intent
 import android.net.Uri
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawerLayout: DrawerLayout
 
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.navView.setNavigationItemSelectedListener(this)
         ContextCompat.getColor(this, R.color.colorPrimaryDark)
+
     }
 
 

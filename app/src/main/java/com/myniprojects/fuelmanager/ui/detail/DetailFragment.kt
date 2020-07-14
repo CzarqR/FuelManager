@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentDetailBinding
 import com.myniprojects.fuelmanager.utils.Log
+
 
 class DetailFragment : Fragment()
 {
@@ -84,9 +86,11 @@ class DetailFragment : Fragment()
 
         setHasOptionsMenu(true)
 
+        (activity as AppCompatActivity?)!!.supportActionBar?.title =
+            getString(R.string.detail_fragment_title)
+
         return binding.root
     }
-
 
     private fun showEditConfirmation()
     {
