@@ -91,6 +91,13 @@ class RefuelingFragment : Fragment()
             }
         }
 
+        // chart
+
+        binding.goToChart.setOnClickListener {
+            this.findNavController()
+                .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
+        }
+
         // set RecyclerView
         val adapter =
             RefuelingRecyclerAdapter(RefuelingListener {

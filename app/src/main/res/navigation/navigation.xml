@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/carFragment">
 
     <fragment
-        android:id="@+id/menuFragment"
+        android:id="@+id/carFragment"
         android:name="com.myniprojects.fuelmanager.ui.car.CarFragment"
-        android:label="MenuFragment">
+        android:label="CarFragment">
         <action
             android:id="@+id/action_car_to_refueling"
-            app:destination="@id/carFragment" />
+            app:destination="@id/refuelingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/carFragment"
+        android:id="@+id/refuelingFragment"
         android:name="com.myniprojects.fuelmanager.ui.refueling.RefuelingFragment"
         android:label="CarFragment">
         <argument
@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_refueling_to_detail"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_refueling_to_chart"
+            app:destination="@id/chartFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -37,4 +40,8 @@
         android:name="com.myniprojects.fuelmanager.ui.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.myniprojects.fuelmanager.ui.chart.ChartFragment"
+        android:label="ChartFragment" />
 </navigation>
