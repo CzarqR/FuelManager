@@ -49,7 +49,10 @@ class RefuelingFragment : Fragment()
             arguments.carID,
             application
         )
-        viewModel = ViewModelProvider(this, viewModelFactory).get(RefuelingFragmentVM::class.java)
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        ).get(RefuelingFragmentVM::class.java)
         binding.carViewModel = viewModel
 
         binding.lifecycleOwner = this
