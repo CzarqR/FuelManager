@@ -88,13 +88,13 @@ class CarFragmentVM(
 
     // region navigation click
 
-    private val _navigateToCar = MutableLiveData<LongArray>()
-    val navigateToCar
-        get() = _navigateToCar
+    private val _navigateToRefueling = MutableLiveData<LongArray>()
+    val navigateToRefueling
+        get() = _navigateToRefueling
 
     fun carClicked(carID: LongArray)
     {
-        _navigateToCar.value = carID
+        _navigateToRefueling.value = carID
     }
 
     fun deleteCar(carID: Long)
@@ -107,7 +107,7 @@ class CarFragmentVM(
 
     fun carNavigated()
     {
-        _navigateToCar.value = null
+        _navigateToRefueling.value = null
     }
 
     fun editCar(

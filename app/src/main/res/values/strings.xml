@@ -56,5 +56,7 @@
     <string name="refueling_1_fragment_title">Selected car refuelings</string>
     <string name="refueling_many_fragment_title">Selected cars refuelings</string>
     <string name="help_fragment_title">Help</string>
+    <string name="chart_title">"Fuel price "</string>
+    <string name="y_axis_title">Price for 1km</string>
 
 </resources>

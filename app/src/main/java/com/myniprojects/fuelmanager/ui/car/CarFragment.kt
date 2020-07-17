@@ -106,7 +106,7 @@ class CarFragment : Fragment()
             }
         })
 
-        viewModel.navigateToCar.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToRefueling.observe(viewLifecycleOwner, Observer {
             it?.let {
                 this.findNavController()
                     .navigate(CarFragmentDirections.actionCarToRefueling(it))
