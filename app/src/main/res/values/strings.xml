@@ -58,5 +58,6 @@
     <string name="help_fragment_title">Help</string>
     <string name="chart_title">"Fuel price "</string>
     <string name="y_axis_title">Price for 1km</string>
+    <string name="tank_size">Tank Size</string>
 
 </resources>

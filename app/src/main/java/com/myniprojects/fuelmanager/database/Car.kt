@@ -21,6 +21,9 @@ data class Car(
     @ColumnInfo(name = "fuel_type")
     val fuelType: String = "3",
 
+    @ColumnInfo(name = "tank_size")
+    val tankSize: Double = 0.0,
+
     @ColumnInfo(name = "icon_id")
     val iconID: Byte = 0
 )

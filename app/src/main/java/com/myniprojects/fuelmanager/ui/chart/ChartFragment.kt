@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.databinding.FragmentChartBinding
 import com.myniprojects.fuelmanager.ui.refueling.RefuelingFragmentVM
-import com.myniprojects.fuelmanager.utils.Log
 
 class ChartFragment : Fragment()
 {
@@ -33,21 +31,11 @@ class ChartFragment : Fragment()
 
         binding.lifecycleOwner = this
 
-
-        viewModel.refueling.observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                Log.d(it)
-            }
-        })
-
-        //error with VM
-
         //chart test
 
         binding.chart.setProgressBar(binding.progressBar)
 
-
-        binding.chart.setChart(viewModel.chart)
+        binding.chart.setChart(viewModel.chartFuelCost)
 
         return binding.root
     }

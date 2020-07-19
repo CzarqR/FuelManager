@@ -67,6 +67,7 @@ class CarFragment : Fragment()
                     mDialogView.edTxtModel.text.toString(),
                     mDialogView.edTxtEngine.text.toString(),
                     mDialogView.edTxtFuelType.text.toString(),
+                    mDialogView.edTxtTankSize.text.toString().toDouble(),
                     mDialogView.spinCar.selectedItemPosition.toByte()
                 )
                 mAlertDialog.dismiss()
@@ -197,6 +198,7 @@ class CarFragment : Fragment()
         mDialogView.edTxtModel.setText(car.model)
         mDialogView.edTxtEngine.setText(car.engine)
         mDialogView.edTxtFuelType.setText(car.fuelType)
+        mDialogView.edTxtTankSize.setText(car.tankSize.toString())
 
         mDialogView.spinCar.setSelection(car.iconID.toInt())
 
@@ -207,6 +209,7 @@ class CarFragment : Fragment()
                 mDialogView.edTxtEngine.text.toString(),
                 mDialogView.edTxtFuelType.text.toString(),
                 mDialogView.spinCar.selectedItemPosition.toByte(),
+                mDialogView.edTxtTankSize.text.toString().toDouble(),
                 carID
             )
             mAlertDialog.dismiss()

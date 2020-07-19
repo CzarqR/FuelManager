@@ -57,7 +57,14 @@ class CarFragmentVM(
     }
 
 
-    fun addCar(brand: String, model: String, engine: String, fuelType: String, iconID: Byte)
+    fun addCar(
+        brand: String,
+        model: String,
+        engine: String,
+        fuelType: String,
+        tankSize: Double,
+        iconID: Byte
+    )
     {
         uiScope.launch {
             insert(
@@ -66,16 +73,10 @@ class CarFragmentVM(
                     model = model,
                     engine = engine,
                     fuelType = fuelType,
+                    tankSize = tankSize,
                     iconID = iconID
                 )
             )
-        }
-    }
-
-    fun listAll()
-    {
-        cars.value!!.forEach {
-            Log.d(it)
         }
     }
 
@@ -116,6 +117,7 @@ class CarFragmentVM(
         engine: String,
         fuelType: String,
         iconID: Byte,
+        tankSize: Double,
         carID: Long
     )
     {
@@ -127,6 +129,7 @@ class CarFragmentVM(
                     model = model,
                     engine = engine,
                     fuelType = fuelType,
+                    tankSize = tankSize,
                     iconID = iconID
                 )
             )

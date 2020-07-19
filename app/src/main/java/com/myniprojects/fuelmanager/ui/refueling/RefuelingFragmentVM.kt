@@ -121,7 +121,7 @@ class RefuelingFragmentVM(
 
     // region chart
 
-    val chart: Cartesian
+    val chartFuelCost: Cartesian
         get()
         {
             val cartesian = AnyChart.line()
@@ -183,6 +183,67 @@ class RefuelingFragmentVM(
             return cartesian
         }
 
+
+    val chartFuelEfficiency: Cartesian
+        get()
+        {
+            val cartesian = AnyChart.line()
+
+            cartesian.animation(true)
+
+            cartesian.padding(10, 20, 5, 20)
+
+            cartesian.crosshair().enabled(true)
+            cartesian.crosshair().yLabel(true)
+
+            cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
+
+            cartesian.title(getApplication<Application>().getString(R.string.chart_title))
+
+            cartesian.yAxis(0).title(getApplication<Application>().getString(R.string.y_axis_title))
+            cartesian.xAxis(0).labels().padding(5, 5, 5, 5)
+
+            val seriesData = ArrayList<DataEntry>()
+
+            val locale = Locale.getDefault()
+
+
+
+
+            for (i in 0..(refueling.value!!.size - 2))
+            {
+
+            }
+
+            val set = Set.instantiate()
+            set.data(seriesData)
+            val series1Mapping = set.mapAs("{ x: 'x', value: 'value'}")
+
+            val series1 = cartesian.line(series1Mapping)
+            series1.name(
+                getApplication<Application>().getString(
+                    R.string.car_title,
+                    cars.value!![0].brand,
+                    cars.value!![0].model
+                )
+            )
+            series1.hovered().markers().enabled(true)
+            series1.hovered().markers()
+                .type(MarkerType.CIRCLE)
+                .size(4.0)
+            series1.tooltip()
+                .position("right")
+                .anchor(Anchor.LEFT_TOP)
+                .offsetX(5.0)
+                .offsetY(5.0)
+
+
+            cartesian.legend().enabled(true)
+            cartesian.legend().fontSize(13.0)
+            cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
+
+            return cartesian
+        }
 
     private class CustomDataEntry internal constructor(
         x: String?,
