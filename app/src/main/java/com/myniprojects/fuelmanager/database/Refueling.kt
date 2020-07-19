@@ -44,6 +44,9 @@ data class Refueling(
     val dateTimeMillis: Long = 0
 )
 {
-    val dateTimeString: String
+    val dateTimeLongString: String
         get() = getDate(this.dateTimeMillis, "dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+
+    val dateTimeChartString: String
+        get() = getDate(this.dateTimeMillis, "dd/MM/yy HH:mm", Locale.getDefault())
 }

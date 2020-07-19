@@ -21,13 +21,13 @@ interface RefuelingDAO
     @Query("DELETE FROM refueling_table WHERE refuelingID = :refuelingID")
     fun delete(refuelingID: Long)
 
-    @Query("SELECT * FROM refueling_table ORDER BY refuelingID DESC")
+    @Query("SELECT * FROM refueling_table ORDER BY refuelingID ASC")
     fun getAll(): LiveData<List<Refueling>>
 
-    @Query("SELECT * FROM refueling_table WHERE carID = :carID ORDER BY refuelingID DESC")
+    @Query("SELECT * FROM refueling_table WHERE carID = :carID ORDER BY refuelingID ASC")
     fun getAll(carID: Long): LiveData<List<Refueling>>
 
-    @Query("SELECT * FROM refueling_table WHERE carID IN (:carID) ORDER BY refuelingID DESC")
+    @Query("SELECT * FROM refueling_table WHERE carID IN (:carID) ORDER BY refuelingID ASC")
     fun getAll(carID: LongArray): LiveData<List<Refueling>>
 
     @Query("SELECT * FROM refueling_table WHERE refuelingID = :refuelingID")

@@ -27,7 +27,7 @@
             android:id="@+id/txtDateTime"
             android:layout_width="match_parent"
             android:layout_height="@dimen/standardHeight"
-            android:text="@{@string/date_time_place(refueling.dateTimeString, refueling.place)}"
+            android:text="@{@string/date_time_place(refueling.dateTimeLongString, refueling.place)}"
             app:autoSizeTextType="uniform"
             tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
 

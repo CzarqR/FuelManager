@@ -18,10 +18,7 @@ import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.getDate
 import kotlinx.coroutines.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class RefuelingFragmentVM(
     private val databaseRefueling: RefuelingDAO,
@@ -142,11 +139,10 @@ class RefuelingFragmentVM(
 
             val seriesData = ArrayList<DataEntry>()
 
-            val locale = Locale.getDefault()
             refueling.value!!.forEach {
                 seriesData.add(
                     ValueDataEntry(
-                        getDate(it.dateTimeMillis, "dd/MM/yy HH:mm", locale),
+                        it.dateTimeChartString,
                         it.price
                     )
                 )
@@ -205,15 +201,45 @@ class RefuelingFragmentVM(
 
             val seriesData = ArrayList<DataEntry>()
 
-            val locale = Locale.getDefault()
+            val tankSize = cars.value!![0].tankSize
+
+            with(refueling.value!!) {
+                for (i in 0..(size - 2))
+                {
+                    val afterRefTankState =
+                        this[i].previousTankState + this[i].litres * 100 / tankSize
+                    val endState = this[i + 1].previousTankState
+                    val usedTank = afterRefTankState - endState
+
+                    val usedLitres = usedTank * tankSize / 100
 
 
+                    val distance =
+                        this[i + 1].previousOdometerReading - this[i].previousOdometerReading
+
+                    val efficiency = distance / usedLitres
 
 
-            for (i in 0..(refueling.value!!.size - 2))
-            {
+                    Log.d("after $afterRefTankState")
+                    Log.d("end $endState")
+                    Log.d("used $usedTank")
+
+                    Log.d("ul $usedLitres")
+                    Log.d("dist $distance")
+                    Log.d("ref at $i eq $efficiency")
+
+
+                    seriesData.add(
+                        ValueDataEntry(
+                            this[i].dateTimeChartString,
+                            efficiency
+                        )
+                    )
+
+                }
 
             }
+
 
             val set = Set.instantiate()
             set.data(seriesData)

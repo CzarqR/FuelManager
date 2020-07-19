@@ -35,7 +35,7 @@ class ChartFragment : Fragment()
 
         binding.chart.setProgressBar(binding.progressBar)
 
-        binding.chart.setChart(viewModel.chartFuelCost)
+        binding.chart.setChart(viewModel.chartFuelEfficiency)
 
         return binding.root
     }
