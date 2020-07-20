@@ -2,9 +2,7 @@ package com.myniprojects.fuelmanager.ui.chart
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -33,13 +31,84 @@ class ChartFragment : Fragment()
 
         //chart test
 
-        binding.chart.setProgressBar(binding.progressBar)
+        binding.chartEf.setProgressBar(binding.progressBar)
+        binding.chartCost.setProgressBar(binding.progressBar)
 
-        binding.chart.setChart(viewModel.chartFuelEfficiency)
+        if (viewModel.canShow())
+        {
+            showChartEf()
+            binding.chartEf.setChart(viewModel.chartFuelEfficiency)
+        }
+        else
+        {
+            showInfo()
+            binding.progressBar.visibility = View.GONE
+        }
+
+        setHasOptionsMenu(true)
 
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.chart_menu, menu)
+    }
 
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        return when (item.itemId)
+        {
+            R.id.fuelCost ->
+            {
+                if (viewModel.canShow())
+                {
+                    showChartCost()
+                    binding.chartCost.setChart(viewModel.chartFuelCost)
+                }
+                else
+                {
+                    showInfo()
+                }
+                true
+            }
+            R.id.fuelEfficiency ->
+            {
+                if (viewModel.canShow())
+                {
+                    showChartEf()
+                    binding.chartEf.setChart(viewModel.chartFuelEfficiency)
+                }
+                else
+                {
+                    showInfo()
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showChartCost()
+    {
+        binding.chartEf.visibility = View.GONE
+        binding.chartCost.visibility = View.VISIBLE
+        binding.txtInfo.visibility = View.GONE
+    }
+
+    private fun showChartEf()
+    {
+        binding.chartEf.visibility = View.VISIBLE
+        binding.chartCost.visibility = View.GONE
+        binding.txtInfo.visibility = View.GONE
+    }
+
+    private fun showInfo()
+    {
+        binding.chartEf.visibility = View.GONE
+        binding.chartCost.visibility = View.GONE
+        binding.txtInfo.visibility = View.VISIBLE
+    }
 }

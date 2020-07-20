@@ -62,5 +62,10 @@
     <string name="fuel_efficiency">Fuel efficiency</string>
     <string name="y_axis_title_efficiency">Kilometers per liter of fuel</string>
     <string name="odometer_reading_km">%1$s km</string>
+    <string name="info_charts_cannot_display">To see charts and statistics You have to add at least three refueling</string>
+    <string name="fuel_cost">Fuel cost</string>
+    <string name="staticstic">Statisctic</string>
+    <string name="help_info">Help and Info</string>
+    <string name="cart_fragment_title">Statisctic</string>
 
 </resources>

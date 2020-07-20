@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,6 +16,7 @@ import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getCarNames
+import com.myniprojects.fuelmanager.utils.setActivityTitle
 import kotlinx.android.synthetic.main.new_refueling_dialog.view.*
 
 
@@ -130,13 +130,7 @@ class RefuelingFragment : Fragment()
             it?.let {
                 if (it.size > 1)
                 {
-                    (activity as AppCompatActivity?)!!.supportActionBar?.title =
-                        getString(R.string.refueling_many_fragment_title)
-                }
-                else
-                {
-                    (activity as AppCompatActivity?)!!.supportActionBar?.title =
-                        getString(R.string.refueling_1_fragment_title)
+                    setActivityTitle(R.string.refueling_many_fragment_title)
                 }
             }
         })

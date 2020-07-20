@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/carFragment"
         android:name="com.myniprojects.fuelmanager.ui.car.CarFragment"
-        android:label="CarFragment">
+        android:label="@string/car_fragment_title">
         <action
             android:id="@+id/action_car_to_refueling"
             app:destination="@id/refuelingFragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/refuelingFragment"
         android:name="com.myniprojects.fuelmanager.ui.refueling.RefuelingFragment"
-        android:label="CarFragment">
+        android:label="@string/refueling_1_fragment_title">
         <argument
             android:name="carID"
             app:argType="long[]" />
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.myniprojects.fuelmanager.ui.detail.DetailFragment"
-        android:label="DetailFragment">
+        android:label="@string/detail_fragment_title">
         <argument
             android:name="refuelingID"
             app:argType="long" />
@@ -38,10 +38,10 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.myniprojects.fuelmanager.ui.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/help_info"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/chartFragment"
         android:name="com.myniprojects.fuelmanager.ui.chart.ChartFragment"
-        android:label="ChartFragment" />
+        android:label="@string/cart_fragment_title" />
 </navigation>

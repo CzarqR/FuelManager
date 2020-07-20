@@ -113,6 +113,15 @@ class RefuelingFragmentVM(
         _navigateToRefueling.value = null
     }
 
+    fun canShow(): Boolean
+    {
+        if (refueling.value != null)
+        {
+            return refueling.value!!.size > 2
+        }
+        return false
+    }
+
     // endregion
 
 
@@ -121,6 +130,7 @@ class RefuelingFragmentVM(
     val chartFuelCost: Cartesian
         get()
         {
+            Log.d("Fuel cost")
             val cartesian = AnyChart.line()
 
             cartesian.animation(true)
@@ -170,11 +180,6 @@ class RefuelingFragmentVM(
                 .anchor(Anchor.LEFT_TOP)
                 .offsetX(5.0)
                 .offsetY(5.0)
-
-
-            cartesian.legend().enabled(true)
-            cartesian.legend().fontSize(13.0)
-            cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
             return cartesian
         }
@@ -274,11 +279,6 @@ class RefuelingFragmentVM(
                 .anchor(Anchor.LEFT_TOP)
                 .offsetX(5.0)
                 .offsetY(5.0)
-
-
-//            cartesian.legend().enabled(true)
-//            cartesian.legend().fontSize(13.0)
-//            cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
             return cartesian
         }

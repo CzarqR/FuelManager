@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import java.text.SimpleDateFormat
@@ -81,4 +83,11 @@ fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
     calendar.timeInMillis = milliSeconds
 
     return formatter.format(calendar.time)
+}
+
+
+fun Fragment.setActivityTitle(id: Int)
+{
+    (activity as AppCompatActivity?)!!.supportActionBar?.title =
+        getString(id)
 }
