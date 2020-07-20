@@ -48,11 +48,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:fontFamily="@font/alegreya_sans"
             android:textColor="@color/colorFont"
             android:textSize="16sp"
             app:carEngine="@{car}"
+            app:layout_constraintBottom_toTopOf="@+id/textFuel"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle"
             tools:text="1.6 TDI" />
@@ -62,14 +62,39 @@
             android:layout_width="48dp"
             android:layout_height="18dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:fontFamily="@font/alegreya_sans"
             android:textColor="@color/colorFont"
             android:textSize="16sp"
             app:carFuel="@{car}"
+            app:layout_constraintBottom_toTopOf="@+id/txtOdometerReading"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/txtEngine"
             tools:text="Petrol 98" />
+
+        <TextView
+            android:id="@+id/txtOdometerReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/alegreya_sans"
+            android:textColor="@color/colorFont"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgCar"
+            app:layout_constraintTop_toBottomOf="@+id/textFuel"
+            tools:text="268 090 km" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/butChart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

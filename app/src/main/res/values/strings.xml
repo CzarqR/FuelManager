@@ -59,5 +59,8 @@
     <string name="chart_title">"Fuel price "</string>
     <string name="y_axis_title">Price for 1km</string>
     <string name="tank_size">Tank Size</string>
+    <string name="fuel_efficiency">Fuel efficiency</string>
+    <string name="y_axis_title_efficiency">Kilometers per liter of fuel</string>
+    <string name="odometer_reading_km">%1$s km</string>
 
 </resources>

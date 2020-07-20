@@ -64,7 +64,8 @@ class DetailFragmentVM(
                     place,
                     previousState,
                     odometerReading,
-                    comment
+                    comment,
+                    refueling.value!!.dateTimeMillis
                 )
             )
         }

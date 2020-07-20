@@ -97,12 +97,6 @@ class RefuelingFragment : Fragment()
             }
         }
 
-        // chart
-
-        binding.goToChart.setOnClickListener {
-            this.findNavController()
-                .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
-        }
 
         // set RecyclerView
         val adapter =
@@ -156,9 +150,15 @@ class RefuelingFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         if (viewModel.type) // 1 car
         {
+
             val carInfoFragment =
                 CarInfoFragment(
-                    viewModel.cars
+                    viewModel.cars,
+                    viewModel.refueling,
+                    View.OnClickListener {
+                        this.findNavController()
+                            .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
+                    }
                 )
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()

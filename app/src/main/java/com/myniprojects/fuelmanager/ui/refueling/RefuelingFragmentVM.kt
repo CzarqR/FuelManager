@@ -194,9 +194,10 @@ class RefuelingFragmentVM(
 
             cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
 
-            cartesian.title(getApplication<Application>().getString(R.string.chart_title))
+            cartesian.title(getApplication<Application>().getString(R.string.fuel_efficiency))
 
-            cartesian.yAxis(0).title(getApplication<Application>().getString(R.string.y_axis_title))
+            cartesian.yAxis(0)
+                .title(getApplication<Application>().getString(R.string.y_axis_title_efficiency))
             cartesian.xAxis(0).labels().padding(5, 5, 5, 5)
 
             val seriesData = ArrayList<DataEntry>()
@@ -204,18 +205,30 @@ class RefuelingFragmentVM(
             val tankSize = cars.value!![0].tankSize
 
             with(refueling.value!!) {
-                for (i in 0..(size - 2))
+                for (i in (size - 1) downTo 1)
                 {
                     val afterRefTankState =
                         this[i].previousTankState + this[i].litres * 100 / tankSize
-                    val endState = this[i + 1].previousTankState
+                    val endState = this[i - 1].previousTankState
                     val usedTank = afterRefTankState - endState
 
                     val usedLitres = usedTank * tankSize / 100
 
 
                     val distance =
-                        this[i + 1].previousOdometerReading - this[i].previousOdometerReading
+                        this[i - 1].previousOdometerReading - this[i].previousOdometerReading
+
+                    if (distance <= 0)
+                    {
+                        Log.d("Refueling at $i skipped. Distance was $distance")
+                        continue
+                    }
+
+                    if (usedLitres <= 0)
+                    {
+                        Log.d("Refueling at $i skipped. Used litres was $usedLitres")
+                        continue
+                    }
 
                     val efficiency = distance / usedLitres
 
@@ -223,7 +236,6 @@ class RefuelingFragmentVM(
                     Log.d("after $afterRefTankState")
                     Log.d("end $endState")
                     Log.d("used $usedTank")
-
                     Log.d("ul $usedLitres")
                     Log.d("dist $distance")
                     Log.d("ref at $i eq $efficiency")
@@ -264,9 +276,9 @@ class RefuelingFragmentVM(
                 .offsetY(5.0)
 
 
-            cartesian.legend().enabled(true)
-            cartesian.legend().fontSize(13.0)
-            cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
+//            cartesian.legend().enabled(true)
+//            cartesian.legend().fontSize(13.0)
+//            cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
             return cartesian
         }

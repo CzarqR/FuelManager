@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getDate
 import java.util.*
 
@@ -45,7 +46,13 @@ data class Refueling(
 )
 {
     val dateTimeLongString: String
-        get() = getDate(this.dateTimeMillis, "dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+        get()
+        {
+            val x = getDate(this.dateTimeMillis, "dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+            Log.d("milis: $dateTimeMillis. date: $x")
+
+            return x
+        }
 
     val dateTimeChartString: String
         get() = getDate(this.dateTimeMillis, "dd/MM/yy HH:mm", Locale.getDefault())
