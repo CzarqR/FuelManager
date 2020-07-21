@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#355070</color>
-    <color name="colorPrimaryDark">#577590</color>
-    <color name="colorAccent">#bee3db</color>
-
+    // app colors
+    <color name="colorPrimary">#951B1B</color>
+    <color name="colorPrimaryDark">#711919</color>
+    <color name="colorAccent">#FFE338</color>
     <color name="action_bar_color">#FFC107</color>
+    <color name="text_fragment_name">#FF5722</color>
+    <color name="colorFont">#222020</color>
+
+    // car recycler
+    <color name="car_recycler_left">#FFCDD2</color>
+    <color name="car_recycler_right">#C8E6C9</color>
+    <color name="car_recycler_delete_left">#E57373</color>
+    <color name="car_recycler_select_right">#81C784</color>
+
 
     <color name="leftPanel">#FFF176</color>
 
-    <color name="text_fragment_name">#FF5722</color>
 
     //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>
     <color name="colorRecyclerItemHead">#023e7d</color>
     <color name="colorRecyclerItemImage">#002855</color>
-    <color name="colorFont">#222020</color>
 
     //New car dialog
     <color name="newCarBack">#ffff3f</color>

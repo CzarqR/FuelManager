@@ -16,12 +16,16 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="false">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/gradient_car"
             android:id="@+id/rootCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,11 +35,11 @@
 
             <FrameLayout
 
-                android:id="@+id/linLayDelete"
+                android:id="@+id/frameDelete"
                 android:layout_width="1px"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:background="#B71C1C"
+                android:background="@drawable/gradient_car_delete"
                 android:onClick="@{()-> clickListener.onDeleteClick(car)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,12 +55,12 @@
 
             </FrameLayout>
 
-            <LinearLayout
-                android:id="@+id/linLaySelect"
+            <FrameLayout
+                android:id="@+id/frameSelect"
                 android:layout_width="1px"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:background="#1B5E20"
+                android:background="@drawable/gradient_select"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -70,15 +74,14 @@
                     android:contentDescription="@string/delete_item"
                     app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            </LinearLayout>
+            </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/carBackground"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorRecyclerItem"
-                app:layout_constraintEnd_toStartOf="@id/linLaySelect"
-                app:layout_constraintStart_toEndOf="@id/linLayDelete"
+                app:layout_constraintEnd_toStartOf="@id/frameSelect"
+                app:layout_constraintStart_toEndOf="@id/frameDelete"
                 app:layout_constraintTop_toTopOf="parent">
 
 
@@ -86,7 +89,6 @@
                     android:id="@+id/txtTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorRecyclerItemHead"
                     android:fontFamily="@font/alegreya_sans_medium"
                     android:gravity="center"
                     android:textColor="@color/colorFont"
@@ -101,7 +103,6 @@
                     android:id="@+id/imgCar"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
-                    android:background="@color/colorRecyclerItemImage"
                     android:contentDescription="@string/car_icon"
                     app:carIcon="@{car}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +143,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </layout>

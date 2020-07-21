@@ -10,11 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 
@@ -116,6 +116,7 @@ class CarFragment : Fragment()
 
         // RecyclerView setup
         binding.recViewCar.adapter = adapter
+        binding.recViewCar.addItemDecoration(TopSpacingItemDecoration(10))
 
         viewModel.cars.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -123,12 +124,12 @@ class CarFragment : Fragment()
             }
         })
 
-        binding.recViewCar.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+//        binding.recViewCar.addItemDecoration(
+//            DividerItemDecoration(
+//                context,
+//                DividerItemDecoration.VERTICAL
+//            )
+//        )
 
 
         // options bar
