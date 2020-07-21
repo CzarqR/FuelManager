@@ -25,10 +25,10 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/gradient_car"
             android:id="@+id/rootCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/gradient_car"
             android:onClick="@{()-> clickListener.onClick(car)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,7 +51,8 @@
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/delete_item"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/delete" />
 
             </FrameLayout>
 
@@ -71,8 +72,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/delete_item"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    android:contentDescription="@string/selected_car"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/selected" />
 
             </FrameLayout>
 
@@ -100,6 +102,7 @@
                     tools:text="Mercedes Benz" />
 
                 <ImageView
+                    android:layout_marginStart="4dp"
                     android:id="@+id/imgCar"
                     android:layout_width="96dp"
                     android:layout_height="96dp"

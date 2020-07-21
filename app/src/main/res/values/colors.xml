@@ -3,9 +3,9 @@
     // app colors
     <color name="colorPrimary">#951B1B</color>
     <color name="colorPrimaryDark">#711919</color>
-    <color name="colorAccent">#FFE338</color>
-    <color name="action_bar_color">#FFC107</color>
-    <color name="text_fragment_name">#FF5722</color>
+    <color name="colorAccent">#FFEE58</color>
+    <color name="action_bar_color">#711919</color>
+    <color name="text_fragment_name">#222020</color>
     <color name="colorFont">#222020</color>
 
     // car recycler
@@ -14,8 +14,13 @@
     <color name="car_recycler_delete_left">#E57373</color>
     <color name="car_recycler_select_right">#81C784</color>
 
+    // Nav drawer
+    <color name="nav_drawer_end">#FFF176</color>
+    <color name="nav_drawer_start">#938722</color>
 
-    <color name="leftPanel">#FFF176</color>
+    //Menu
+    <color name="menuTextColor">#222020</color>
+    <color name="menuTextBackground">#FF5252</color>
 
 
     //Car recycler
@@ -31,10 +36,6 @@
     <color name="newCarButton2Color">#9575CD</color>
     <color name="newCarSpinner">#FFD54F</color>
 
-
-    //Menu
-    <color name="menuTextColor">#615D5D</color>
-    <color name="menuTextBackground">#D16F4F</color>
 
     //Refueling recycler
     <color name="recyclerBackground">#81D4FA</color>

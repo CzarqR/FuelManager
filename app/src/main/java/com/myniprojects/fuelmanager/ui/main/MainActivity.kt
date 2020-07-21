@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupWithNavController(binding.navView, navController)
 
         binding.navView.setNavigationItemSelectedListener(this)
-        ContextCompat.getColor(this, R.color.colorPrimaryDark)
+//        ContextCompat.getColor(this, R.color.colorPrimaryDark)
 
     }
 

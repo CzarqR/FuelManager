@@ -17,7 +17,7 @@
             app:navGraph="@navigation/navigation" />
 
         <com.google.android.material.navigation.NavigationView
-            android:background="@color/leftPanel"
+            android:background="@drawable/gradient_nav"
             android:id="@+id/navView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
