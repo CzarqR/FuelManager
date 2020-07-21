@@ -4,7 +4,6 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:background="@color/newCarSpinner"
         android:id="@+id/imgCar"
         android:layout_width="@dimen/img_add_car_size"
         android:layout_height="@dimen/img_add_car_size"

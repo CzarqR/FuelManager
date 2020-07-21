@@ -22,6 +22,10 @@
     <color name="menuTextColor">#222020</color>
     <color name="menuTextBackground">#FF5252</color>
 
+    // new car dialog
+    <color name="new_car_back_bottom">#FFEE58</color>
+    <color name="new_car_back_top">#C5B742</color>
+
 
     //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>

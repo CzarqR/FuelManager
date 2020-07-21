@@ -10,7 +10,7 @@ import com.myniprojects.fuelmanager.model.CarIcon
 import kotlinx.android.synthetic.main.spinner_car.view.*
 
 
-class CarSpinnerAdapter(context: Context) : BaseAdapter()
+class CarSpinnerAdapter(private val context: Context) : BaseAdapter()
 {
     private var inflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -35,11 +35,13 @@ class CarSpinnerAdapter(context: Context) : BaseAdapter()
         {
             val view = inflater.inflate(R.layout.spinner_car, p2, false)
             view.imgCar.setImageResource(CarIcon.cars[p0].icon)
+            view.imgCar.background = (context.getDrawable(R.drawable.car_spinner_back))
             view
         }
         else
         {
             p1.imgCar.setImageResource(CarIcon.cars[p0].icon)
+            p1.imgCar.background = (context.getDrawable(R.drawable.car_spinner_back))
             p1
         }
     }

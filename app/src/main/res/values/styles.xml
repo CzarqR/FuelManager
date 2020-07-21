@@ -8,6 +8,11 @@
         <item name="android:itemBackground">@color/menuTextBackground</item>
         <item name="android:navigationBarColor">@color/action_bar_color</item>
         <item name="android:textColorPrimary">@color/text_fragment_name</item>
+
+        <!--  Change pointer color  -->
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+
+
     </style>
 
 

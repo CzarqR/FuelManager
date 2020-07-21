@@ -3,19 +3,16 @@
     android:shape="rectangle">
 
     <stroke
-        android:width="4dp"
-        android:color="@color/newCarButtonFrame" />
+        android:width="1dp"
+        android:color="@color/colorPrimary" />
+
 
     <gradient
-        android:angle="0"
-        android:endColor="@color/newCarButton2Color"
-        android:startColor="@color/newCarButton1Color" />
+        android:endColor="@color/new_car_back_bottom"
+        android:gradientRadius="70%p"
+        android:startColor="@color/new_car_back_bottom"
+        android:type="radial" />
 
-    <padding
-        android:bottom="7dp"
-        android:left="7dp"
-        android:right="7dp"
-        android:top="7dp" />
+    <corners android:radius="10dp" />
 
-    <corners android:radius="8dp" />
 </shape>
