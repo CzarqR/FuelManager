@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
 import com.myniprojects.fuelmanager.utils.getCarNames
 import com.myniprojects.fuelmanager.utils.setActivityTitle
 import kotlinx.android.synthetic.main.new_refueling_dialog.view.*
@@ -113,12 +113,7 @@ class RefuelingFragment : Fragment()
         })
 
         binding.recViewRefueling.adapter = adapter
-        binding.recViewRefueling.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+        binding.recViewRefueling.addItemDecoration(TopSpacingItemDecoration(10))
 
         viewModel.refueling.observe(viewLifecycleOwner, Observer {
             it?.let {

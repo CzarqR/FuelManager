@@ -18,13 +18,17 @@
     <color name="nav_drawer_end">#FFF176</color>
     <color name="nav_drawer_start">#938722</color>
 
-    //Menu
+    // Menu
     <color name="menuTextColor">#222020</color>
     <color name="menuTextBackground">#FF5252</color>
 
     // new car dialog
-    <color name="new_car_back_bottom">#FFEE58</color>
-    <color name="new_car_back_top">#C5B742</color>
+    <color name="new_car_back_top">#FFEE58</color>
+    <color name="new_car_back_bottom">#C5B742</color>
+
+    // refueling recycler
+    <color name="refueling_recycler_top">#66F9FBE7</color>
+    <color name="refueling_recycler_bottom">#66FFFDE7</color>
 
 
     //Car recycler

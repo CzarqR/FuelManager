@@ -16,46 +16,56 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/recyclerBackground"
-        android:onClick="@{() -> clickListener.onClick(refueling)}"
-        android:orientation="vertical">
+        app:cardCornerRadius="6dp"
+        app:cardElevation="3dp"
+        app:cardPreventCornerOverlap="false">
 
-        <TextView
-            android:id="@+id/txtDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/standardHeight"
-            android:text="@{@string/date_time_place(refueling.dateTimeLongString, refueling.place)}"
-            app:autoSizeTextType="uniform"
-            tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
-
-        <TextView
-            android:id="@+id/txtLitres"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:lines="1"
-            android:text="@{@string/litres_format(refueling.litres, refueling.price, refueling.litres * refueling.price)}"
-            app:autoSizeTextType="uniform"
-            tools:text="13.56 litres for 14.67. Total price: 44.91" />
-
-        <TextView
-            android:id="@+id/txtOdometerReading"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/standardHeight"
-            android:lines="1"
-            android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
-            app:autoSizeTextType="uniform"
-            tools:text="Odometer Reading: 256 999.5 km with tank state 20%" />
-
-        <TextView
-            android:id="@+id/txtComment"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            app:refuelingComment="@{refueling}"
-            tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />
+            android:background="@drawable/gradient_refueling"
+            android:onClick="@{() -> clickListener.onClick(refueling)}"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/standardHeight"
+                android:text="@{@string/date_time_place(refueling.dateTimeLongString, refueling.place)}"
+                app:autoSizeTextType="uniform"
+                tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
+
+            <TextView
+                android:id="@+id/txtLitres"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:lines="1"
+                android:text="@{@string/litres_format(refueling.litres, refueling.price, refueling.litres * refueling.price)}"
+                app:autoSizeTextType="uniform"
+                tools:text="13.56 litres for 14.67. Total price: 44.91" />
+
+            <TextView
+                android:id="@+id/txtOdometerReading"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/standardHeight"
+                android:lines="1"
+                android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
+                app:autoSizeTextType="uniform"
+                tools:text="Odometer Reading: 256 999.5 km with tank state 20%" />
+
+            <TextView
+                android:id="@+id/txtComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                app:refuelingComment="@{refueling}"
+                tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </layout>

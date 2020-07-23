@@ -4,55 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="car"
             type="com.myniprojects.fuelmanager.database.Car" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/gradient_car"
         android:id="@+id/carBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorRecyclerItem"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
             android:id="@+id/txtTitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorRecyclerItemHead"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/alegreya_sans_medium"
             android:gravity="center"
+            android:padding="2dp"
             android:textColor="@color/colorFont"
             android:textSize="18sp"
             app:carTitle="@{car}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/butChart"
+            app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mercedes Benz" />
 
         <ImageView
+            android:layout_width="@dimen/car_image_size"
             android:id="@+id/imgCar"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:background="@color/colorRecyclerItemImage"
+            android:layout_height="@dimen/car_image_size"
+            android:layout_margin="4dp"
             android:contentDescription="@string/car_icon"
             app:carIcon="@{car}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/car6" />
 
         <TextView
             android:id="@+id/txtEngine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/alegreya_sans"
             android:textColor="@color/colorFont"
+
             android:textSize="16sp"
             app:carEngine="@{car}"
-            app:layout_constraintBottom_toTopOf="@+id/textFuel"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle"
             tools:text="1.6 TDI" />
@@ -61,25 +65,27 @@
             android:id="@+id/textFuel"
             android:layout_width="48dp"
             android:layout_height="18dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/alegreya_sans"
             android:textColor="@color/colorFont"
             android:textSize="16sp"
             app:carFuel="@{car}"
-            app:layout_constraintBottom_toTopOf="@+id/txtOdometerReading"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/txtEngine"
             tools:text="Petrol 98" />
+
 
         <TextView
             android:id="@+id/txtOdometerReading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/alegreya_sans"
+
             android:textColor="@color/colorFont"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgCar"
             app:layout_constraintTop_toBottomOf="@+id/textFuel"
             tools:text="268 090 km" />
@@ -89,15 +95,22 @@
             android:id="@+id/butChart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/chart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>
+
+
+
+
+
+
+
+

@@ -50,11 +50,11 @@
 
     <string name="litres_format">%.2f litres for %.2f. Total price %.2f</string>
     <string name="odometer_reading_format">Odometer reading: %.1f with tank state %2$d%%</string>
-    <string name="date_time_place">%1$s %2$s</string>
+    <string name="date_time_place">%1$s - %2$s</string>
     <string name="detail_fragment_title">Refueling details</string>
     <string name="car_fragment_title">Select car</string>
-    <string name="refueling_1_fragment_title">Selected car refuelings</string>
-    <string name="refueling_many_fragment_title">Selected cars refuelings</string>
+    <string name="refueling_1_fragment_title">Selected car refueling</string>
+    <string name="refueling_many_fragment_title">Selected cars refueling</string>
     <string name="help_fragment_title">Help</string>
     <string name="chart_title">"Fuel price "</string>
     <string name="y_axis_title">Price for 1km</string>
@@ -64,8 +64,8 @@
     <string name="odometer_reading_km">%1$s km</string>
     <string name="info_charts_cannot_display">To see charts and statistics You have to add at least three refueling</string>
     <string name="fuel_cost">Fuel cost</string>
-    <string name="staticstic">Statisctic</string>
+    <string name="statistic">Statistic</string>
     <string name="help_info">Help and Info</string>
-    <string name="cart_fragment_title">Statisctic</string>
+    <string name="cart_fragment_title">Statistic</string>
 
 </resources>

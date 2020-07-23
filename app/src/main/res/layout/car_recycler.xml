@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="6dp"
-        app:cardElevation="10dp"
+        app:cardElevation="4dp"
         app:cardPreventCornerOverlap="false">
 
 
@@ -93,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_medium"
                     android:gravity="center"
+                    android:padding="2dp"
                     android:textColor="@color/colorFont"
                     android:textSize="18sp"
                     app:carTitle="@{car}"
@@ -102,10 +103,10 @@
                     tools:text="Mercedes Benz" />
 
                 <ImageView
-                    android:layout_marginStart="4dp"
                     android:id="@+id/imgCar"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
+                    android:layout_marginStart="4dp"
                     android:contentDescription="@string/car_icon"
                     app:carIcon="@{car}"
                     app:layout_constraintStart_toStartOf="parent"

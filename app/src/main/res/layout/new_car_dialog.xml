@@ -103,7 +103,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/new_car_back_top"
+            android:background="@color/new_car_back_bottom"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="8dp">

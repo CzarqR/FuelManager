@@ -3,4 +3,5 @@
     <dimen name="img_add_car_size">128dp</dimen>
     <dimen name="recycler_view_width">125px</dimen>
     <dimen name="standardHeight">20dp</dimen>
+    <dimen name="car_image_size">106dp</dimen>
 </resources>
