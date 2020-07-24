@@ -7,7 +7,7 @@
     </data>
 
     <ScrollView
-        android:background="@color/multipleCarsBack"
+        android:background="@drawable/gradient_multiple_cars_info"
         android:id="@+id/scrollRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

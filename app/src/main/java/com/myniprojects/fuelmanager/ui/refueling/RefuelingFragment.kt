@@ -121,6 +121,8 @@ class RefuelingFragment : Fragment()
             }
         })
 
+
+
         viewModel.cars.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it.size > 1)
@@ -129,6 +131,7 @@ class RefuelingFragment : Fragment()
                 }
             }
         })
+
 
         return binding.root
     }
@@ -161,7 +164,6 @@ class RefuelingFragment : Fragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, multipleCarsFragment).commit()
         }
-
     }
 
 }

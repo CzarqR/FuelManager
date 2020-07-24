@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/txtCarName"
-    android:background="@color/newCarSpinner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="16sp" />
+    android:layout_gravity="end"
+    android:background="@color/new_car_back_bottom"
+    android:gravity="end"
+    android:textSize="20sp"
+    app:autoSizeTextType="uniform" />
 

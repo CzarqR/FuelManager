@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
 //        ContextCompat.getColor(this, R.color.colorPrimaryDark)
 
+
     }
 
 

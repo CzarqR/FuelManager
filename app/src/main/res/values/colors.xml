@@ -31,6 +31,14 @@
     <color name="refueling_recycler_bottom">#66FFFDE7</color>
 
 
+    // multiple cars info
+    <color name="multiple_cars_bottom">#E8F5E9</color>
+    <color name="multiple_cars_top">#F1F8E9</color>
+
+    // detail fragment
+    <color name="detail_txt_header">#708090</color>
+
+
     //Car recycler
     <color name="colorRecyclerItem">#0353a4</color>
     <color name="colorRecyclerItemHead">#023e7d</color>

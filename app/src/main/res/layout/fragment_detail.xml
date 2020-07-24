@@ -14,13 +14,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@drawable/app_background">
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="2dp"
             tools:context=".ui.detail.DetailFragment">
 
 
@@ -28,8 +29,9 @@
                 android:id="@+id/txtLitres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/litres"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtLitres"
@@ -48,8 +50,10 @@
                 android:id="@+id/txtFullPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/price"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtPrice"
@@ -67,8 +71,10 @@
                 android:id="@+id/txtOdometerReading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/odometer_reading"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtOdometerReading"
@@ -86,8 +92,10 @@
                 android:id="@+id/txtPreviousState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/tank_state"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtPreviousState"
@@ -105,8 +113,10 @@
                 android:id="@+id/txtPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/place"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtPlace"
@@ -125,8 +135,10 @@
                 android:id="@+id/txtComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/comment"
-                android:textColor="@color/headTextColor" />
+                android:textColor="@color/detail_txt_header" />
 
             <EditText
                 android:id="@+id/edTxtComment"
