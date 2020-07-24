@@ -1,9 +1,8 @@
 package com.myniprojects.fuelmanager.ui.refueling
 
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -12,15 +11,18 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.databinding.FragmentCarInfoBinding
+import com.myniprojects.fuelmanager.ui.chart.ChartType
+import com.myniprojects.fuelmanager.utils.Log
+
 
 class CarInfoFragment(
     private val cars: LiveData<List<Car>>,
     private val refueling: LiveData<List<Refueling>>,
-    private val goToChart: View.OnClickListener
+    private val goToChart: (ChartType) -> Unit
 ) : Fragment()
 {
 
-    private lateinit var binding: FragmentCarInfoBinding
+    lateinit var binding: FragmentCarInfoBinding
 
 
     override fun onCreateView(
@@ -35,7 +37,16 @@ class CarInfoFragment(
 
         binding.lifecycleOwner = this
 
-        binding.butChart.setOnClickListener(goToChart)
+        binding.butChart.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            {
+                binding.butChart.showContextMenu(0f, 0f)
+            }
+            else
+            {
+                binding.butChart.showContextMenu()
+            }
+        }
 
         cars.observe(viewLifecycleOwner, Observer {
             binding.car = it[0]
@@ -51,9 +62,40 @@ class CarInfoFragment(
             }
         })
 
+        registerForContextMenu(binding.butChart)
 
         return binding.root
     }
 
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    )
+    {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        requireActivity().menuInflater.inflate(R.menu.select_chart, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean
+    {
+        return when (item.itemId)
+        {
+            R.id.opt_chart_cost ->
+            {
+                Log.d("Cost")
+                goToChart(ChartType.FUEL_COST)
+                true
+            }
+            R.id.opt_chart_ef ->
+            {
+                Log.d("Ef")
+                goToChart(ChartType.FUEL_EFFICIENCY)
+                true
+            }
+            else -> super.onContextItemSelected(item)
+        }
+    }
 
 }

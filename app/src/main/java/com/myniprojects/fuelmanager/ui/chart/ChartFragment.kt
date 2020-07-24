@@ -2,7 +2,9 @@ package com.myniprojects.fuelmanager.ui.chart
 
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,84 +33,29 @@ class ChartFragment : Fragment()
 
         //chart test
 
-        binding.chartEf.setProgressBar(binding.progressBar)
-        binding.chartCost.setProgressBar(binding.progressBar)
+        binding.chart.setProgressBar(binding.progressBar)
 
-        if (viewModel.canShow())
+        when (viewModel.chartType)
         {
-            showChartEf()
-            binding.chartEf.setChart(viewModel.chartFuelEfficiency)
+            ChartType.FUEL_EFFICIENCY ->
+            {
+                binding.chart.setChart(viewModel.chartFuelEfficiency)
+            }
+            ChartType.FUEL_COST ->
+            {
+                binding.chart.setChart(viewModel.chartFuelCost)
+            }
+//            else ->
+//            {
+//                throw IllegalArgumentException("Chart type couldn't be handled")
+//            }
         }
-        else
-        {
-            showInfo()
-            binding.progressBar.visibility = View.GONE
-        }
-
-        setHasOptionsMenu(true)
 
         return binding.root
     }
+}
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
-    {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.chart_menu, menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean
-    {
-        return when (item.itemId)
-        {
-            R.id.fuelCost ->
-            {
-                if (viewModel.canShow())
-                {
-                    showChartCost()
-                    binding.chartCost.setChart(viewModel.chartFuelCost)
-                }
-                else
-                {
-                    showInfo()
-                }
-                true
-            }
-            R.id.fuelEfficiency ->
-            {
-                if (viewModel.canShow())
-                {
-                    showChartEf()
-                    binding.chartEf.setChart(viewModel.chartFuelEfficiency)
-                }
-                else
-                {
-                    showInfo()
-                }
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun showChartCost()
-    {
-        binding.chartEf.visibility = View.GONE
-        binding.chartCost.visibility = View.VISIBLE
-        binding.txtInfo.visibility = View.GONE
-    }
-
-    private fun showChartEf()
-    {
-        binding.chartEf.visibility = View.VISIBLE
-        binding.chartCost.visibility = View.GONE
-        binding.txtInfo.visibility = View.GONE
-    }
-
-    private fun showInfo()
-    {
-        binding.chartEf.visibility = View.GONE
-        binding.chartCost.visibility = View.GONE
-        binding.txtInfo.visibility = View.VISIBLE
-    }
+enum class ChartType
+{
+    FUEL_EFFICIENCY, FUEL_COST
 }

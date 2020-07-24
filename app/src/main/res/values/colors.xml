@@ -39,28 +39,5 @@
     <color name="detail_txt_header">#708090</color>
 
 
-    //Car recycler
-    <color name="colorRecyclerItem">#0353a4</color>
-    <color name="colorRecyclerItemHead">#023e7d</color>
-    <color name="colorRecyclerItemImage">#002855</color>
-
-    //New car dialog
-    <color name="newCarBack">#ffff3f</color>
-
-    <color name="newCarButtonFrame">#64B5F6</color>
-    <color name="newCarButton1Color">#BA68C8</color>
-    <color name="newCarButton2Color">#9575CD</color>
-    <color name="newCarSpinner">#FFD54F</color>
-
-
-    //Refueling recycler
-    <color name="recyclerBackground">#81D4FA</color>
-
-    //Multiple cars
-    <color name="multipleCarsBack">#C7D1D6</color>
-
-    // Detail fragment
-    <color name="headTextColor">#FFCCBC</color>
-
 
 </resources>

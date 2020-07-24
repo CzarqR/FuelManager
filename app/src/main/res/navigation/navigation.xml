@@ -37,9 +37,9 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.myniprojects.fuelmanager.ui.AboutFragment"
+        android:name="com.myniprojects.fuelmanager.ui.HelpFragment"
         android:label="@string/help_info"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_help" />
     <fragment
         android:id="@+id/chartFragment"
         android:name="com.myniprojects.fuelmanager.ui.chart.ChartFragment"

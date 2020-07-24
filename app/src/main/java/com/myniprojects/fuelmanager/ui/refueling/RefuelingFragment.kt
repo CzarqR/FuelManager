@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -132,7 +133,6 @@ class RefuelingFragment : Fragment()
             }
         })
 
-
         return binding.root
     }
 
@@ -146,12 +146,26 @@ class RefuelingFragment : Fragment()
             val carInfoFragment =
                 CarInfoFragment(
                     viewModel.cars,
-                    viewModel.refueling,
-                    View.OnClickListener {
+                    viewModel.refueling
+
+                ) {
+                    if (viewModel.canShow())
+                    {
+                        viewModel.chartType = it
                         this.findNavController()
                             .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
                     }
-                )
+                    else
+                    {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.info_charts_cannot_display),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
         }

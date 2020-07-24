@@ -2,11 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fuelCost"
-        android:title="@string/fuel_cost" />
-
-    <item
-        android:id="@+id/fuelEfficiency"
+        android:id="@+id/opt_chart_ef"
         android:title="@string/fuel_efficiency" />
+    <item
+        android:id="@+id/opt_chart_cost"
+        android:title="@string/fuel_cost" />
 
 </menu>

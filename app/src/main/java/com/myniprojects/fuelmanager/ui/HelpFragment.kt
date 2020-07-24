@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.myniprojects.fuelmanager.R
 
-class AboutFragment : Fragment()
+class HelpFragment : Fragment()
 {
 
 
@@ -22,7 +22,7 @@ class AboutFragment : Fragment()
         (activity as AppCompatActivity?)!!.supportActionBar?.title =
             getString(R.string.help_fragment_title)
 
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_help, container, false)
     }
 
 }

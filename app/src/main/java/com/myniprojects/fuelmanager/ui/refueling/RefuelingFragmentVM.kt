@@ -17,6 +17,7 @@ import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
+import com.myniprojects.fuelmanager.ui.chart.ChartType
 import com.myniprojects.fuelmanager.utils.Log
 import kotlinx.coroutines.*
 
@@ -36,6 +37,9 @@ class RefuelingFragmentVM(
 
     val type: Boolean //true 1 car
         get() = carID.size == 1
+
+
+    var chartType: ChartType = ChartType.FUEL_EFFICIENCY
 
     fun setCarId(carID: LongArray)
     {
