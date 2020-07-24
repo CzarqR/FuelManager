@@ -9,11 +9,15 @@
         <item name="android:navigationBarColor">@color/action_bar_color</item>
         <item name="android:textColorPrimary">@color/text_fragment_name</item>
 
-        <!--  Change pointer color  -->
+        <!--  Change pointer color in EditText  -->
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
 
 
     </style>
 
+    <style name="DialogConfirmationTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/gradient_new_car</item>
+        <item name="android:colorAccent">@color/colorFont</item>
+    </style>
 
 </resources>
