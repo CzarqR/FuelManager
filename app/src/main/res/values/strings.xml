@@ -67,5 +67,10 @@
     <string name="statistic">Statistic</string>
     <string name="help_info">Help and Info</string>
     <string name="cart_fragment_title">Statistic</string>
+    <string name="delete_car">Delete car</string>
+    <string name="warning_delete">Are you sure? The changes could not be rolled back!</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="delete_refueling">Delete refueling</string>
 
 </resources>

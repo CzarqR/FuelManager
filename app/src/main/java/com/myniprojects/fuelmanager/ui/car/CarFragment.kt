@@ -219,24 +219,25 @@ class CarFragment : Fragment()
 
     private fun showConfirmation(carID: Long)
     {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.DialogConfirmationTheme)
 
-        builder.setTitle("Confirm")
-        builder.setMessage("Are you sure?")
+        builder.setTitle(getString(R.string.delete_car))
+        builder.setMessage(getString(R.string.warning_delete))
 
         builder.setPositiveButton(
-            "YES"
+            getString(R.string.yes)
         ) { dialog, _ ->
             viewModel.deleteCar(carID)
             dialog.dismiss()
         }
 
         builder.setNegativeButton(
-            "NO"
+            getString(R.string.no)
         ) { dialog, _ -> // Do nothing
-            Log.d("No")
             dialog.dismiss()
         }
+
+        builder.setIcon(R.drawable.delete)
 
         val alert = builder.create()
         alert.show()

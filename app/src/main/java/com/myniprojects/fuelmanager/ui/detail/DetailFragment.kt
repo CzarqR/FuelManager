@@ -122,13 +122,13 @@ class DetailFragment : Fragment()
 
     private fun showDeleteConfirmation()
     {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.DialogConfirmationTheme)
 
-        builder.setTitle("Confirm")
-        builder.setMessage("Are you sure?")
+        builder.setTitle(getString(R.string.delete_refueling))
+        builder.setMessage(getString(R.string.warning_delete))
 
         builder.setPositiveButton(
-            "YES"
+            getString(R.string.yes)
         ) { dialog, _ ->
             viewModel.deleteRefueling()
             dialog.dismiss()
@@ -136,11 +136,12 @@ class DetailFragment : Fragment()
         }
 
         builder.setNegativeButton(
-            "NO"
+            getString(R.string.no)
         ) { dialog, _ -> // Do nothing
-            Log.d("No")
             dialog.dismiss()
         }
+
+        builder.setIcon(R.drawable.delete)
 
         val alert = builder.create()
         alert.show()
