@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        //set app theme
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        delegate.applyDayNight()
+
 
         // setup navigation bar and navigation drawer
         drawerLayout = binding.drawerLayout
@@ -39,11 +44,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupWithNavController(binding.navView, navController)
 
         binding.navView.setNavigationItemSelectedListener(this)
-//        ContextCompat.getColor(this, R.color.colorPrimaryDark)
-
-
     }
 
+
+    override fun onRestart()
+    {
+        super.onRestart()
+
+        recreate()
+    }
 
     override fun onSupportNavigateUp(): Boolean
     {

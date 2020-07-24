@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     // app colors
-    <color name="colorPrimary">#951B1B</color>
-    <color name="colorPrimaryDark">#711919</color>
-    <color name="colorAccent">#FFEE58</color>
-    <color name="action_bar_color">#711919</color>
-    <color name="text_fragment_name">#222020</color>
-    <color name="colorFont">#222020</color>
+    <color name="colorPrimary">#1C2A35</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFAB91</color>
+    <color name="action_bar_color">#1C2A35</color>
+    <color name="text_fragment_name">#FFFFFF</color>
+    <color name="colorFont">#DAFFFFFF</color>
 
     // car recycler
-    <color name="car_recycler_left">#FFCDD2</color>
-    <color name="car_recycler_right">#C8E6C9</color>
-    <color name="car_recycler_delete_left">#E57373</color>
-    <color name="car_recycler_select_right">#81C784</color>
+    <color name="car_recycler_left">#023e7d</color>
+    <color name="car_recycler_right">#002855</color>
+    <color name="car_recycler_delete_left">#002855</color>
+    <color name="car_recycler_select_right">#001845</color>
 
     // Nav drawer
     <color name="nav_drawer_end">#FFF176</color>
@@ -39,7 +40,8 @@
     <color name="detail_txt_header">#708090</color>
 
     // app background
-    <color name="app_back_top">#FFEBEE</color>
-    <color name="app_back_bottom">#FBE9E7</color>
+    <color name="app_back_top">#162022</color>
+    <color name="app_back_bottom">#162022</color>
+
 
 </resources>
