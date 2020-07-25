@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/help"
-        android:title="@string/help" />
+    <group android:id="@+id/help_group">
 
-    <item
-        android:id="@+id/darkMode"
-        android:checkable="true"
-        android:title="@string/dark_mode" />
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@drawable/help"
+            android:title="@string/help" />
+
+    </group>
+
+
+    <group android:id="@+id/dark_mode_group">
+
+        <item
+            android:id="@+id/darkMode"
+            android:checkable="true"
+            android:title="@string/dark_mode" />
+
+    </group>
+
 
 </menu>

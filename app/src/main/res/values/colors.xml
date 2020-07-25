@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#711919</color>
     <color name="colorAccent">#FFEE58</color>
     <color name="action_bar_color">#711919</color>
-    <color name="text_fragment_name">#222020</color>
+    <color name="text_fragment_name">#FFFFFF</color>
     <color name="colorFont">#222020</color>
 
     // car recycler
@@ -25,6 +25,8 @@
     // new car dialog
     <color name="new_car_back_top">#FFEE58</color>
     <color name="new_car_back_bottom">#C5B742</color>
+    <color name="new_car_tint">#951B1B</color>
+    <color name="new_car_cursor">#951B1B</color>
 
     // refueling recycler
     <color name="refueling_recycler_top">#66F9FBE7</color>

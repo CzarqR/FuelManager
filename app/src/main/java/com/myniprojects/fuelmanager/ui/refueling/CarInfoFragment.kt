@@ -3,6 +3,7 @@ package com.myniprojects.fuelmanager.ui.refueling
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -74,7 +75,7 @@ class CarInfoFragment(
     )
     {
         super.onCreateContextMenu(menu, v, menuInfo)
-
+        MenuCompat.setGroupDividerEnabled(menu, true)
         requireActivity().menuInflater.inflate(R.menu.select_chart, menu)
     }
 

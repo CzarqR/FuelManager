@@ -10,7 +10,7 @@
         <item name="android:textColorPrimary">@color/text_fragment_name</item>
 
         <!--  Change pointer color in EditText  -->
-        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/new_car_cursor</item>
 
 
     </style>

@@ -1,5 +1,6 @@
 package com.myniprojects.fuelmanager.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.databinding.ActivityMainBinding
+import com.myniprojects.fuelmanager.ui.car.CarFragment
 import com.myniprojects.fuelmanager.utils.Log
 
 
@@ -23,16 +25,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawerLayout: DrawerLayout
 
+    companion object
+    {
+        var darkThemeStyle: Boolean = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        //set app theme
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        delegate.applyDayNight()
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val darkTheme = sharedPref.getBoolean(CarFragment.THEME_KEY, false)
 
+        darkThemeStyle = darkTheme
+
+        if (darkTheme) // dark
+        {
+            Log.d("Dark")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            delegate.applyDayNight()
+        }
+        else // day
+        {
+            Log.d("Day")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            delegate.applyDayNight()
+        }
 
         // setup navigation bar and navigation drawer
         drawerLayout = binding.drawerLayout

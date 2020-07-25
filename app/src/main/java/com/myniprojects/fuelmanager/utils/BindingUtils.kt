@@ -1,5 +1,6 @@
 package com.myniprojects.fuelmanager.utils
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -102,7 +103,14 @@ fun TextView.setRefuelingPlace(refueling: Refueling?)
 fun TextView.setRefuelingComment(refueling: Refueling?)
 {
     refueling?.let {
-        text = refueling.comment
+        if (refueling.comment.isNotEmpty())
+        {
+            text = refueling.comment
+        }
+        else
+        {
+            visibility = View.GONE
+        }
     }
 }
 

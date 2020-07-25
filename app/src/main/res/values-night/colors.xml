@@ -16,32 +16,34 @@
     <color name="car_recycler_select_right">#001845</color>
 
     // Nav drawer
-    <color name="nav_drawer_end">#FFF176</color>
-    <color name="nav_drawer_start">#938722</color>
+    <color name="nav_drawer_end">#023e7d</color>
+    <color name="nav_drawer_start">#002855</color>
 
     // Menu
-    <color name="menuTextColor">#222020</color>
-    <color name="menuTextBackground">#FF5252</color>
+    <color name="menuTextColor">#CFC6C6</color>
+    <color name="menuTextBackground">#04305E</color>
 
     // new car dialog
-    <color name="new_car_back_top">#FFEE58</color>
-    <color name="new_car_back_bottom">#C5B742</color>
+    <color name="new_car_back_top">#023e7d</color>
+    <color name="new_car_back_bottom">#002855</color>
+    <color name="new_car_tint">#FFAB91</color>
+    <color name="new_car_cursor">#D88A72</color>
 
     // refueling recycler
-    <color name="refueling_recycler_top">#66F9FBE7</color>
-    <color name="refueling_recycler_bottom">#66FFFDE7</color>
+    <color name="refueling_recycler_top">#311B92</color>
+    <color name="refueling_recycler_bottom">#1A237E</color>
 
 
     // multiple cars info
-    <color name="multiple_cars_bottom">#E8F5E9</color>
-    <color name="multiple_cars_top">#F1F8E9</color>
+    <color name="multiple_cars_bottom">#1A2270</color>
+    <color name="multiple_cars_top">#232B7C</color>
 
     // detail fragment
-    <color name="detail_txt_header">#708090</color>
+    <color name="detail_txt_header">#A1AEBC</color>
 
     // app background
     <color name="app_back_top">#162022</color>
-    <color name="app_back_bottom">#162022</color>
+    <color name="app_back_bottom">#1E2C30</color>
 
 
 </resources>
