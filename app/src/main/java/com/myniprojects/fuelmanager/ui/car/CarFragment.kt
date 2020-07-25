@@ -1,8 +1,10 @@
 package com.myniprojects.fuelmanager.ui.car
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
+import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
@@ -20,6 +23,11 @@ import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 class CarFragment : Fragment()
 {
+
+    companion object
+    {
+        const val THEME_KEY: String = "THEME_KEY"
+    }
 
     private lateinit var viewModel: CarFragmentVM
     private lateinit var binding: FragmentCarBinding
@@ -124,13 +132,6 @@ class CarFragment : Fragment()
             }
         })
 
-//        binding.recViewCar.addItemDecoration(
-//            DividerItemDecoration(
-//                context,
-//                DividerItemDecoration.VERTICAL
-//            )
-//        )
-
 
         // options bar
         setHasOptionsMenu(true)
@@ -141,7 +142,12 @@ class CarFragment : Fragment()
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
     {
         super.onCreateOptionsMenu(menu, inflater)
+        MenuCompat.setGroupDividerEnabled(menu, true)
+
         inflater.inflate(R.menu.overflow_menu, menu)
+        val item = menu.findItem(R.id.darkMode)
+
+        item.isChecked = MainActivity.darkThemeStyle
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
@@ -154,15 +160,27 @@ class CarFragment : Fragment()
             )
             R.id.darkMode ->
             {
-                if (item.isChecked) //change to day colors
+                item.isChecked = !item.isChecked
+                val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+                if (!item.isChecked) //change to day colors
                 {
                     Log.d("Change to day")
+                    with(sharedPref.edit()) {
+                        putBoolean(THEME_KEY, false)
+                        apply()
+                    }
                 }
                 else //change to dark mode
                 {
                     Log.d("Change to dark")
+                    with(sharedPref.edit()) {
+                        putBoolean(THEME_KEY, true)
+                        apply()
+                    }
                 }
-                item.isChecked = !item.isChecked
+
+                requireActivity().recreate()
+
                 true
             }
             R.id.ourApps ->
