@@ -8,11 +8,15 @@ import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.databinding.RefuelingRecyclerBinding
 
 
-class RefuelingRecyclerAdapter(private val clickListener: RefuelingListener) :
+class RefuelingRecyclerAdapter(
+    private val carID: LongArray,
+    private val clickListener: RefuelingListener
+) :
         androidx.recyclerview.widget.ListAdapter<Refueling, RefuelingRecyclerAdapter.ViewHolder>(
             RefuelingDiffCallback()
         )
 {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
@@ -23,7 +27,7 @@ class RefuelingRecyclerAdapter(private val clickListener: RefuelingListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(getItem(position)!!, clickListener)
+        holder.bind(getItem(position)!!, clickListener, carID)
     }
 
     class ViewHolder private constructor(private val binding: RefuelingRecyclerBinding) :
@@ -44,12 +48,13 @@ class RefuelingRecyclerAdapter(private val clickListener: RefuelingListener) :
 
         fun bind(
             refueling: Refueling,
-            clickListener: RefuelingListener
+            clickListener: RefuelingListener,
+            carID: LongArray
         )
         {
             binding.refueling = refueling
             binding.clickListener = clickListener
-            binding.index = 0
+            binding.index = carID.indexOf(refueling.carID)
             binding.executePendingBindings()
         }
     }

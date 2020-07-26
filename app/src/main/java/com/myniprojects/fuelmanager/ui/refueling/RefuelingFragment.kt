@@ -101,9 +101,12 @@ class RefuelingFragment : Fragment()
 
         // set RecyclerView
         val adapter =
-            RefuelingRecyclerAdapter(RefuelingListener {
-                viewModel.refuelingClicked(it)
-            })
+            RefuelingRecyclerAdapter(
+                viewModel.carID,
+                RefuelingListener {
+                    viewModel.refuelingClicked(it)
+                }
+            )
 
         viewModel.navigateToRefueling.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -119,6 +122,7 @@ class RefuelingFragment : Fragment()
         viewModel.refueling.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+                binding.recViewRefueling.smoothScrollToPosition(0)
             }
         })
 

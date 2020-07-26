@@ -14,15 +14,16 @@ object SpanFormatter
     private val FORMAT_SEQUENCE: Pattern =
         Pattern.compile("%([0-9]+\\$|<?)([^a-zA-z%]*)([[a-zA-Z%]&&[^tT]]|[tT][a-zA-Z])")
 
-    fun format(format: CharSequence?, vararg args: Any?): SpannedString
+    fun format(format: CharSequence, vararg args: Any): SpannedString
     {
         return format(Locale.getDefault(), format, *args)
     }
 
+    @Suppress("MemberVisibilityCanBePrivate")
     fun format(
-        locale: Locale?,
-        format: CharSequence?,
-        vararg args: Any?
+        locale: Locale,
+        format: CharSequence,
+        vararg args: Any
     ): SpannedString
     {
         val out = SpannableStringBuilder(format)
@@ -65,12 +66,12 @@ object SpanFormatter
                         }
                         else
                         {
-                            String.format(locale!!, "%$modTerm$typeTerm", argItem)
+                            String.format(locale, "%$modTerm$typeTerm", argItem)
                         }
                     }
                     else
                     {
-                        throw Exception("Wrong string, cannot format")
+                        throw IllegalArgumentException("Wrong string, cannot format")
                     }
                 }
             }

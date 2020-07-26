@@ -1,5 +1,8 @@
 package com.myniprojects.fuelmanager.utils
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,7 +11,6 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.model.CarIcon
-import java.util.*
 
 
 // region Menu Fragment
@@ -45,48 +47,9 @@ fun ImageView.setCarIcon(car: Car?)
     }
 }
 
-// endregion
 
-// region Refueling Fragment
-
-//@BindingAdapter("refuelingLitres")
-//fun TextView.setRefuelingLitres(refueling: Refueling?)
-//{
-//    refueling?.let {
-//        text = refueling.litres.toString()
-//    }
-//}
-//
-//@BindingAdapter("refuelingFullPrice")
-//fun TextView.setRefuelingFullPrice(refueling: Refueling?)
-//{
-//    refueling?.let {
-//        text = refueling.price.toString()
-//    }
-//}
-//
-//@BindingAdapter("refuelingLiterPrice")
-//fun TextView.setRefuelingLiterPrice(refueling: Refueling?)
-//{
-//    refueling?.let {
-//
-//        text = refueling.price.div(refueling.litres).toString()
-//    }
-//}
-//
-//
-//@BindingAdapter("refuelingState")
-//fun TextView.setRefuelingState(refueling: Refueling?)
-//{
-//    refueling?.let {
-//        text = refueling.previousTankState.toString()
-//    }
-//}
-//
-
-
-@BindingAdapter(value = ["refueling", "index"], requireAll = true)
-fun TextView.setRefuelingCost(refueling: Refueling?, index: Int)
+@BindingAdapter("refuelingCost")
+fun TextView.setRefuelingCost(refueling: Refueling?)
 {
     refueling?.let {
         text = SpanFormatter.format(
@@ -98,11 +61,44 @@ fun TextView.setRefuelingCost(refueling: Refueling?, index: Int)
     }
 }
 
-@BindingAdapter("refuelingPlace")
-fun TextView.setRefuelingPlace(refueling: Refueling?)
+fun SpannableStringBuilder.setSpan(what: Any): SpannableStringBuilder
 {
+    this.setSpan(what, 0, this.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+    return this
+}
+
+
+@BindingAdapter(value = ["refuelingPlace", "indexPlace"], requireAll = true)
+fun TextView.setRefuelingPlace(refueling: Refueling?, index: Int)
+{
+    Log.d(index)
+
     refueling?.let {
-        text = refueling.place
+        text = if (refueling.place.isNotEmpty())
+        {
+            SpannableStringBuilder(
+                SpanFormatter.format(
+                    this.context.getText(R.string.date_place_format),
+                    getDate(
+                        refueling.dateTimeMillis
+                    ),
+                    refueling.place
+                )
+            )
+        }
+        else
+        {
+            SpannableStringBuilder(
+                SpanFormatter.format(
+                    this.context.getText(R.string.date_format),
+                    getDate(
+                        refueling.dateTimeMillis
+                    )
+                )
+            )
+        }.setSpan(ForegroundColorSpan(context.resources.getIntArray(R.array.car_colors)[index]))
+
+
     }
 }
 
@@ -118,18 +114,6 @@ fun TextView.setRefuelingComment(refueling: Refueling?)
         {
             visibility = View.GONE
         }
-    }
-}
-
-@BindingAdapter("refuelingDateTimePlace")
-fun TextView.setRefuelingDateTimePlace(refueling: Refueling?)
-{
-    refueling?.let {
-        text = "${getDate(
-            refueling.dateTimeMillis,
-            "dd/MM/yyyy HH:mm:ss",
-            Locale.getDefault()
-        )} ${refueling.place}"
     }
 }
 

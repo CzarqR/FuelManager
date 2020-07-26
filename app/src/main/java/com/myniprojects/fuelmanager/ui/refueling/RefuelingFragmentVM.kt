@@ -24,7 +24,7 @@ import kotlinx.coroutines.*
 class RefuelingFragmentVM(
     private val databaseRefueling: RefuelingDAO,
     private val databaseCar: CarDAO,
-    private var carID: LongArray,
+    private var _carID: LongArray,
     application: Application
 ) :
         AndroidViewModel(application)
@@ -36,14 +36,16 @@ class RefuelingFragmentVM(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val type: Boolean //true 1 car
-        get() = carID.size == 1
+        get() = _carID.size == 1
 
+    val carID: LongArray
+        get() = _carID
 
     var chartType: ChartType = ChartType.FUEL_EFFICIENCY
 
     fun setCarId(carID: LongArray)
     {
-        this.carID = carID
+        this._carID = carID
         refueling = databaseRefueling.getAll(carID)
         cars = databaseCar.get(carID)
     }
@@ -51,7 +53,7 @@ class RefuelingFragmentVM(
 
     init
     {
-        Log.d("VM car created. CarID: ${carID[0]}")
+        Log.d("VM car created. CarID: ${_carID[0]}")
     }
 
 
@@ -76,7 +78,7 @@ class RefuelingFragmentVM(
         uiScope.launch {
             insertRefueling(
                 Refueling(
-                    carID = carID[selectedCar],
+                    carID = _carID[selectedCar],
                     litres = litres,
                     price = price,
                     previousTankState = state,
@@ -137,19 +139,23 @@ class RefuelingFragmentVM(
             Log.d("Fuel cost")
             val cartesian = AnyChart.line()
 
-            cartesian.animation(true)
+            with(cartesian)
+            {
+                animation(true)
+                padding(10, 20, 5, 20)
 
-            cartesian.padding(10, 20, 5, 20)
+                crosshair().enabled(true)
+                crosshair().yLabel(true)
 
-            cartesian.crosshair().enabled(true)
-            cartesian.crosshair().yLabel(true)
+                tooltip().positionMode(TooltipPositionMode.POINT)
 
-            cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
+                title(getApplication<Application>().getString(R.string.chart_title))
 
-            cartesian.title(getApplication<Application>().getString(R.string.chart_title))
+                yAxis(0).title(getApplication<Application>().getString(R.string.y_axis_title))
+                xAxis(0).labels().padding(5, 5, 5, 5)
 
-            cartesian.yAxis(0).title(getApplication<Application>().getString(R.string.y_axis_title))
-            cartesian.xAxis(0).labels().padding(5, 5, 5, 5)
+            }
+
 
             val seriesData = ArrayList<DataEntry>()
 
@@ -168,22 +174,28 @@ class RefuelingFragmentVM(
             val series1Mapping = set.mapAs("{ x: 'x', value: 'value'}")
 
             val series1 = cartesian.line(series1Mapping)
-            series1.name(
-                getApplication<Application>().getString(
-                    R.string.car_title,
-                    cars.value!![0].brand,
-                    cars.value!![0].model
+
+            with(series1)
+            {
+                name(
+                    getApplication<Application>().getString(
+                        R.string.car_title,
+                        cars.value!![0].brand,
+                        cars.value!![0].model
+                    )
                 )
-            )
-            series1.hovered().markers().enabled(true)
-            series1.hovered().markers()
-                .type(MarkerType.CIRCLE)
-                .size(4.0)
-            series1.tooltip()
-                .position("right")
-                .anchor(Anchor.LEFT_TOP)
-                .offsetX(5.0)
-                .offsetY(5.0)
+                hovered().markers().enabled(true)
+                hovered().markers()
+                    .type(MarkerType.CIRCLE)
+                    .size(4.0)
+                tooltip()
+                    .position("right")
+                    .anchor(Anchor.LEFT_TOP)
+                    .offsetX(5.0)
+                    .offsetY(5.0)
+            }
+
+
 
             return cartesian
         }

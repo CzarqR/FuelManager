@@ -49,6 +49,8 @@
 
 
     <string name="litres_format">%.2f  litres for <b>%.2f</b>. Total price %.2f</string>
+    <string name="date_place_format"><i>%1$s - %2$s</i></string>
+    <string name="date_format"><i>%1$s</i></string>
 
     <string name="odometer_reading_format">Odometer reading: %.1f with tank state %2$d%%</string>
     <string name="date_time_place">%1$s - %2$s</string>

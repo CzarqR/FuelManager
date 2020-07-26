@@ -40,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/standardHeight"
                 android:fontFamily="@font/alegreya_sans"
-                android:text="@{@string/date_time_place(refueling.dateTimeLongString, refueling.place)}"
+                app:indexPlace="@{index}"
+                app:refuelingPlace="@{refueling}"
                 app:autoSizeTextType="uniform"
                 tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
 
@@ -51,8 +52,7 @@
                 android:fontFamily="@font/alegreya_sans"
                 android:lines="1"
                 app:autoSizeTextType="uniform"
-                app:index="@{index}"
-                app:refueling="@{refueling}"
+                app:refuelingCost="@{refueling}"
                 tools:text="13.56 litres for 14.67. Total price: 44.91" />
 
             <TextView

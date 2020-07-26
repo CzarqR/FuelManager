@@ -75,6 +75,8 @@ fun getCarNames(cars: List<Car>, context: Context): ArrayList<Spanned>
     return carNames
 }
 
+const val FULL_DATE_FORMAT = "dd/MM/yyyy HH:mm:ss"
+
 fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
 {
     val formatter = SimpleDateFormat(dateFormat, locale)
@@ -85,6 +87,15 @@ fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
     return formatter.format(calendar.time)
 }
 
+fun getDate(milliSeconds: Long, dateFormat: String): String
+{
+    return getDate(milliSeconds, dateFormat, Locale.getDefault())
+}
+
+fun getDate(milliSeconds: Long): String
+{
+    return getDate(milliSeconds, FULL_DATE_FORMAT, Locale.getDefault())
+}
 
 fun Fragment.setActivityTitle(id: Int)
 {
