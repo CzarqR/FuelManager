@@ -49,6 +49,7 @@ class RefuelingRecyclerAdapter(private val clickListener: RefuelingListener) :
         {
             binding.refueling = refueling
             binding.clickListener = clickListener
+            binding.index = 0
             binding.executePendingBindings()
         }
     }

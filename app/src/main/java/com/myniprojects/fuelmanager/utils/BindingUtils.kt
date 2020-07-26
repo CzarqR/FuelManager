@@ -83,13 +83,20 @@ fun ImageView.setCarIcon(car: Car?)
 //    }
 //}
 //
-//@BindingAdapter("refuelingOdometerReading")
-//fun TextView.setOdometerReading(refueling: Refueling?)
-//{
-//    refueling?.let {
-//        text = refueling.previousOdometerReading.toString()
-//    }
-//}
+
+
+@BindingAdapter(value = ["refueling", "index"], requireAll = true)
+fun TextView.setRefuelingCost(refueling: Refueling?, index: Int)
+{
+    refueling?.let {
+        text = SpanFormatter.format(
+            this.context.getText(R.string.litres_format),
+            refueling.litres,
+            refueling.price,
+            refueling.litres * refueling.price
+        )
+    }
+}
 
 @BindingAdapter("refuelingPlace")
 fun TextView.setRefuelingPlace(refueling: Refueling?)
@@ -125,7 +132,6 @@ fun TextView.setRefuelingDateTimePlace(refueling: Refueling?)
         )} ${refueling.place}"
     }
 }
-
 
 
 // endregion

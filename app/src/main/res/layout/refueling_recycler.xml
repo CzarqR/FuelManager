@@ -14,6 +14,10 @@
             name="clickListener"
             type="com.myniprojects.fuelmanager.ui.refueling.RefuelingListener" />
 
+        <variable
+            name="index"
+            type="Integer" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -35,6 +39,7 @@
                 android:id="@+id/txtDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/standardHeight"
+                android:fontFamily="@font/alegreya_sans"
                 android:text="@{@string/date_time_place(refueling.dateTimeLongString, refueling.place)}"
                 app:autoSizeTextType="uniform"
                 tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
@@ -42,16 +47,19 @@
             <TextView
                 android:id="@+id/txtLitres"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="25dp"
+                android:fontFamily="@font/alegreya_sans"
                 android:lines="1"
-                android:text="@{@string/litres_format(refueling.litres, refueling.price, refueling.litres * refueling.price)}"
                 app:autoSizeTextType="uniform"
+                app:index="@{index}"
+                app:refueling="@{refueling}"
                 tools:text="13.56 litres for 14.67. Total price: 44.91" />
 
             <TextView
                 android:id="@+id/txtOdometerReading"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/standardHeight"
+                android:fontFamily="@font/alegreya_sans"
                 android:lines="1"
                 android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
                 app:autoSizeTextType="uniform"
@@ -61,6 +69,7 @@
                 android:id="@+id/txtComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/alegreya_sans"
                 android:maxLines="2"
                 app:refuelingComment="@{refueling}"
                 tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />

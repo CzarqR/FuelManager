@@ -18,6 +18,7 @@ import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
 import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
+import com.myniprojects.fuelmanager.utils.setActivityTitle
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 
@@ -129,6 +130,14 @@ class CarFragment : Fragment()
         viewModel.cars.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+                if (it.isEmpty())
+                {
+                    setActivityTitle(R.string.add_car)
+                }
+                else
+                {
+                    setActivityTitle(R.string.car_fragment_title)
+                }
             }
         })
 

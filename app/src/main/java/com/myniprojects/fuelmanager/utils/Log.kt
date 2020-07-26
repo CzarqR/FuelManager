@@ -8,9 +8,16 @@ class Log
     {
         private const val tag: String = "AppDebug"
 
-        fun d(text: Any, tag: Any = this.tag)
+        fun d(text: Any?, tag: Any = this.tag)
         {
-            Log.d(tag.toString(), text.toString())
+            if (text == null)
+            {
+                Log.d(tag.toString(), "Argument was NULL")
+            }
+            else
+            {
+                Log.d(tag.toString(), text.toString())
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ class HelpFragment : Fragment()
     ): View?
     {
         // Inflate the layout for this fragment
-
         (activity as AppCompatActivity?)!!.supportActionBar?.title =
             getString(R.string.help_fragment_title)
 
