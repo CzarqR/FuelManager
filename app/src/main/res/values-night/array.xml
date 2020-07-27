@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="car_colors">
+        <item>#FFAB91</item>
+        <item>#26A69A</item>
+        <item>#FFEE58</item>
+        <item>#29B6F6</item>
+        <item>#AB47BC</item>
+        <item>#FF7043</item>
+        <item>#EC407A</item>
+        <item>#66BB6A</item>
+    </array>
+
+</resources>

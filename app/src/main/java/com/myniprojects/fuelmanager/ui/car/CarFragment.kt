@@ -95,8 +95,9 @@ class CarFragment : Fragment()
             { dy -> binding.recViewCar.scrollBy(0, dy) } // scroll
         )
 
+
         val adapter =
-            CarRecyclerAdapter(carListener)
+            CarRecyclerAdapter(carListener, resources.getIntArray(R.array.car_colors).size)
 
         binding.butSelectedMany.setOnClickListener {
             val longArray: LongArray = adapter.selectedCars.value!!.toLongArray()
@@ -104,7 +105,10 @@ class CarFragment : Fragment()
         }
 
         adapter.selectedCars.observe(viewLifecycleOwner, Observer {
-            Log.d("Selected cars observed")
+            Log.d("Selected cars observed. Size = ${it.size}")
+            it.forEach {
+                Log.d("id: $it")
+            }
             if (it.size > 0)
             {
                 binding.butSelectedMany.visibility = View.VISIBLE

@@ -54,8 +54,6 @@ fun ImageView.setCarIcon(car: Car?)
 @BindingAdapter("refuelingCost")
 fun TextView.setRefuelingCost(refueling: Refueling?)
 {
-
-
     refueling?.let {
 
         val price = refueling.price.toStringFormatted()
@@ -73,8 +71,6 @@ fun TextView.setRefuelingCost(refueling: Refueling?)
 @BindingAdapter(value = ["refuelingPlace", "indexPlace"], requireAll = true)
 fun TextView.setRefuelingPlace(refueling: Refueling?, index: Int)
 {
-    Log.d(index)
-
     refueling?.let {
         text = if (refueling.place.isNotEmpty())
         {
