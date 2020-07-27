@@ -152,10 +152,10 @@ class CarFragment : Fragment()
     {
         super.onCreateOptionsMenu(menu, inflater)
         MenuCompat.setGroupDividerEnabled(menu, true)
-
         inflater.inflate(R.menu.overflow_menu, menu)
-        val item = menu.findItem(R.id.darkMode)
 
+        //set checked in dark mode item
+        val item = menu.findItem(R.id.darkMode)
         item.isChecked = MainActivity.darkThemeStyle
     }
 

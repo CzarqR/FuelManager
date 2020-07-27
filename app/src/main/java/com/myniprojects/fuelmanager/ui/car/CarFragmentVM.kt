@@ -2,6 +2,7 @@ package com.myniprojects.fuelmanager.ui.car
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
@@ -90,7 +91,7 @@ class CarFragmentVM(
     // region navigation click
 
     private val _navigateToRefueling = MutableLiveData<LongArray>()
-    val navigateToRefueling
+    val navigateToRefueling: LiveData<LongArray>
         get() = _navigateToRefueling
 
     fun carClicked(carID: LongArray)

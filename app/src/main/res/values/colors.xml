@@ -17,6 +17,9 @@
     // Nav drawer
     <color name="nav_drawer_end">#FFF176</color>
     <color name="nav_drawer_start">#938722</color>
+    <color name="nav_drawer_text_color_def">#E7EDE7</color>
+    <color name="nav_drawer_text_color_checked">@color/colorPrimary</color>
+
 
     // Menu
     <color name="menuTextColor">#222020</color>
@@ -43,5 +46,6 @@
     // app background
     <color name="app_back_top">#FFEBEE</color>
     <color name="app_back_bottom">#FBE9E7</color>
+
 
 </resources>

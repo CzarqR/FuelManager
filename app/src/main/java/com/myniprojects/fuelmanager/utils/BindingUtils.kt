@@ -1,6 +1,5 @@
 package com.myniprojects.fuelmanager.utils
 
-import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.view.View
@@ -48,23 +47,26 @@ fun ImageView.setCarIcon(car: Car?)
 }
 
 
+// endregion
+
+// region Refueling Fragment
+
 @BindingAdapter("refuelingCost")
 fun TextView.setRefuelingCost(refueling: Refueling?)
 {
+
+
     refueling?.let {
+
+        val price = refueling.price.toStringFormatted()
+        Log.d(price)
         text = SpanFormatter.format(
             this.context.getText(R.string.litres_format),
-            refueling.litres,
-            refueling.price,
-            refueling.litres * refueling.price
+            refueling.litres.toStringFormatted(),
+            refueling.price.toStringFormatted(),
+            (refueling.litres * refueling.price).round(2).toStringFormatted()
         )
     }
-}
-
-fun SpannableStringBuilder.setSpan(what: Any): SpannableStringBuilder
-{
-    this.setSpan(what, 0, this.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
-    return this
 }
 
 
@@ -118,4 +120,4 @@ fun TextView.setRefuelingComment(refueling: Refueling?)
 }
 
 
-// endregion
+//endregion

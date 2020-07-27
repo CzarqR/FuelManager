@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -23,11 +25,16 @@ import com.myniprojects.fuelmanager.utils.Log
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
 
+    private lateinit var viewModel: MainActivityVM
     private lateinit var drawerLayout: DrawerLayout
 
     companion object
     {
         var darkThemeStyle: Boolean = false
+            private set
+
+        var currency: String = "$"
+            private set
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -39,6 +46,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         val darkTheme = sharedPref.getBoolean(CarFragment.THEME_KEY, false)
 
+
+        //setup theme
         darkThemeStyle = darkTheme
 
         if (darkTheme) // dark
@@ -54,6 +63,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             delegate.applyDayNight()
         }
 
+        //setup view model
+        viewModel = ViewModelProvider(this).get(MainActivityVM::class.java)
+
         // setup navigation bar and navigation drawer
         drawerLayout = binding.drawerLayout
 
@@ -63,15 +75,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
+        setObserversToSettings()
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
-
-    override fun onRestart()
+    private fun setObserversToSettings()
     {
-        super.onRestart()
-
-        recreate()
+        viewModel.currency.observe(this, Observer {
+            currency = it
+            Log.d("Currency changed to: $it")
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean
@@ -92,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         return when (item.itemId)
         {
-            R.id.aboutFragment ->
+            R.id.aboutFragment, R.id.settingsFragment, R.id.statisticFragment ->
             {
                 drawerLayout.close()
                 NavigationUI.onNavDestinationSelected(
@@ -124,7 +138,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             else ->
             {
-                Log.d("ELSE")
+                Log.d("Unsupported options in nav drawer menu")
                 false
             }
         }

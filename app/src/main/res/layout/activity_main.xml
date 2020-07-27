@@ -17,12 +17,15 @@
             app:navGraph="@navigation/navigation" />
 
         <com.google.android.material.navigation.NavigationView
-            android:background="@drawable/gradient_nav"
             android:id="@+id/navView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@drawable/gradient_nav"
             app:headerLayout="@layout/nav_header"
+            app:itemBackground="@android:color/transparent"
+            app:itemIconTint="@color/drawer_item"
+            app:itemTextColor="@color/drawer_item"
             app:menu="@menu/navdrawer_menu" />
 
 

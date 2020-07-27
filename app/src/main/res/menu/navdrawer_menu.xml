@@ -5,6 +5,18 @@
         android:id="@+id/aboutFragment"
         android:icon="@drawable/help"
         android:title="@string/help" />
+
+    <item
+        android:id="@+id/statisticFragment"
+        android:icon="@drawable/statistic"
+        android:title="@string/statistic" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/settings"
+        android:title="@string/settings" />
+
+
     <item
         android:id="@+id/ourApps"
         android:icon="@drawable/our_apps"

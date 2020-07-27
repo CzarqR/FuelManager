@@ -48,7 +48,7 @@
     <string name="selected_car">Selected car:</string>
 
 
-    <string name="litres_format">%.2f  litres for <b>%.2f</b>. Total price %.2f</string>
+    <string name="litres_format">%1$s  litres for <b>%2$s</b>. Total price %3$s</string>
     <string name="date_place_format"><i>%1$s - %2$s</i></string>
     <string name="date_format"><i>%1$s</i></string>
 
@@ -75,5 +75,8 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="delete_refueling">Delete refueling</string>
+
+    <string name="settings">Settings</string>
+
 
 </resources>

@@ -3,12 +3,17 @@ package com.myniprojects.fuelmanager.utils
 import android.content.Context
 import android.os.Build
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -102,3 +107,21 @@ fun Fragment.setActivityTitle(id: Int)
     (activity as AppCompatActivity?)!!.supportActionBar?.title =
         getString(id)
 }
+
+
+fun Double.toStringFormatted(): String
+{
+    return this.toString().trimEnd('0').trimEnd(DecimalFormatSymbols.getInstance().decimalSeparator)
+}
+
+fun Double.round(places: Int, roundingMode: RoundingMode = RoundingMode.CEILING): Double
+{
+    return BigDecimal(this).setScale(places, roundingMode).toDouble()
+}
+
+fun SpannableStringBuilder.setSpan(what: Any): SpannableStringBuilder
+{
+    this.setSpan(what, 0, this.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+    return this
+}
+
