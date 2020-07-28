@@ -1,9 +1,15 @@
 package com.myniprojects.fuelmanager.ui.main
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -66,6 +72,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
+        findViewById<View>(android.R.id.content).isFocusableInTouchMode = true;
+
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
@@ -114,6 +122,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         {
             val navController = this.findNavController(R.id.navHostFragment)
             NavigationUI.navigateUp(navController, drawerLayout)
+        }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean
+    {
+        val v: View? = currentFocus
+        if (v != null && (ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) &&
+            v is EditText
+        )
+        {
+            val sourceCoordinates = IntArray(2)
+            v.getLocationOnScreen(sourceCoordinates)
+            val x: Float = ev.rawX + v.getLeft() - sourceCoordinates[0]
+            val y: Float = ev.rawY + v.getTop() - sourceCoordinates[1]
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
+            {
+                hideKeyboard(this)
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun hideKeyboard(activity: Activity?)
+    {
+        if (activity != null && activity.window != null)
+        {
+            activity.window.decorView
+            val imm =
+                activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm?.hideSoftInputFromWindow(activity.window.decorView.windowToken, 0)
+            findViewById<View>(android.R.id.content).clearFocus();
         }
     }
 

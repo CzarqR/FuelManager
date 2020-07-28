@@ -47,4 +47,28 @@ class MainActivityVM(application: Application) : AndroidViewModel(application)
             )!!
         )
     }
+
+    fun saveSettings(
+        newDarkTheme: Boolean,
+        newCurrency: String,
+        newVolume: String,
+        newLength: String
+    )
+    {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication())
+
+        with(sharedPref.edit()) {
+            putString(MainActivity.VOLUME_UNIT_KEY, newVolume)
+            putString(MainActivity.CURRENCY_KEY, newCurrency)
+            putString(MainActivity.LENGTH_UNIT_KEY, newLength)
+            putBoolean(MainActivity.THEME_KEY, newDarkTheme)
+            apply()
+        }
+
+        darkTheme.postValue(newDarkTheme)
+        currency.postValue(newCurrency)
+        lengthUnit.postValue(newLength)
+        volumeUnit.postValue(newVolume)
+    }
+
 }
