@@ -16,80 +16,54 @@ import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.CarRecyclerBinding
 import com.myniprojects.fuelmanager.utils.Log
 import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.min
 
 
-class CarRecyclerAdapter(private val clickListener: CarListener, private val maxSelect: Int) :
+class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int) :
         ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(
             CarDiffCallback()
         )
 {
+    companion object
+    {
+        var maxSize: Int = 8 // 8 colors in array for different colors
+            private set
+    }
+
+    init
+    {
+        maxSize = maxSelect
+    }
 
     private val _selectedCars: MutableLiveData<ArrayList<Long>> = MutableLiveData()
     val selectedCars: LiveData<ArrayList<Long>>
         get() = _selectedCars
 
-    //if car can be added return true
-    private fun selectCar(carID: Long, add: Boolean): Boolean
-    {
-        Log.d("SelectCar. Id : $carID. add: $add")
-        if (add && !canAdd(carID))
-        {
-            return false
-        }
-        else
-        {
-            if (add && canAdd(carID))
-            {
-                _selectedCars.value!!.add(carID)
-                _selectedCars.value = _selectedCars.value
-            }
-            else
-            {
-                _selectedCars.value!!.remove(carID)
-                _selectedCars.value = _selectedCars.value
-            }
-            return true
-        }
-
-    }
-
-    fun canAdd(id: Long): Boolean
-    {
-        val x = selectedCars.value!!.size <= maxSelect
-        Log.d("Can add $id : $_selectedCars.value!!.contains(id)}. Size is lower : $x")
-        val y = !_selectedCars.value!!.contains(id) && selectedCars.value!!.size <= maxSelect
-        Log.d("Return $y")
-        return y
-    }
 
     init
     {
         _selectedCars.value = ArrayList()
-        Log.d("Max Select size = $maxSelect")
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        Log.d("Create VH")
         return ViewHolder.from(
             parent,
-            { carID, add -> selectCar(carID, add) },
-            { dy -> clickListener.scroll(dy) })
+            _selectedCars
+        ) { dy -> clickListener.scroll(dy) }
     }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        Log.d("Bind VH at pos : $position")
         holder.bind(getItem(position)!!, clickListener)
     }
 
 
     class ViewHolder private constructor(
         private val binding: CarRecyclerBinding,
-        private val selectCar: (carID: Long, add: Boolean) -> Boolean,
+        private val selectedCars: MutableLiveData<ArrayList<Long>>,
         private val scroll: (dy: Int) -> Unit
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
@@ -103,25 +77,71 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
         private var wasLongClicked = false
         private var startScrolling = false
         private var status = 0
+            set(value)
+            {
+                field = when
+                {
+                    value > 0 ->
+                    {
+                        min(value, PANEL_SIZE)
+                    }
+                    value < 0 ->
+                    {
+                        max(value, -PANEL_SIZE)
+                    }
+                    else ->
+                    {
+                        value
+                    }
+                }
+                Log.d("Value to set: $value. Value setted: $field")
+                setSizes()
+            }
 
         companion object
         {
             fun from(
                 parent: ViewGroup,
-                selectCar: (carID: Long, add: Boolean) -> Boolean,
+                selectedCar: MutableLiveData<ArrayList<Long>>,
                 scroll: (dy: Int) -> Unit
             ): ViewHolder
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CarRecyclerBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
-                    binding, selectCar, scroll
+                    binding, selectedCar, scroll
                 )
             }
 
-            private const val LONG_CLICK_TIME = 700L
+            private const val LONG_CLICK_TIME = 550L
             private const val CLICK_DISTANCE = 75
             private const val PANEL_SIZE = 125
+        }
+
+
+        private val isCarSelected: Boolean
+            get()
+            {
+                return selectedCars.value!!.contains(binding.car!!.carID)
+            }
+
+        private val isPlaceToAdd: Boolean
+            get()
+            {
+                return selectedCars.value!!.size < maxSize
+            }
+
+
+        private fun addCar()
+        {
+            selectedCars.value!!.add(binding.car!!.carID)
+            selectedCars.value = selectedCars.value
+        }
+
+        private fun removeCar()
+        {
+            selectedCars.value!!.remove(binding.car!!.carID)
+            selectedCars.value = selectedCars.value
         }
 
 
@@ -141,6 +161,14 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
 
             binding.rootCL.setOnTouchListener(this)
 
+            status = if (isCarSelected) //car was selected, show right panel
+            {
+                -PANEL_SIZE
+            }
+            else
+            {
+                0
+            }
 
             binding.executePendingBindings()
         }
@@ -149,11 +177,26 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
         private val rightPanel = binding.rootCL.getChildAt(1)
         private val centerPanel = binding.rootCL.getChildAt(2)
 
-        private fun setSizes(lW: Int, rW: Int)
+        private fun setSizes()
         {
-            Log.d("$lW  $rW")
-            leftPanel.layoutParams.width = lW
-            rightPanel.layoutParams.width = rW
+            when
+            {
+                status == 0 -> // center
+                {
+                    leftPanel.layoutParams.width = 1
+                    rightPanel.layoutParams.width = 1
+                }
+                status > 0 -> //right
+                {
+                    leftPanel.layoutParams.width = status
+                    rightPanel.layoutParams.width = 1
+                }
+                else -> //left
+                {
+                    leftPanel.layoutParams.width = 1
+                    rightPanel.layoutParams.width = -status
+                }
+            }
 
             leftPanel.requestLayout()
             rightPanel.requestLayout()
@@ -162,6 +205,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
             leftPanel.setBackgroundResource(R.drawable.gradient_car_delete)
             rightPanel.setBackgroundResource(R.drawable.gradient_select)
         }
+
 
         override fun onTouch(v: View?, event: MotionEvent?): Boolean
         {
@@ -172,7 +216,6 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
                 {
                     MotionEvent.ACTION_DOWN ->
                     {
-                        Log.d("Down")
                         xStart = event.x
                         yStart = event.y
                         isLongClickCanceled = false
@@ -180,76 +223,59 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
                         startScrolling = false
                         handler.postDelayed({ //long click
                             wasLongClicked = true
-                            setSizes(1, 1)
                             v.performLongClick()
                         }, LONG_CLICK_TIME)
                     }
                     MotionEvent.ACTION_UP ->
                     {
-                        Log.d("Up")
                         handler.removeCallbacksAndMessages(null)
                         if (!startScrolling && !isLongClickCanceled && !wasLongClicked)
                         {
                             if ((event.eventTime - event.downTime) < LONG_CLICK_TIME) //click
                             {
-                                Log.d("Status $status")
                                 if (status == 0)
                                 {
                                     v.performClick()
                                 }
                                 else
                                 {
-                                    setSizes(1, 1)
                                     status = 0
-                                    selectCar(binding.car!!.carID, false)
+                                    removeCar()
                                 }
                             }
                         }
-                        else if (startScrolling)
+                        else if (!startScrolling)
                         {
-                            Log.d("Up  after scrolling")
-                        }
-                        else
-                        {
-                            Log.d("Up after operation")
-
                             when
                             {
-                                status > (PANEL_SIZE / 2) ->
+                                status > (PANEL_SIZE / 2) -> //show left
                                 {
-                                    setSizes(PANEL_SIZE, 1)
-                                    selectCar(binding.car!!.carID, false)
+                                    status = PANEL_SIZE
+                                    removeCar()
                                 }
-                                status < -(PANEL_SIZE / 2) ->
+                                status < -(PANEL_SIZE / 2) -> //show right
                                 {
 
-                                    if (!selectCar(
-                                            binding.car!!.carID,
-                                            true
-                                        )
-                                    ) //cars cannot be added
+                                    if (isPlaceToAdd)//car can be added
                                     {
-                                        setSizes(1, 1)
+                                        status = -PANEL_SIZE
+                                        addCar()
                                     }
-                                    else //car was added
+                                    else
                                     {
-                                        setSizes(1, PANEL_SIZE)
-
+                                        status = 0
                                     }
-
                                 }
                                 else ->
                                 {
-                                    setSizes(1, 1)
                                     status = 0
-                                    selectCar(binding.car!!.carID, false)
+                                    removeCar()
                                 }
                             }
                         }
                     }
                     MotionEvent.ACTION_MOVE ->
                     {
-                        Log.d("Move")
                         if (startScrolling)
                         {
                             scroll((lastY - event.rawY).toInt())
@@ -267,16 +293,13 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
                                     if (abs(deltaX) > 75)
                                     {
 
-
                                         if (deltaX > 0)
                                         {
                                             status = (deltaX - CLICK_DISTANCE)
-                                            setSizes(min(status, PANEL_SIZE), 1)
                                         }
                                         else if (deltaX < 0)
                                         {
                                             status = (deltaX + CLICK_DISTANCE)
-                                            setSizes(1, min(-status, PANEL_SIZE))
                                         }
 
                                     }
@@ -300,7 +323,6 @@ class CarRecyclerAdapter(private val clickListener: CarListener, private val max
             }
             return true
         }
-
     }
 }
 
