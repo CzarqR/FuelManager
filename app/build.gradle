@@ -79,4 +79,7 @@ dependencies {
 
     // RecyclerView card view
     implementation "androidx.cardview:cardview:1.0.0"
+
+    // Shared preferences
+    implementation "androidx.preference:preference-ktx:1.1.1"
 }

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.CarRecyclerBinding
-import com.myniprojects.fuelmanager.utils.Log
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -50,8 +49,9 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
     {
         return ViewHolder.from(
             parent,
-            _selectedCars
-        ) { dy -> clickListener.scroll(dy) }
+            _selectedCars,
+            clickListener
+        )
     }
 
 
@@ -64,7 +64,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
     class ViewHolder private constructor(
         private val binding: CarRecyclerBinding,
         private val selectedCars: MutableLiveData<ArrayList<Long>>,
-        private val scroll: (dy: Int) -> Unit
+        private val carListener: CarListener
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
@@ -94,7 +94,6 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
                         value
                     }
                 }
-                Log.d("Value to set: $value. Value setted: $field")
                 setSizes()
             }
 
@@ -103,13 +102,13 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
             fun from(
                 parent: ViewGroup,
                 selectedCar: MutableLiveData<ArrayList<Long>>,
-                scroll: (dy: Int) -> Unit
+                carListener: CarListener
             ): ViewHolder
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CarRecyclerBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
-                    binding, selectedCar, scroll
+                    binding, selectedCar, carListener
                 )
             }
 
@@ -264,6 +263,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
                                     else
                                     {
                                         status = 0
+                                        carListener.cannotSelectCar()
                                     }
                                 }
                                 else ->
@@ -278,7 +278,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
                     {
                         if (startScrolling)
                         {
-                            scroll((lastY - event.rawY).toInt())
+                            carListener.scroll((lastY - event.rawY).toInt())
                             lastY = event.rawY
                         }
                         else
@@ -345,7 +345,8 @@ class CarListener(
     val clickListener: (carId: Long) -> Unit,
     val clickLongListener: (carId: Long) -> Unit,
     val clickDeleteListener: (carId: Long) -> Unit,
-    val scroll: (dy: Int) -> Unit
+    val scroll: (dy: Int) -> Unit,
+    val cannotSelectCar: () -> Unit
 )
 {
     fun onClick(car: Car) = clickListener(car.carID)

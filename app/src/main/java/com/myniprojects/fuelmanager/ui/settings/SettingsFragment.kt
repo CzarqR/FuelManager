@@ -29,6 +29,10 @@ class SettingsFragment : Fragment()
 
         viewModel = ViewModelProvider(requireActivity()).get(MainActivityVM::class.java)
 
+        binding.edTxtCurrency.setText(viewModel.currency.value)
+        binding.edTxtVolume.setText(viewModel.volumeUnit.value)
+        binding.edTxtLength.setText(viewModel.lengthUnit.value)
+
 
         return binding.root
     }

@@ -77,6 +77,13 @@
     <string name="delete_refueling">Delete refueling</string>
 
     <string name="settings">Settings</string>
+    <string name="cannot_select_car">You can select up to 8 cars</string>
+    <string name="currency">Currency</string>
+    <string name="currency_default">$</string>
+    <string name="volume_unit">Volume unit</string>
+    <string name="volume_unit_default">L</string>
+    <string name="length_unit">Length unit</string>
+    <string name="length_unit_default">Km</string>
 
 
 </resources>

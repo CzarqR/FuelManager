@@ -2,14 +2,14 @@
 <resources>
 
     <array name="car_colors">
-        <item>#931313</item>
-        <item>#1B5E20</item>
-        <item>#0D47A1</item>
-        <item>#F9D625</item>
+        <item>#7B1FA2</item>
+        <item>#004D40</item>
+        <item>#B71C1C</item>
         <item>#F57F17</item>
-        <item>#AD1457</item>
-        <item>#7C3626</item>
-        <item>#8CABBE</item>
+        <item>#0288D1</item>
+        <item>#E64A19</item>
+        <item>#C2185B</item>
+        <item>#689F38</item>
     </array>
 
 </resources>

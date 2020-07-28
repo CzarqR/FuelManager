@@ -3,6 +3,7 @@ package com.myniprojects.fuelmanager.ui.car
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
@@ -24,14 +25,9 @@ import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 class CarFragment : Fragment()
 {
-
-    companion object
-    {
-        const val THEME_KEY: String = "THEME_KEY"
-    }
-
     private lateinit var viewModel: CarFragmentVM
     private lateinit var binding: FragmentCarBinding
+    private lateinit var toast: Toast
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,11 +84,27 @@ class CarFragment : Fragment()
 
         // listener for clicked car
 
+
         val carListener = CarListener(
             { carID -> viewModel.carClicked(longArrayOf(carID)) }, // click
             { carID -> editCarDialog(carID) }, // long click
             { carID -> showConfirmation(carID) }, // delete
-            { dy -> binding.recViewCar.scrollBy(0, dy) } // scroll
+            { dy -> binding.recViewCar.scrollBy(0, dy) }, // scroll
+            {
+                if (this::toast.isInitialized)
+                {
+                    toast.cancel()
+                }
+
+                toast = Toast.makeText(
+                    requireContext(),
+                    getString(R.string.cannot_select_car),
+                    Toast.LENGTH_SHORT
+                )
+
+                toast.show()
+            }
+
         )
 
 
@@ -179,7 +191,7 @@ class CarFragment : Fragment()
                 {
                     Log.d("Change to day")
                     with(sharedPref.edit()) {
-                        putBoolean(THEME_KEY, false)
+                        putBoolean(MainActivity.THEME_KEY, false)
                         apply()
                     }
                 }
@@ -187,7 +199,7 @@ class CarFragment : Fragment()
                 {
                     Log.d("Change to dark")
                     with(sharedPref.edit()) {
-                        putBoolean(THEME_KEY, true)
+                        putBoolean(MainActivity.THEME_KEY, true)
                         apply()
                     }
                 }

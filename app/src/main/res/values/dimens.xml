@@ -4,4 +4,5 @@
     <dimen name="standardHeight">20dp</dimen>
     <dimen name="car_image_size">106dp</dimen>
     <dimen name="detail_header_margin">5dp</dimen>
+    <dimen name="settings_height">60dp</dimen>
 </resources>
