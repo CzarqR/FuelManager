@@ -10,6 +10,7 @@ import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.model.CarIcon
+import com.myniprojects.fuelmanager.ui.main.MainActivity
 
 
 // region Menu Fragment
@@ -55,14 +56,13 @@ fun ImageView.setCarIcon(car: Car?)
 fun TextView.setRefuelingCost(refueling: Refueling?)
 {
     refueling?.let {
-
-        val price = refueling.price.toStringFormatted()
-        Log.d(price)
         text = SpanFormatter.format(
             this.context.getText(R.string.litres_format),
             refueling.litres.toStringFormatted(),
             refueling.price.toStringFormatted(),
-            (refueling.litres * refueling.price).round(2).toStringFormatted()
+            (refueling.litres * refueling.price).round(2).toStringFormatted(),
+            MainActivity.volumeUnit,
+            MainActivity.currency
         )
     }
 }
@@ -97,6 +97,20 @@ fun TextView.setRefuelingPlace(refueling: Refueling?, index: Int)
         }.setSpan(ForegroundColorSpan(context.resources.getIntArray(R.array.car_colors)[index]))
 
 
+    }
+}
+
+@BindingAdapter("refuelingData")
+fun TextView.setRefuelingData(refueling: Refueling?)
+{
+    refueling?.let {
+
+        text = this.context.getString(
+            R.string.odometer_reading_format,
+            refueling.previousOdometerReading.toStringFormatted(),
+            refueling.previousTankState,
+            MainActivity.lengthUnit
+        )
     }
 }
 

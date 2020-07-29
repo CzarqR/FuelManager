@@ -39,17 +39,17 @@
                 android:id="@+id/txtDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/standardHeight"
-                android:fontFamily="@font/alegreya_sans"
+                android:fontFamily="@font/amiko"
+                app:autoSizeTextType="uniform"
                 app:indexPlace="@{index}"
                 app:refuelingPlace="@{refueling}"
-                app:autoSizeTextType="uniform"
                 tools:text="31/01.1998 15:10:99 Warsaw Orlen 19A" />
 
             <TextView
                 android:id="@+id/txtLitres"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:fontFamily="@font/alegreya_sans"
+                android:layout_height="24dp"
+                android:fontFamily="@font/amiko"
                 android:lines="1"
                 app:autoSizeTextType="uniform"
                 app:refuelingCost="@{refueling}"
@@ -59,9 +59,9 @@
                 android:id="@+id/txtOdometerReading"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/standardHeight"
-                android:fontFamily="@font/alegreya_sans"
+                android:fontFamily="@font/amiko"
                 android:lines="1"
-                android:text="@{@string/odometer_reading_format(refueling.previousOdometerReading, refueling.previousTankState)}"
+                app:refuelingData="@{refueling}"
                 app:autoSizeTextType="uniform"
                 tools:text="Odometer Reading: 256 999.5 km with tank state 20%" />
 
@@ -69,7 +69,7 @@
                 android:id="@+id/txtComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/alegreya_sans"
+                android:fontFamily="@font/amiko"
                 android:maxLines="2"
                 app:refuelingComment="@{refueling}"
                 tools:text="Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment, Some comment." />

@@ -24,6 +24,9 @@ class MainActivityVM(application: Application) : AndroidViewModel(application)
     {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication())
 
+        val x = sharedPref.getBoolean(MainActivity.THEME_KEY, false)
+        Log.d("Load in fun in VM: $x")
+
         darkTheme.postValue(sharedPref.getBoolean(MainActivity.THEME_KEY, false))
 
         currency.postValue(

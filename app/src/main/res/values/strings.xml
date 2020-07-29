@@ -48,11 +48,11 @@
     <string name="selected_car">Selected car:</string>
 
 
-    <string name="litres_format">%1$s  litres for <b>%2$s</b>. Total price %3$s</string>
+    <string name="litres_format">%1$s%4$s for <b>%2$s</b>%5$s. Total price %3$s%5$s</string>
     <string name="date_place_format"><i>%1$s - %2$s</i></string>
     <string name="date_format"><i>%1$s</i></string>
 
-    <string name="odometer_reading_format">Odometer reading: %.1f with tank state %2$d%%</string>
+    <string name="odometer_reading_format">Odometer reading: %1$s%3$s with tank state %2$d%%</string>
     <string name="date_time_place">%1$s - %2$s</string>
     <string name="detail_fragment_title">Refueling details</string>
     <string name="car_fragment_title">Select car</string>
@@ -79,9 +79,9 @@
     <string name="settings">Settings</string>
     <string name="cannot_select_car">You can select up to 8 cars</string>
     <string name="currency">Currency</string>
-    <string name="currency_default">$</string>
+    <string name="currency_default">€</string>
     <string name="volume_unit">Volume unit</string>
-    <string name="volume_unit_default">L</string>
+    <string name="volume_unit_default">l.</string>
     <string name="length_unit">Length unit</string>
     <string name="length_unit_default">Km</string>
 

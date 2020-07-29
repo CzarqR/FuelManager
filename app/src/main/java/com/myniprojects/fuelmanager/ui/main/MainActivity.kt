@@ -1,14 +1,11 @@
 package com.myniprojects.fuelmanager.ui.main
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +21,7 @@ import com.google.android.material.navigation.NavigationView
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.databinding.ActivityMainBinding
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.hideKeyboard
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
@@ -39,10 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         const val LENGTH_UNIT_KEY: String = "LENGTH_UNIT_KEY"
         const val VOLUME_UNIT_KEY: String = "VOLUME_UNIT_KEY"
 
-
-        var darkThemeStyle: Boolean = false
-            private set
-
         lateinit var currency: String
             private set
 
@@ -55,13 +49,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        //setup view model
+        viewModel = ViewModelProvider(this).get(MainActivityVM::class.java)
+        setObserversToSettings()
+
         super.onCreate(savedInstanceState)
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        //setup view model
-        viewModel = ViewModelProvider(this).get(MainActivityVM::class.java)
-        setObserversToSettings()
 
         // setup navigation bar and navigation drawer
         drawerLayout = binding.drawerLayout
@@ -72,11 +67,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
-        findViewById<View>(android.R.id.content).isFocusableInTouchMode = true;
+        findViewById<View>(android.R.id.content).isFocusableInTouchMode = true
 
         binding.navView.setNavigationItemSelectedListener(this)
     }
-
 
     private fun setObserversToSettings()
     {
@@ -125,6 +119,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+
+    // region deactivate keyboard after clicking outside EditText
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean
     {
         val v: View? = currentFocus
@@ -138,23 +134,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val y: Float = ev.rawY + v.getTop() - sourceCoordinates[1]
             if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
             {
-                hideKeyboard(this)
+                hideKeyboard()
             }
         }
         return super.dispatchTouchEvent(ev)
     }
 
-    private fun hideKeyboard(activity: Activity?)
-    {
-        if (activity != null && activity.window != null)
-        {
-            activity.window.decorView
-            val imm =
-                activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm?.hideSoftInputFromWindow(activity.window.decorView.windowToken, 0)
-            findViewById<View>(android.R.id.content).clearFocus();
-        }
-    }
+
+    // endregion
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean
     {

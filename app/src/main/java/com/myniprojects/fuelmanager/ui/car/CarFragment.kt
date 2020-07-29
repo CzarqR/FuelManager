@@ -1,6 +1,5 @@
 package com.myniprojects.fuelmanager.ui.car
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -16,7 +15,6 @@ import androidx.navigation.ui.NavigationUI
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
-import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
 import com.myniprojects.fuelmanager.utils.setActivityTitle
@@ -169,52 +167,15 @@ class CarFragment : Fragment()
         super.onCreateOptionsMenu(menu, inflater)
         MenuCompat.setGroupDividerEnabled(menu, true)
         inflater.inflate(R.menu.overflow_menu, menu)
-
-        //set checked in dark mode item
-        val item = menu.findItem(R.id.darkMode)
-        item.isChecked = MainActivity.darkThemeStyle
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
-        return when (item.itemId)
-        {
-            R.id.aboutFragment -> NavigationUI.onNavDestinationSelected(
-                item,
-                requireView().findNavController()
-            )
-            R.id.darkMode ->
-            {
-                item.isChecked = !item.isChecked
-                val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
-                if (!item.isChecked) //change to day colors
-                {
-                    Log.d("Change to day")
-                    with(sharedPref.edit()) {
-                        putBoolean(MainActivity.THEME_KEY, false)
-                        apply()
-                    }
-                }
-                else //change to dark mode
-                {
-                    Log.d("Change to dark")
-                    with(sharedPref.edit()) {
-                        putBoolean(MainActivity.THEME_KEY, true)
-                        apply()
-                    }
-                }
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        )
 
-                requireActivity().recreate()
-
-                true
-            }
-            R.id.ourApps ->
-            {
-                Log.d("Our apps")
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun editCarDialog(carID: Long)
