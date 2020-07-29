@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -41,6 +42,9 @@ class SettingsFragment : Fragment()
             )
         }
 
+        binding.butDefault.setOnClickListener {
+            showConfirmation()
+        }
 
 
 
@@ -67,5 +71,31 @@ class SettingsFragment : Fragment()
         })
     }
 
+
+    private fun showConfirmation()
+    {
+        val builder = AlertDialog.Builder(requireContext(), R.style.DialogConfirmationTheme)
+
+        builder.setTitle(getString(R.string.restore_default_settings))
+        builder.setMessage(getString(R.string.warning_default_settings))
+
+        builder.setPositiveButton(
+            getString(R.string.yes)
+        ) { dialog, _ ->
+            viewModel.defaultSettings()
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton(
+            getString(R.string.no)
+        ) { dialog, _ -> // Do nothing
+            dialog.dismiss()
+        }
+
+        builder.setIcon(R.drawable.default_settings)
+
+        val alert = builder.create()
+        alert.show()
+    }
 
 }

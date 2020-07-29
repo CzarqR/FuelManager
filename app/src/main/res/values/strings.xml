@@ -40,6 +40,7 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="share">Share</string>
     <string name="share_message">I bought fuel in %1$s for %2$s $</string>
+    <string name="share_message_no_input">I bought fuel.</string>
     <string name="navigation_header">Navigation header</string>
     <string name="empty" />
     <string name="our_apps">Our Apps</string>
@@ -84,6 +85,10 @@
     <string name="volume_unit_default">l.</string>
     <string name="length_unit">Length unit</string>
     <string name="length_unit_default">Km</string>
+    <string name="restore_default_settings">Restore default settings</string>
+    <string name="warning_default_settings">Are You sure about restoring default settings?</string>
+    <string name="edit_confirmation">Save changes?</string>
+    <string name="edit_dialog_message">Do You want to update refueling? Changes cannot be rolled back</string>
 
 
 </resources>

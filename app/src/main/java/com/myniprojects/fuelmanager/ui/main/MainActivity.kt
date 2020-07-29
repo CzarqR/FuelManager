@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         const val LENGTH_UNIT_KEY: String = "LENGTH_UNIT_KEY"
         const val VOLUME_UNIT_KEY: String = "VOLUME_UNIT_KEY"
 
+        const val DEFAULT_DARK_THEME: Boolean = false
+
         lateinit var currency: String
             private set
 

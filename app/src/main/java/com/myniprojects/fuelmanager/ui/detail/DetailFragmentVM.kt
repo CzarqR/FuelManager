@@ -4,9 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.getString
 import kotlinx.coroutines.*
 
 class DetailFragmentVM(
@@ -30,6 +32,27 @@ class DetailFragmentVM(
             database.update(refueling)
         }
     }
+
+    val shareMessage: String
+        get()
+        {
+            val tmp = refueling.value
+            return if (tmp != null)
+            {
+                getApplication<Application>().getString(
+                    R.string.share_message,
+                    tmp.place,
+                    tmp.price.toString()
+                )
+            }
+            else
+            {
+                getString(
+                    R.string.share_message_no_input
+                )
+            }
+        }
+
 
     private suspend fun delete()
     {

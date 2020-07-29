@@ -90,10 +90,10 @@ class DetailFragment : Fragment()
 
     private fun showEditConfirmation()
     {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.DialogConfirmationTheme)
 
-        builder.setTitle("Confirm")
-        builder.setMessage("Are you sure?")
+        builder.setTitle(getString(R.string.edit_confirmation))
+        builder.setMessage(getString(R.string.edit_dialog_message))
 
         builder.setPositiveButton(
             "YES"
@@ -163,7 +163,7 @@ class DetailFragment : Fragment()
     private fun getShareIntent(): Intent
     {
         return ShareCompat.IntentBuilder.from(requireActivity())
-            .setText(getString(R.string.share_message, "Place", "11.98"))
+            .setText(viewModel.shareMessage)
             .setType("text/plain").intent
     }
 

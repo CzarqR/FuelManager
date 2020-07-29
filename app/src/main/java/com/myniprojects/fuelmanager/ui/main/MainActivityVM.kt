@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.getString
+
 
 class MainActivityVM(application: Application) : AndroidViewModel(application)
 {
@@ -32,21 +34,21 @@ class MainActivityVM(application: Application) : AndroidViewModel(application)
         currency.postValue(
             sharedPref.getString(
                 MainActivity.CURRENCY_KEY,
-                getApplication<Application>().getString(R.string.currency_default)
+                getString(R.string.currency_default)
             )!!
         )
 
         volumeUnit.postValue(
             sharedPref.getString(
                 MainActivity.VOLUME_UNIT_KEY,
-                getApplication<Application>().getString(R.string.volume_unit_default)
+                getString(R.string.volume_unit_default)
             )!!
         )
 
         lengthUnit.postValue(
             sharedPref.getString(
                 MainActivity.LENGTH_UNIT_KEY,
-                getApplication<Application>().getString(R.string.length_unit_default)
+                getString(R.string.length_unit_default)
             )!!
         )
     }
@@ -73,5 +75,16 @@ class MainActivityVM(application: Application) : AndroidViewModel(application)
         lengthUnit.postValue(newLength)
         volumeUnit.postValue(newVolume)
     }
+
+    fun defaultSettings()
+    {
+        saveSettings(
+            MainActivity.DEFAULT_DARK_THEME,
+            getString(R.string.currency_default),
+            getString(R.string.volume_unit_default),
+            getString(R.string.length_unit_default)
+        )
+    }
+
 
 }
