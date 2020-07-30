@@ -50,7 +50,7 @@ fun formatCars(cars: List<Car>, context: Context): Spanned
     }
 }
 
-fun getCarNames(cars: List<Car>, context: Context): ArrayList<Spanned>
+fun getCarNamesFormatted(cars: List<Car>, context: Context): ArrayList<Spanned>
 {
 
     val carColors = context.resources.getIntArray(R.array.car_colors)
@@ -79,6 +79,34 @@ fun getCarNames(cars: List<Car>, context: Context): ArrayList<Spanned>
 
     return carNames
 }
+
+fun getCarNamesSimple(cars: List<Car>, context: Context): ArrayList<Spanned>
+{
+    val carNames = ArrayList<Spanned>()
+
+    for (value in cars)
+    {
+        val s = context.getString(
+            R.string.car_title,
+            value.brand,
+            value.model
+        )
+
+        carNames.add(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            {
+                Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY)
+            }
+            else
+            {
+                HtmlCompat.fromHtml(s, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            }
+        )
+    }
+
+    return carNames
+}
+
 
 const val FULL_DATE_FORMAT = "dd/MM/yyyy HH:mm:ss"
 

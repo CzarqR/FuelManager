@@ -89,6 +89,8 @@
     <string name="warning_default_settings">Are You sure about restoring default settings?</string>
     <string name="edit_confirmation">Save changes?</string>
     <string name="edit_dialog_message">Do You want to update refueling? Changes cannot be rolled back</string>
+    <string name="select_car">Select Car</string>
+    <string name="select_date_range">Select date range</string>
 
 
 </resources>

@@ -3,7 +3,6 @@ package com.myniprojects.fuelmanager.ui.refueling
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -13,7 +12,6 @@ import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.databinding.FragmentCarInfoBinding
 import com.myniprojects.fuelmanager.ui.chart.ChartType
-import com.myniprojects.fuelmanager.utils.Log
 
 
 class CarInfoFragment(
@@ -75,7 +73,6 @@ class CarInfoFragment(
     )
     {
         super.onCreateContextMenu(menu, v, menuInfo)
-        MenuCompat.setGroupDividerEnabled(menu, true)
         requireActivity().menuInflater.inflate(R.menu.select_chart, menu)
     }
 
@@ -85,13 +82,11 @@ class CarInfoFragment(
         {
             R.id.opt_chart_cost ->
             {
-                Log.d("Cost")
                 goToChart(ChartType.FUEL_COST)
                 true
             }
             R.id.opt_chart_ef ->
             {
-                Log.d("Ef")
                 goToChart(ChartType.FUEL_EFFICIENCY)
                 true
             }

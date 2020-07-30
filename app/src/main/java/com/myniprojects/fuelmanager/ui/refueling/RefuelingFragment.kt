@@ -16,7 +16,7 @@ import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
-import com.myniprojects.fuelmanager.utils.getCarNames
+import com.myniprojects.fuelmanager.utils.getCarNamesFormatted
 import com.myniprojects.fuelmanager.utils.setActivityTitle
 import kotlinx.android.synthetic.main.new_refueling_dialog.view.*
 
@@ -72,9 +72,9 @@ class RefuelingFragment : Fragment()
             val mAlertDialog = mBuilder.show()
 
 
-            mDialogView.spinnerCars.adapter = RefuelingSpinnerAdapter(
+            mDialogView.spinnerCars.adapter = CarSpinnerAdapter(
                 requireContext(),
-                getCarNames(viewModel.cars.value!!, requireContext())
+                getCarNamesFormatted(viewModel.cars.value!!, requireContext())
             )
 
             mDialogView.butAddRefueling.setOnClickListener {

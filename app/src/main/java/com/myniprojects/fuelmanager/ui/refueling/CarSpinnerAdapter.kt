@@ -12,7 +12,7 @@ import com.myniprojects.fuelmanager.R
 import kotlinx.android.synthetic.main.refuling_spinner.view.*
 
 
-class RefuelingSpinnerAdapter(context: Context, private val carsNames: List<Spanned>) :
+class CarSpinnerAdapter(context: Context, private val carsNames: List<Spanned>) :
         BaseAdapter()
 {
     private var inflater: LayoutInflater = LayoutInflater.from(context)
