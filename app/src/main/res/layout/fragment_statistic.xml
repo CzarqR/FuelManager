@@ -63,7 +63,7 @@
                     android:id="@+id/txtStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_margin="4dp"
                     android:text="Start date: 10.10.2010"
                     android:textSize="17sp" />
 
@@ -71,7 +71,7 @@
                     android:id="@+id/txtEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_margin="4dp"
                     android:text="End date: 20.10.2010"
                     android:textSize="17sp" />
 

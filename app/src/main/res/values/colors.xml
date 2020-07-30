@@ -47,5 +47,12 @@
     <color name="app_back_top">#FFEBEE</color>
     <color name="app_back_bottom">#FBE9E7</color>
 
+    // date picker dialog dialog
+    <color name="date_picker_dialog_header_background">@color/colorPrimaryDark</color>
+    <color name="date_picker_dialog_background">#FFFFFF</color>
+    <color name="date_picker_dialog_selected_day">@color/colorAccent</color>
+    <color name="date_picker_dialog_selected_month">#B71C1C</color>
+    <color name="date_picker_dialog_day_of_week">#611B1B</color>
+
 
 </resources>

@@ -63,10 +63,11 @@ class StatisticFragment : Fragment()
         return binding.root
     }
 
-    fun showDatePickerDialog()
+    private fun showDatePickerDialog()
     {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
+            R.style.DatePickerDialogStyle,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth -> Log.d("$year $month $dayOfMonth") },
             1990, 1, 1
         )
