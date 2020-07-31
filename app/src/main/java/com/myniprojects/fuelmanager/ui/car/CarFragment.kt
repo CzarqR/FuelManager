@@ -115,17 +115,15 @@ class CarFragment : Fragment()
         }
 
         adapter.selectedCars.observe(viewLifecycleOwner, Observer {
-            Log.d("Selected cars observed. Size = ${it.size}")
-            it.forEach {
-                Log.d("id: $it")
-            }
             if (it.size > 0)
             {
                 binding.butSelectedMany.visibility = View.VISIBLE
+                binding.butStatistic.visibility = View.VISIBLE
             }
             else
             {
                 binding.butSelectedMany.visibility = View.INVISIBLE
+                binding.butStatistic.visibility = View.INVISIBLE
             }
         })
 
@@ -136,6 +134,11 @@ class CarFragment : Fragment()
                 viewModel.carNavigated()
             }
         })
+
+        binding.butStatistic.setOnClickListener {
+            this.findNavController()
+                .navigate(CarFragmentDirections.actionCarToStatistic(adapter.selectedCars.value?.toLongArray()))
+        }
 
         // RecyclerView setup
         binding.recViewCar.adapter = adapter

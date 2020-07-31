@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_car_to_refueling"
             app:destination="@id/refuelingFragment" />
+        <action
+            android:id="@+id/action_car_to_statistic"
+            app:destination="@id/statisticFragment" />
     </fragment>
     <fragment
         android:id="@+id/refuelingFragment"
@@ -53,5 +56,11 @@
         android:id="@+id/statisticFragment"
         android:name="com.myniprojects.fuelmanager.ui.statistic.StatisticFragment"
         android:label="@string/statistic"
-        tools:layout="@layout/fragment_statistic" />
+        tools:layout="@layout/fragment_statistic">
+        <argument
+            android:name="carID"
+            android:defaultValue="@null"
+            app:argType="long[]"
+            app:nullable="true" />
+    </fragment>
 </navigation>

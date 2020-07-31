@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentStatisticBinding
-import com.myniprojects.fuelmanager.ui.refueling.CarSpinnerAdapter
 import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.getCarNamesSimple
 
 
 class StatisticFragment : Fragment()
@@ -27,6 +24,8 @@ class StatisticFragment : Fragment()
         savedInstanceState: Bundle?
     ): View?
     {
+        Log.d("Create fragment")
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_statistic, container, false
@@ -37,24 +36,21 @@ class StatisticFragment : Fragment()
         val application = requireNotNull(this.activity).application
         val dataSourceRefueling = AppDatabase.getInstance(application).refuelingDAO
         val dataSourceCar = AppDatabase.getInstance(application).carDAO
+        val arguments = StatisticFragmentArgs.fromBundle(requireArguments())
+
         val viewModelFactory = StatisticFragmentVMFactory(
             dataSourceRefueling,
             dataSourceCar,
             application
         )
+
         viewModel = ViewModelProvider(
             requireActivity(),
             viewModelFactory
         ).get(StatisticFragmentVM::class.java)
 
+        viewModel.loadRefueling(arguments.carID)
 
-
-        viewModel.cars.observe(viewLifecycleOwner, Observer {
-            binding.spinnerSelectCar.adapter = CarSpinnerAdapter(
-                requireContext(),
-                getCarNamesSimple(it, requireContext())
-            )
-        })
 
         binding.txtStartDate.setOnClickListener {
             showDatePickerDialog()
@@ -73,5 +69,6 @@ class StatisticFragment : Fragment()
         )
         datePickerDialog.show()
     }
+
 
 }

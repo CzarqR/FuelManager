@@ -32,4 +32,11 @@ interface RefuelingDAO
 
     @Query("SELECT * FROM refueling_table WHERE refuelingID = :refuelingID")
     fun getOne(refuelingID: Long): LiveData<Refueling>
+
+    @Query("SELECT * FROM refueling_table order by date_time ASC")
+    fun getAllNotObservable(): List<Refueling>
+
+    @Query("SELECT * FROM refueling_table WHERE carID IN (:carID) order by date_time ASC")
+    fun getAllNotObservable(carID: LongArray): List<Refueling>
+
 }

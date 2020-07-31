@@ -2,10 +2,7 @@ package com.myniprojects.fuelmanager.utils
 
 import android.content.Context
 import android.os.Build
-import android.text.Html
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.Spanned
+import android.text.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
@@ -80,29 +77,25 @@ fun getCarNamesFormatted(cars: List<Car>, context: Context): ArrayList<Spanned>
     return carNames
 }
 
+@Suppress("unused")
 fun getCarNamesSimple(cars: List<Car>, context: Context): ArrayList<Spanned>
 {
     val carNames = ArrayList<Spanned>()
 
     for (value in cars)
     {
-        val s = context.getString(
-            R.string.car_title,
-            value.brand,
-            value.model
-        )
-
         carNames.add(
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            {
-                Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY)
-            }
-            else
-            {
-                HtmlCompat.fromHtml(s, HtmlCompat.FROM_HTML_MODE_LEGACY)
-            }
+            SpannedString(
+                context.getString(
+                    R.string.car_title,
+                    value.brand,
+                    value.model
+                )
+            )
         )
     }
+
+    carNames.add(SpannedString(context.getString(R.string.all_cars)))
 
     return carNames
 }
@@ -120,6 +113,7 @@ fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
     return formatter.format(calendar.time)
 }
 
+@Suppress("unused")
 fun getDate(milliSeconds: Long, dateFormat: String): String
 {
     return getDate(milliSeconds, dateFormat, Locale.getDefault())
