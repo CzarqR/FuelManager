@@ -92,6 +92,10 @@
     <string name="select_car">Select Car</string>
     <string name="select_date_range">Select date range</string>
     <string name="all_cars">All cars</string>
+    <string name="cannot_show_any_statistics">Cannot show any statistics. Selected cars don\'t have any added refueling.</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="no_refueling_in_data_range">There isn\'t any refueling in selected data range</string>
 
 
 </resources>

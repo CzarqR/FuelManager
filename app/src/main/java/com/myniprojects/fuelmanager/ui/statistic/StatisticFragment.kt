@@ -65,12 +65,43 @@ class StatisticFragment : Fragment()
     private fun setObservers()
     {
         viewModel.startDateSelected.observe(viewLifecycleOwner, Observer {
-
+            Log.d("startDate $it")
             binding.txtStartDateSelected.text = it.toDateFormat()
         })
 
         viewModel.endDateSelected.observe(viewLifecycleOwner, Observer {
+            Log.d("endDate $it")
             binding.txtEndDateSelected.text = it.toDateFormat()
+        })
+
+        viewModel.canShowStatistic.observe(viewLifecycleOwner, Observer {
+            if (it)
+            {
+                Log.d("Can show stats")
+                binding.linLayStatistic.visibility = View.VISIBLE
+                binding.frameCannotShowStats.visibility = View.GONE
+            }
+            else
+            {
+                Log.d("Cannot show stats")
+                binding.linLayStatistic.visibility = View.GONE
+                binding.frameCannotShowStats.visibility = View.VISIBLE
+            }
+        })
+
+        viewModel.isFuelInDateRange.observe(viewLifecycleOwner, Observer {
+            if (it)
+            {
+                Log.d("Data to show")
+                binding.frameNoRefuelingInDataRange.visibility = View.GONE
+                binding.scrollStatistic.visibility = View.VISIBLE
+            }
+            else
+            {
+                Log.d("No data to show")
+                binding.frameNoRefuelingInDataRange.visibility = View.VISIBLE
+                binding.scrollStatistic.visibility = View.GONE
+            }
         })
 
     }

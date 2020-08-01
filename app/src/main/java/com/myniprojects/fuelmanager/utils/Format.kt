@@ -106,6 +106,8 @@ const val DATE_FORMAT = "dd/MM/yyyy"
 
 fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
 {
+    Log.d("Millis in fun $milliSeconds")
+
     val formatter = SimpleDateFormat(dateFormat, locale)
 
     val calendar: Calendar = Calendar.getInstance()
@@ -133,6 +135,7 @@ fun getMillisFromDate(
     seconds: Int = 0
 ): Long
 {
+    Log.d("Given date $year  $month  $dayOfMonth")
     val calendar: Calendar = Calendar.getInstance()
     calendar.set(year, month, dayOfMonth, hour, minutes, seconds)
     return calendar.timeInMillis

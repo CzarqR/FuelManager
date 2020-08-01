@@ -7,15 +7,17 @@
 
     </data>
 
-    <ScrollView
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_background"
-        tools:context=".ui.statistic.StatisticFragment">
+        android:background="@drawable/app_background">
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linLayStatistic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -35,7 +37,7 @@
                     android:layout_margin="4dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="48dp"
-                    android:text="Start date"
+                    android:text="@string/start_date"
                     android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +49,7 @@
                     android:layout_margin="4dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="231dp"
-                    android:text="End date"
+                    android:text="@string/end_date"
                     android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +75,58 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            <ScrollView
+                android:id="@+id/scrollStatistic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/app_background"
+                tools:context=".ui.statistic.StatisticFragment">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Text in scroll test" />
+
+            </ScrollView>
+
+
+            <FrameLayout
+                android:id="@+id/frameNoRefuelingInDataRange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/no_refueling_in_data_range"
+                    android:textSize="28sp" />
+
+            </FrameLayout>
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/frameCannotShowStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/cannot_show_any_statistics"
+                android:textSize="28sp" />
+
+        </FrameLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 </layout>

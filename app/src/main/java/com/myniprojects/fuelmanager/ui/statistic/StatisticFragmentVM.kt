@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
-import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getMillisFromDate
 import kotlinx.coroutines.*
 
@@ -61,17 +60,50 @@ class StatisticFragmentVM(
         set(value)
         {
             field = value
-            if (value == null)
+            if (value != null)
             {
-                Log.d("Refueling list is null")
+                if (isInit) //opening fragment
+                {
+                    if (value.isNotEmpty()) // selected cars have refueling
+                    {
+                        _canShowStatistic.postValue(true)
+                        minimumDate = value[0].dateTimeMillis
+                        maximumDate = value[value.lastIndex].dateTimeMillis
+                    }
+                    else // selected cars don't have refueling
+                    {
+                        _canShowStatistic.postValue(false)
+                    }
+                    isInit = !isInit
+                }
+                else // changing date
+                {
+                    if (value.isNotEmpty()) // selected cars have refueling
+                    {
+                        _isFuelInDateRange.postValue(true)
+                        minimumDate = value[0].dateTimeMillis
+                        maximumDate = value[value.lastIndex].dateTimeMillis
+                    }
+                    else // selected cars don't have refueling
+                    {
+                        _isFuelInDateRange.postValue(false)
+                    }
+                }
+
             }
-            else
-            {
-                value.forEach { Log.d(it) }
-                minimumDate = value[0].dateTimeMillis
-                maximumDate = value[value.lastIndex].dateTimeMillis
-            }
+
         }
+
+    private var _canShowStatistic: MutableLiveData<Boolean> = MutableLiveData()
+    val canShowStatistic: LiveData<Boolean>
+        get() = _canShowStatistic
+
+    private var _isFuelInDateRange: MutableLiveData<Boolean> = MutableLiveData()
+    val isFuelInDateRange: LiveData<Boolean>
+        get() = _isFuelInDateRange
+
+
+    private var isInit: Boolean = true
 
     private suspend fun getAllRefueling(carID: LongArray): List<Refueling>
     {
@@ -108,6 +140,7 @@ class StatisticFragmentVM(
 
     fun loadRefueling(longArray: LongArray?)
     {
+        isInit = true
         carID = longArray
         if (longArray != null)
         {
