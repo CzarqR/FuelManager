@@ -36,7 +36,12 @@ interface RefuelingDAO
     @Query("SELECT * FROM refueling_table order by date_time ASC")
     fun getAllNotObservable(): List<Refueling>
 
+    @Query("SELECT * FROM refueling_table WHERE date_time >= :startDate AND date_time <= :endDate  order by date_time ASC")
+    fun getAllNotObservable(startDate: Long, endDate: Long): List<Refueling>
+
     @Query("SELECT * FROM refueling_table WHERE carID IN (:carID) order by date_time ASC")
     fun getAllNotObservable(carID: LongArray): List<Refueling>
 
+    @Query("SELECT * FROM refueling_table WHERE date_time >= :startDate AND date_time <= :endDate AND carID IN (:carID) order by date_time ASC")
+    fun getAllNotObservable(carID: LongArray, startDate: Long, endDate: Long): List<Refueling>
 }

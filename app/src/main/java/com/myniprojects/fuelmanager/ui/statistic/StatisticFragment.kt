@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentStatisticBinding
-import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.*
 
 
 class StatisticFragment : Fragment()
@@ -30,17 +31,26 @@ class StatisticFragment : Fragment()
             inflater,
             R.layout.fragment_statistic, container, false
         )
+
         binding.lifecycleOwner = this
 
-        //init viewModel
+        initViewModel()
+
+        setObservers()
+
+        setOnClick()
+
+        return binding.root
+    }
+
+    private fun initViewModel()
+    {
         val application = requireNotNull(this.activity).application
         val dataSourceRefueling = AppDatabase.getInstance(application).refuelingDAO
-        val dataSourceCar = AppDatabase.getInstance(application).carDAO
         val arguments = StatisticFragmentArgs.fromBundle(requireArguments())
 
         val viewModelFactory = StatisticFragmentVMFactory(
             dataSourceRefueling,
-            dataSourceCar,
             application
         )
 
@@ -50,22 +60,57 @@ class StatisticFragment : Fragment()
         ).get(StatisticFragmentVM::class.java)
 
         viewModel.loadRefueling(arguments.carID)
-
-
-        binding.txtStartDate.setOnClickListener {
-            showDatePickerDialog()
-        }
-
-        return binding.root
     }
 
-    private fun showDatePickerDialog()
+    private fun setObservers()
+    {
+        viewModel.startDateSelected.observe(viewLifecycleOwner, Observer {
+
+            binding.txtStartDateSelected.text = it.toDateFormat()
+        })
+
+        viewModel.endDateSelected.observe(viewLifecycleOwner, Observer {
+            binding.txtEndDateSelected.text = it.toDateFormat()
+        })
+
+    }
+
+    private fun setOnClick()
+    {
+        binding.txtStartDateSelected.setOnClickListener {
+            showDatePickerDialog(
+                viewModel.startDateSelected.value!!,
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                    viewModel.setStartDate(
+                        year,
+                        month,
+                        dayOfMonth
+                    )
+                })
+        }
+
+        binding.txtEndDateSelected.setOnClickListener {
+            showDatePickerDialog(
+                viewModel.endDateSelected.value!!,
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                    viewModel.setEndDate(
+                        year,
+                        month,
+                        dayOfMonth
+                    )
+                })
+        }
+    }
+
+    private fun showDatePickerDialog(millis: Long, listener: DatePickerDialog.OnDateSetListener)
     {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             R.style.DatePickerDialogStyle,
-            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth -> Log.d("$year $month $dayOfMonth") },
-            1990, 1, 1
+            listener,
+            millis.toYear(),
+            millis.toMonth(),
+            millis.toDay()
         )
         datePickerDialog.show()
     }

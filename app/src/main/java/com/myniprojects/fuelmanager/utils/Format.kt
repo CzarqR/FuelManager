@@ -102,6 +102,7 @@ fun getCarNamesSimple(cars: List<Car>, context: Context): ArrayList<Spanned>
 
 
 const val FULL_DATE_FORMAT = "dd/MM/yyyy HH:mm:ss"
+const val DATE_FORMAT = "dd/MM/yyyy"
 
 fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
 {
@@ -113,7 +114,6 @@ fun getDate(milliSeconds: Long, dateFormat: String, locale: Locale): String
     return formatter.format(calendar.time)
 }
 
-@Suppress("unused")
 fun getDate(milliSeconds: Long, dateFormat: String): String
 {
     return getDate(milliSeconds, dateFormat, Locale.getDefault())
@@ -122,6 +122,47 @@ fun getDate(milliSeconds: Long, dateFormat: String): String
 fun getDate(milliSeconds: Long): String
 {
     return getDate(milliSeconds, FULL_DATE_FORMAT, Locale.getDefault())
+}
+
+fun getMillisFromDate(
+    year: Int = 0,
+    month: Int = 0,
+    dayOfMonth: Int = 0,
+    hour: Int = 0,
+    minutes: Int = 0,
+    seconds: Int = 0
+): Long
+{
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.set(year, month, dayOfMonth, hour, minutes, seconds)
+    return calendar.timeInMillis
+}
+
+fun Long.toDateFormat(dateFormat: String = DATE_FORMAT): String
+{
+    return getDate(this, FULL_DATE_FORMAT)
+}
+
+fun Long.toCalendar(): Calendar
+{
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+    return calendar
+}
+
+fun Long.toYear(): Int
+{
+    return toCalendar().get(Calendar.YEAR)
+}
+
+fun Long.toMonth(): Int
+{
+    return toCalendar().get(Calendar.MONTH)
+}
+
+fun Long.toDay(): Int
+{
+    return toCalendar().get(Calendar.DAY_OF_MONTH)
 }
 
 fun Fragment.setActivityTitle(id: Int)

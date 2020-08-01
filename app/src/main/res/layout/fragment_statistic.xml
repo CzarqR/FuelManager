@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/txtStartDateSelected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -62,7 +62,7 @@
                     tools:text="10.10.2019" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txtEndDateSelected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
