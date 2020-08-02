@@ -96,6 +96,8 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>
     <string name="no_refueling_in_data_range">There isn\'t any refueling in selected data range</string>
+    <string name="numbers_refueling">Numbers of refueling: %1$d</string>
+    <string name="tota_sum">Total price: %1$s</string>
 
 
 </resources>

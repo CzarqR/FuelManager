@@ -41,7 +41,7 @@
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/litres"
-                android:inputType="textMultiLine"
+                android:inputType="numberDecimal"
                 android:text="@{String.valueOf(detailViewModel.refueling.litres)}"
                 android:textColor="@color/colorFont" />
 
@@ -63,7 +63,7 @@
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/price"
-                android:inputType="textMultiLine"
+                android:inputType="numberDecimal"
                 android:text="@{String.valueOf(detailViewModel.refueling.price)}"
                 android:textColor="@color/colorFont" />
 
@@ -84,7 +84,7 @@
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/odometer_reading"
-                android:inputType="textMultiLine"
+                android:inputType="numberDecimal"
                 android:text="@{String.valueOf(detailViewModel.refueling.previousOdometerReading)}"
                 android:textColor="@color/colorFont" />
 
@@ -105,7 +105,7 @@
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/tank_state"
-                android:inputType="textMultiLine"
+                android:inputType="number"
                 android:text="@{String.valueOf(detailViewModel.refueling.previousTankState)}"
                 android:textColor="@color/colorFont" />
 

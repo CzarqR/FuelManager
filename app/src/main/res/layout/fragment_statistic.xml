@@ -58,16 +58,17 @@
                     android:id="@+id/txtStartDateSelected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="21sp"
                     app:layout_constraintStart_toStartOf="@+id/txtStartDate"
                     app:layout_constraintTop_toBottomOf="@+id/txtStartDate"
                     tools:text="10.10.2019" />
+
 
                 <TextView
                     android:id="@+id/txtEndDateSelected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="21sp"
                     app:layout_constraintEnd_toEndOf="@+id/txtEndDate"
                     app:layout_constraintTop_toBottomOf="@+id/txtEndDate"
                     tools:text="10.10.2019" />
@@ -82,10 +83,43 @@
                 android:background="@drawable/app_background"
                 tools:context=".ui.statistic.StatisticFragment">
 
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Text in scroll test" />
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/txtNumberOfRefueling"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Numbers of refueling: 25" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/color_separator" />
+
+                    <TextView
+                        android:id="@+id/txtTotalSum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Total price: 122.14$" />
+
+
+                </LinearLayout>
+
 
             </ScrollView>
 

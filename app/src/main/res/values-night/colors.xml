@@ -55,4 +55,7 @@
     <color name="date_picker_dialog_selected_month">#FFFFFF</color>
     <color name="date_picker_dialog_day_of_week">#BC735C</color>
 
+    // statistic
+    <color name="color_separator">@color/colorAccent</color>
+
 </resources>

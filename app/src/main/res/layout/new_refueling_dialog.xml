@@ -23,6 +23,7 @@
                 android:gravity="center"
                 android:padding="1dp"
                 android:text="@string/add_new_refueling"
+                android:textColor="@color/colorFont"
                 android:textSize="16sp" />
 
             <EditText
@@ -31,8 +32,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/litres"
                 android:hint="@string/litres"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
             <EditText
                 android:id="@+id/edTxtPrice"
@@ -40,8 +42,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/price"
                 android:hint="@string/price"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
             <EditText
                 android:id="@+id/edTxtOdometerReading"
@@ -49,8 +52,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/odometer_reading"
                 android:hint="@string/odometer_reading"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
             <EditText
                 android:id="@+id/edTxtTankState"
@@ -59,7 +63,8 @@
                 android:autofillHints="@string/tank_state"
                 android:hint="@string/tank_state"
                 android:inputType="number"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
             <EditText
                 android:id="@+id/edTxtPlace"
@@ -68,7 +73,8 @@
                 android:autofillHints="@string/place"
                 android:hint="@string/place"
                 android:inputType="textAutoComplete"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
             <EditText
                 android:id="@+id/edTxtComment"
@@ -77,7 +83,8 @@
                 android:autofillHints="@string/comment"
                 android:hint="@string/comment"
                 android:inputType="textAutoComplete"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/colorFont" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

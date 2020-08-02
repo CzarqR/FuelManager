@@ -104,11 +104,14 @@ class StatisticFragment : Fragment()
 
         viewModel.numbersOfRefueling.observe(viewLifecycleOwner, Observer {
             Log.d("Numbers $it")
+            binding.txtNumberOfRefueling.text = getString(R.string.numbers_refueling, it)
         })
 
         viewModel.totalPrice.observe(viewLifecycleOwner, Observer {
             Log.d("Price $it")
+            binding.txtTotalSum.text = getString(R.string.tota_sum, it.round(2).toStringFormatted())
         })
+
 
         // endregion
 
