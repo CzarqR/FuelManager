@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
+import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getMillisFromDate
 import kotlinx.coroutines.*
 
@@ -37,6 +38,7 @@ class StatisticFragmentVM(
     private var start: Long = 0
         set(value)
         {
+            Log.d("start setter $value")
             field = value
             _startDateSelected.postValue(value)
         }
@@ -69,6 +71,7 @@ class StatisticFragmentVM(
                         _canShowStatistic.postValue(true)
                         minimumDate = value[0].dateTimeMillis
                         maximumDate = value[value.lastIndex].dateTimeMillis
+                        calculateData()
                     }
                     else // selected cars don't have refueling
                     {
@@ -81,8 +84,7 @@ class StatisticFragmentVM(
                     if (value.isNotEmpty()) // selected cars have refueling
                     {
                         _isFuelInDateRange.postValue(true)
-                        minimumDate = value[0].dateTimeMillis
-                        maximumDate = value[value.lastIndex].dateTimeMillis
+                        calculateData()
                     }
                     else // selected cars don't have refueling
                     {
@@ -101,6 +103,37 @@ class StatisticFragmentVM(
     private var _isFuelInDateRange: MutableLiveData<Boolean> = MutableLiveData()
     val isFuelInDateRange: LiveData<Boolean>
         get() = _isFuelInDateRange
+
+
+    private fun calculateData()
+    {
+        if (refueling != null)
+        {
+            _numbersOfRefueling.postValue(refueling!!.size)
+
+            var sumPrice = 0.0
+
+            refueling!!.forEach {
+                sumPrice += it.price
+            }
+
+            _totalPrice.postValue(sumPrice)
+        }
+
+    }
+
+
+    // region observable stats
+
+    private var _numbersOfRefueling: MutableLiveData<Int> = MutableLiveData()
+    val numbersOfRefueling: LiveData<Int>
+        get() = _numbersOfRefueling
+
+    private var _totalPrice: MutableLiveData<Double> = MutableLiveData()
+    val totalPrice: LiveData<Double>
+        get() = _totalPrice
+
+    // endregion
 
 
     private var isInit: Boolean = true

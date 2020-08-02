@@ -56,4 +56,7 @@ data class Refueling(
 
     val dateTimeChartString: String
         get() = getDate(this.dateTimeMillis, "dd/MM/yy HH:mm", Locale.getDefault())
+
+    val totalPrice: Double
+        get() = price * litres
 }

@@ -25,8 +25,6 @@ class StatisticFragment : Fragment()
         savedInstanceState: Bundle?
     ): View?
     {
-        Log.d("Create fragment")
-
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_statistic, container, false
@@ -65,12 +63,10 @@ class StatisticFragment : Fragment()
     private fun setObservers()
     {
         viewModel.startDateSelected.observe(viewLifecycleOwner, Observer {
-            Log.d("startDate $it")
             binding.txtStartDateSelected.text = it.toDateFormat()
         })
 
         viewModel.endDateSelected.observe(viewLifecycleOwner, Observer {
-            Log.d("endDate $it")
             binding.txtEndDateSelected.text = it.toDateFormat()
         })
 
@@ -103,6 +99,18 @@ class StatisticFragment : Fragment()
                 binding.scrollStatistic.visibility = View.GONE
             }
         })
+
+        // region stats
+
+        viewModel.numbersOfRefueling.observe(viewLifecycleOwner, Observer {
+            Log.d("Numbers $it")
+        })
+
+        viewModel.totalPrice.observe(viewLifecycleOwner, Observer {
+            Log.d("Price $it")
+        })
+
+        // endregion
 
     }
 

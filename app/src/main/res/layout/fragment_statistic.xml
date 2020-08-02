@@ -24,7 +24,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/statistic_panel_shape"
                 android:orientation="vertical"
                 android:padding="8dp">
