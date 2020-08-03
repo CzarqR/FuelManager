@@ -69,6 +69,7 @@ class StatisticFragmentVM(
                     if (value.isNotEmpty()) // selected cars have refueling
                     {
                         _canShowStatistic.postValue(true)
+                        _isFuelInDateRange.postValue(true)
                         minimumDate = value[0].dateTimeMillis
                         maximumDate = value[value.lastIndex].dateTimeMillis
                         calculateData()
@@ -112,12 +113,31 @@ class StatisticFragmentVM(
             _numbersOfRefueling.postValue(refueling!!.size)
 
             var sumPrice = 0.0
+            var sumLitres = 0.0
+
+            var mostExpensive = refueling!![0].price
+            var cheapest = refueling!![0].price
 
             refueling!!.forEach {
                 sumPrice += it.price
+                sumLitres += it.litres
+
+                if (mostExpensive < it.price)
+                {
+                    mostExpensive = it.price
+                }
+                else if (cheapest > it.price)
+                {
+                    cheapest = it.price
+                }
+
             }
 
             _totalPrice.postValue(sumPrice)
+            _totalLitres.postValue(sumLitres)
+            _mostExpensiveRefueling.postValue(mostExpensive)
+            _cheapestRefueling.postValue(cheapest)
+            _averagePrice.postValue(sumPrice.div(sumLitres))
         }
 
     }
@@ -132,6 +152,22 @@ class StatisticFragmentVM(
     private var _totalPrice: MutableLiveData<Double> = MutableLiveData()
     val totalPrice: LiveData<Double>
         get() = _totalPrice
+
+    private var _totalLitres: MutableLiveData<Double> = MutableLiveData()
+    val totalLitres: LiveData<Double>
+        get() = _totalLitres
+
+    private var _mostExpensiveRefueling: MutableLiveData<Double> = MutableLiveData()
+    val mostExpensiveRefueling: LiveData<Double>
+        get() = _mostExpensiveRefueling
+
+    private var _cheapestRefueling: MutableLiveData<Double> = MutableLiveData()
+    val cheapestRefueling: LiveData<Double>
+        get() = _cheapestRefueling
+
+    private var _averagePrice: MutableLiveData<Double> = MutableLiveData()
+    val averagePrice: LiveData<Double>
+        get() = _averagePrice
 
     // endregion
 

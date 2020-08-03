@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentStatisticBinding
+import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.*
 
 
@@ -108,10 +109,52 @@ class StatisticFragment : Fragment()
         })
 
         viewModel.totalPrice.observe(viewLifecycleOwner, Observer {
-            Log.d("Price $it")
-            binding.txtTotalSum.text = getString(R.string.tota_sum, it.round(2).toStringFormatted())
+            Log.d("Total Price $it")
+            binding.txtTotalSum.text =
+                getString(
+                    R.string.total_sum,
+                    it.round(2).toStringFormatted(),
+                    MainActivity.currency
+                )
         })
 
+        viewModel.totalLitres.observe(viewLifecycleOwner, Observer {
+            Log.d("Total litres: $it")
+            binding.txtTotalLitres.text =
+                getString(
+                    R.string.total_litres,
+                    it.round(3).toStringFormatted(),
+                    MainActivity.volumeUnit
+                )
+        })
+
+        viewModel.mostExpensiveRefueling.observe(viewLifecycleOwner, Observer {
+            Log.d("Most exp: $it")
+            binding.txtMostExpensive.text = getString(
+                R.string.most_expensive,
+                it.round(2).toStringFormatted(),
+                MainActivity.currency
+            )
+        })
+
+        viewModel.cheapestRefueling.observe(viewLifecycleOwner, Observer {
+            Log.d("Cheapest: $it")
+            binding.txtCheapest.text = getString(
+                R.string.cheapest_refueling,
+                it.round(2).toStringFormatted(),
+                MainActivity.currency
+            )
+        })
+
+        viewModel.averagePrice.observe(viewLifecycleOwner, Observer {
+            Log.d("Avg: $it")
+            binding.txtAvgPrice.text = getString(
+                R.string.average_price,
+                MainActivity.volumeUnit,
+                it.round(2).toStringFormatted(),
+                MainActivity.currency
+            )
+        })
 
         // endregion
 

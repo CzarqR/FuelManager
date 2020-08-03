@@ -118,6 +118,77 @@
                         tools:text="Total price: 122.14$" />
 
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/color_separator" />
+
+                    <TextView
+                        android:id="@+id/txtTotalLitres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Total litres: 122.14L" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/color_separator" />
+
+                    <TextView
+                        android:id="@+id/txtMostExpensive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Most expensive refueling: 122.14$" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/color_separator" />
+
+                    <TextView
+                        android:id="@+id/txtCheapest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Cheapest refueling: 122.14$" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/color_separator" />
+
+                    <TextView
+                        android:id="@+id/txtAvgPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:padding="4dp"
+                        android:textColor="@color/colorFont"
+                        android:textSize="20sp"
+                        tools:text="Average price: 122.14$ for 1 L" />
+
                 </LinearLayout>
 
 
