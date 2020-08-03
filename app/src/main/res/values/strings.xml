@@ -11,13 +11,6 @@
     <string name="car_title">%1$s %2$s</string>
 
 
-    <string name="car0">Car 0</string>
-    <string name="car1">Car 1</string>
-    <string name="car2">Car 2</string>
-    <string name="car3">Car 3</string>
-    <string name="car4">Car 4</string>
-    <string name="car5">Car 5</string>
-    <string name="car6">Car 6</string>
     <string name="car_icon">Car icon</string>
     <string name="add_new_refueling">Add new refueling</string>
     <string name="litres">Litres</string>

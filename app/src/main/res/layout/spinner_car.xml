@@ -7,6 +7,7 @@
         android:id="@+id/imgCar"
         android:layout_width="@dimen/img_add_car_size"
         android:layout_height="@dimen/img_add_car_size"
-        android:contentDescription="@string/car_icon" />
+        android:contentDescription="@string/car_icon"
+        android:padding="4dp" />
 
 </RelativeLayout>
