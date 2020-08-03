@@ -57,5 +57,9 @@
     // statistic
     <color name="color_separator">#413F3F</color>
 
+    //settings
+    <color name="save_enable">@color/colorAccent</color>
+    <color name="save_disable">#676249</color>
+
 
 </resources>

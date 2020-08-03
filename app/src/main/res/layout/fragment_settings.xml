@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_height"
                     android:layout_margin="6dp"
-                    android:background="@drawable/gradient_refueling">
+                    android:background="@drawable/settings_panel_shape">
 
                     <ImageView
                         android:id="@+id/imgCurrency"
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_height"
                     android:layout_margin="6dp"
-                    android:background="@drawable/gradient_refueling">
+                    android:background="@drawable/settings_panel_shape">
 
                     <ImageView
                         android:id="@+id/imgVolume"
@@ -113,7 +113,6 @@
                         android:id="@+id/edTxtVolume"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-
                         android:layout_marginEnd="16dp"
                         android:autofillHints="@string/currency"
                         android:ems="10"
@@ -133,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_height"
                     android:layout_margin="6dp"
-                    android:background="@drawable/gradient_refueling">
+                    android:background="@drawable/settings_panel_shape">
 
                     <ImageView
                         android:id="@+id/imgLength"
@@ -183,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_height"
                     android:layout_margin="6dp"
-                    android:background="@drawable/gradient_refueling">
+                    android:background="@drawable/settings_panel_shape">
 
 
                     <ImageView

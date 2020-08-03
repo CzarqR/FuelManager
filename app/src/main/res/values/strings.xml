@@ -97,11 +97,11 @@
     <string name="end_date">End date</string>
     <string name="no_refueling_in_data_range">There isn\'t any refueling in selected data range</string>
     <string name="numbers_refueling">Numbers of refueling: %1$d</string>
-    <string name="total_sum">Total price: %1$s%2$s</string>
-    <string name="total_litres">Total fuel bought: %1$s%2$s</string>
-    <string name="most_expensive">The most expensive refueling: %1$s%2$s</string>
-    <string name="cheapest_refueling">Cheapest refueling: %1$s%2$s</string>
-    <string name="average_price">Average price for 1%1$s of fuel: %2$s%3$s</string>
+    <string name="total_sum">Total price: %1$s %2$s</string>
+    <string name="total_litres">Total fuel bought: %1$s %2$s</string>
+    <string name="most_expensive">The most expensive refueling: %1$s %2$s</string>
+    <string name="cheapest_refueling">Cheapest refueling: %1$s %2$s</string>
+    <string name="average_price">Average price for 1%1$s of fuel: %2$s %3$s</string>
 
 
 </resources>

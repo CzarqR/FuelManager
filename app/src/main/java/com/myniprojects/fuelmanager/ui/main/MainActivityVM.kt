@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.myniprojects.fuelmanager.R
+import com.myniprojects.fuelmanager.ui.settings.Settings
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getString
 
@@ -83,6 +84,22 @@ class MainActivityVM(application: Application) : AndroidViewModel(application)
             getString(R.string.currency_default),
             getString(R.string.volume_unit_default),
             getString(R.string.length_unit_default)
+        )
+    }
+
+    fun checkChanges(settings: Settings): Boolean
+    {
+        return getSettings() != settings
+    }
+
+    private fun getSettings(): Settings
+    {
+        return Settings(
+            currency.value!!,
+            volumeUnit.value!!,
+            lengthUnit.value!!,
+            darkTheme.value!!
+
         )
     }
 

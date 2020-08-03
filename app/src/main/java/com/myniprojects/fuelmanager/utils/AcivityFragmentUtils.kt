@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
@@ -38,3 +39,11 @@ fun AndroidViewModel.getString(@StringRes id: Int): String
 {
     return getApplication<Application>().getString(id)
 }
+
+//fun EditText.input(): String
+//{
+//    return text.toString()
+//}
+
+val EditText.input: String
+    get() = text.toString()
