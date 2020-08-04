@@ -266,16 +266,4 @@ class CarFragment : OneToastFragment()
         alert.show()
     }
 
-//    private fun showToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT)
-//    {
-//        if (this::toast.isInitialized)
-//        {
-//            toast.cancel()
-//        }
-//
-//        toast = makeToast(text, length)
-//
-//        toast.show()
-//    }
-
 }

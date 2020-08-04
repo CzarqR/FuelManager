@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -140,6 +139,20 @@ class RefuelingFragment : OneToastFragment()
             }
         })
 
+        viewModel.navigateToChart.observe(viewLifecycleOwner, Observer {
+            if (viewModel.canShow())
+            {
+                this.findNavController()
+                    .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
+                viewModel.chartNavigated()
+            }
+            else
+            {
+                showToast(R.string.info_charts_cannot_display)
+            }
+
+        })
+
         return binding.root
     }
 
@@ -147,44 +160,21 @@ class RefuelingFragment : OneToastFragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("Create")
+
         if (viewModel.type) // 1 car
         {
 
-            val carInfoFragment =
-                CarInfoFragment(
-                    viewModel.cars,
-                    viewModel.refueling
-
-                ) {
-                    if (viewModel.canShow())
-                    {
-                        viewModel.chartType = it
-                        this.findNavController()
-                            .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
-                    }
-                    else
-                    {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.info_charts_cannot_display),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-
+            val carInfoFragment = CarInfoFragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
         }
         else // many cars
         {
             val multipleCarsFragment =
-                MultipleCarsFragment(
-                    viewModel.cars
-                )
+                MultipleCarsFragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentCarInfo, multipleCarsFragment).commit()
         }
     }
-
 }

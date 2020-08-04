@@ -15,10 +15,21 @@ import com.myniprojects.fuelmanager.databinding.FragmentDetailBinding
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.OneToastFragment
 import com.myniprojects.fuelmanager.utils.input
+import com.myniprojects.fuelmanager.utils.toStringFormatted
 
 
 class DetailFragment : OneToastFragment()
 {
+    companion object
+    {
+        const val LITRES_KEY = "LITRES_KEY"
+        const val PRICE_KEY = "PRICE_KEY"
+        const val ODOMETER_KEY = "ODOMETER_KEY"
+        const val TANK_STATE_KEY = "TANK_STATE_KEY"
+        const val PLACE_KEY = "PLACE_KEY"
+        const val COMMENT_KEY = "COMMENT_KEY"
+    }
+
     private lateinit var viewModel: DetailFragmentVM
     private lateinit var binding: FragmentDetailBinding
 
@@ -65,7 +76,7 @@ class DetailFragment : OneToastFragment()
                 val result = Refueling.validateData(
                     binding.edTxtLitres.input,
                     binding.edTxtPrice.input,
-                    binding.edTxtPreviousState.input,
+                    binding.edTxtTankState.input,
                     binding.edTxtOdometerReading.input
                 )
 
@@ -86,15 +97,7 @@ class DetailFragment : OneToastFragment()
 
         binding.butCancel.setOnClickListener {
             viewModel.changeState()
-            with(binding)
-            {
-                edTxtLitres.setText(viewModel.refueling.value!!.litres.toString())
-                edTxtPrice.setText(viewModel.refueling.value!!.price.toString())
-                edTxtPreviousState.setText(viewModel.refueling.value!!.tankState.toString())
-                edTxtPlace.setText(viewModel.refueling.value!!.place)
-                edTxtOdometerReading.setText(viewModel.refueling.value!!.odometerReading.toString())
-                edTxtComment.setText(viewModel.refueling.value!!.comment)
-            }
+            setEditTextToDefault()
         }
 
 
@@ -104,7 +107,44 @@ class DetailFragment : OneToastFragment()
 
         setHasOptionsMenu(true)
 
+        if (savedInstanceState == null)
+        {
+            setEditTextToDefault()
+        }
+        else
+        {
+            with(binding)
+            {
+                with(savedInstanceState)
+                {
+                    edTxtLitres.setText(getString(LITRES_KEY))
+                    edTxtPrice.setText(getString(PRICE_KEY))
+                    edTxtTankState.setText(getString(TANK_STATE_KEY))
+                    edTxtPlace.setText(getString(PLACE_KEY))
+                    edTxtOdometerReading.setText(getString(ODOMETER_KEY))
+                    edTxtComment.setText(getString(COMMENT_KEY))
+                }
+
+            }
+        }
+
         return binding.root
+    }
+
+    private fun setEditTextToDefault()
+    {
+        viewModel.refueling.observe(viewLifecycleOwner, Observer {
+            with(binding)
+            {
+                edTxtLitres.setText(it.litres.toStringFormatted())
+                edTxtPrice.setText(it.price.toStringFormatted())
+                edTxtTankState.setText(it.tankState.toString())
+                edTxtPlace.setText(it.place)
+                edTxtOdometerReading.setText(it.odometerReading.toStringFormatted())
+                edTxtComment.setText(it.comment)
+            }
+        })
+
     }
 
     private fun showEditConfirmation()
@@ -124,7 +164,7 @@ class DetailFragment : OneToastFragment()
                     viewModel.editRefueling(
                         edTxtLitres.input,
                         edTxtPrice.input,
-                        edTxtPreviousState.input,
+                        edTxtTankState.input,
                         edTxtPlace.input,
                         edTxtOdometerReading.input,
                         edTxtComment.input
@@ -132,7 +172,7 @@ class DetailFragment : OneToastFragment()
                 )
             }
             viewModel.changeState()
-
+            setEditTextToDefault()
         }
 
         builder.setNegativeButton(
@@ -206,6 +246,22 @@ class DetailFragment : OneToastFragment()
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle)
+    {
+        super.onSaveInstanceState(outState)
+
+        with(binding)
+        {
+            outState.putString(LITRES_KEY, edTxtLitres.input)
+            outState.putString(PRICE_KEY, edTxtPrice.input)
+            outState.putString(ODOMETER_KEY, edTxtOdometerReading.input)
+            outState.putString(TANK_STATE_KEY, edTxtTankState.input)
+            outState.putString(PLACE_KEY, edTxtPlace.input)
+            outState.putString(COMMENT_KEY, edTxtComment.input)
+        }
+
     }
 
 }

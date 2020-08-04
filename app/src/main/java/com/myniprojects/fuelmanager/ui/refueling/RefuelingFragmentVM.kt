@@ -42,7 +42,8 @@ class RefuelingFragmentVM(
     val carID: LongArray
         get() = _carID
 
-    var chartType: ChartType = ChartType.FUEL_EFFICIENCY
+    lateinit var chartType: ChartType
+        private set
 
     fun setCarId(carID: LongArray)
     {
@@ -113,7 +114,7 @@ class RefuelingFragmentVM(
     // region navigation
 
     private val _navigateToRefueling = MutableLiveData<Long>()
-    val navigateToRefueling
+    val navigateToRefueling: LiveData<Long>
         get() = _navigateToRefueling
 
     fun refuelingClicked(refuelingID: Long)
@@ -137,6 +138,21 @@ class RefuelingFragmentVM(
             return refueling.value!!.size > 2
         }
         return false
+    }
+
+    fun goToChart(chartType: ChartType)
+    {
+        this.chartType = chartType
+        _navigateToChart.postValue(chartType)
+    }
+
+    private val _navigateToChart = MutableLiveData<ChartType>()
+    val navigateToChart: LiveData<ChartType>
+        get() = _navigateToChart
+
+    fun chartNavigated()
+    {
+        _navigateToChart.value = null
     }
 
     // endregion

@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.myniprojects.fuelmanager.R
-import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.databinding.FragmentMultipleCarsBinding
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.formatCars
 
 
-class MultipleCarsFragment(private val cars: LiveData<List<Car>>) : Fragment()
+class MultipleCarsFragment : Fragment()
 {
 
     companion object
@@ -25,6 +24,7 @@ class MultipleCarsFragment(private val cars: LiveData<List<Car>>) : Fragment()
     }
 
     private lateinit var binding: FragmentMultipleCarsBinding
+    private val viewModel: RefuelingFragmentVM by activityViewModels()
 
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class MultipleCarsFragment(private val cars: LiveData<List<Car>>) : Fragment()
         )
 
 
-        cars.observe(viewLifecycleOwner, Observer {
+        viewModel.cars.observe(viewLifecycleOwner, Observer {
             if (it.size < SIZE)
             {
                 Log.d("Setting height in observer method")

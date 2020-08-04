@@ -5,24 +5,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.myniprojects.fuelmanager.R
-import com.myniprojects.fuelmanager.database.Car
-import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.databinding.FragmentCarInfoBinding
 import com.myniprojects.fuelmanager.ui.chart.ChartType
 
 
-class CarInfoFragment(
-    private val cars: LiveData<List<Car>>,
-    private val refueling: LiveData<List<Refueling>>,
-    private val goToChart: (ChartType) -> Unit
-) : Fragment()
+class CarInfoFragment : Fragment()
 {
 
     lateinit var binding: FragmentCarInfoBinding
-
+    private val viewModel: RefuelingFragmentVM by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,11 +41,11 @@ class CarInfoFragment(
             }
         }
 
-        cars.observe(viewLifecycleOwner, Observer {
+        viewModel.cars.observe(viewLifecycleOwner, Observer {
             binding.car = it[0]
         })
 
-        refueling.observe(viewLifecycleOwner, Observer {
+        viewModel.refueling.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty())
             {
                 binding.txtOdometerReading.text = getString(
@@ -82,12 +76,12 @@ class CarInfoFragment(
         {
             R.id.opt_chart_cost ->
             {
-                goToChart(ChartType.FUEL_COST)
+                viewModel.goToChart(ChartType.FUEL_COST)
                 true
             }
             R.id.opt_chart_ef ->
             {
-                goToChart(ChartType.FUEL_EFFICIENCY)
+                viewModel.goToChart(ChartType.FUEL_EFFICIENCY)
                 true
             }
             else -> super.onContextItemSelected(item)

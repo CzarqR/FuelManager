@@ -38,11 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/litres"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/litres"
                 android:inputType="numberDecimal"
-                android:text="@{String.valueOf(detailViewModel.refueling.litres)}"
                 android:textColor="@color/colorFont" />
 
 
@@ -60,11 +60,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/price"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/price"
                 android:inputType="numberDecimal"
-                android:text="@{String.valueOf(detailViewModel.refueling.price)}"
                 android:textColor="@color/colorFont" />
 
             <TextView
@@ -81,32 +81,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/odometer_reading"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/odometer_reading"
                 android:inputType="numberDecimal"
-                android:text="@{String.valueOf(detailViewModel.refueling.odometerReading)}"
                 android:textColor="@color/colorFont" />
 
             <TextView
                 android:id="@+id/txtPreviousState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="@dimen/detail_header_margin"
                 android:text="@string/tank_state"
                 android:textColor="@color/detail_txt_header" />
 
             <EditText
-                android:id="@+id/edTxtPreviousState"
+                android:id="@+id/edTxtTankState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/odometer_reading"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/tank_state"
                 android:inputType="number"
-                android:text="@{String.valueOf(detailViewModel.refueling.tankState)}"
                 android:textColor="@color/colorFont" />
 
             <TextView
@@ -123,11 +122,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/place"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/place"
                 android:inputType="textMultiLine"
-                android:text="@{detailViewModel.refueling.place}"
                 android:textColor="@color/colorFont" />
 
 
@@ -145,11 +144,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/comment"
+                android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/comment"
                 android:inputType="textMultiLine"
-                android:text="@{detailViewModel.refueling.comment}"
                 android:textColor="@color/colorFont" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

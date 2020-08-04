@@ -2,15 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <group android:id="@+id/statistic_group">
-
-        <item
-            android:id="@+id/statisticFragment"
-            android:icon="@drawable/statistic"
-            android:title="@string/statistic" />
-
-    </group>
-
     <group android:id="@+id/help_group">
 
         <item
@@ -20,6 +11,14 @@
 
     </group>
 
+    <group android:id="@+id/statistic_group">
+
+        <item
+            android:id="@+id/statisticFragment"
+            android:icon="@drawable/statistic"
+            android:title="@string/statistic" />
+
+    </group>
 
     <group android:id="@+id/settings_group">
 
