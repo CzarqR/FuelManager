@@ -1,6 +1,7 @@
 package com.myniprojects.fuelmanager.ui.detail
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -68,30 +69,39 @@ class DetailFragmentVM(
         }
     }
 
+    @StringRes
     fun editRefueling(
-        litres: Double,
-        price: Double,
-        previousState: Byte,
+        litres: String,
+        price: String,
+        tankState: String,
         place: String,
-        odometerReading: Double,
+        odometerReading: String,
         comment: String
-    )
+    ): Int
     {
-        uiScope.launch {
-            update(
-                Refueling(
-                    refuelingID,
-                    refueling.value!!.carID,
-                    litres,
-                    price,
-                    place,
-                    previousState,
-                    odometerReading,
-                    comment,
-                    refueling.value!!.dateTimeMillis
+        val result = Refueling.validateData(litres, price, tankState, odometerReading)
+
+        if (result == R.string.succes_code)
+        {
+            uiScope.launch {
+                update(
+                    Refueling(
+                        refuelingID,
+                        refueling.value!!.carID,
+                        litres.toDouble(),
+                        price.toDouble(),
+                        place,
+                        tankState.toByte(),
+                        odometerReading.toDouble(),
+                        comment,
+                        refueling.value!!.dateTimeMillis
+                    )
                 )
-            )
+            }
+            return R.string.refueling_edited
         }
+
+        return result
     }
 
 
@@ -111,6 +121,24 @@ class DetailFragmentVM(
     fun changeState()
     {
         _editState.value = !_editState.value!!
+    }
+
+    @StringRes
+    fun canEditRefueling(
+        litres: String,
+        price: String,
+        tankState: String,
+        odometerReading: String
+    ): Int
+    {
+        val result = Refueling.validateData(litres, price, tankState, odometerReading)
+
+        if (result == R.string.succes_code)
+        {
+            return R.string.refueling_edited
+        }
+
+        return result
     }
 
 

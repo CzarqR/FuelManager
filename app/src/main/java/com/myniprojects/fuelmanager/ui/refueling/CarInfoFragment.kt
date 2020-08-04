@@ -56,7 +56,7 @@ class CarInfoFragment(
             {
                 binding.txtOdometerReading.text = getString(
                     R.string.odometer_reading_km,
-                    it[0].previousOdometerReading.toString()
+                    it[0].odometerReading.toString()
                 )
             }
         })

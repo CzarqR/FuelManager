@@ -6,16 +6,18 @@ import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
+import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.databinding.FragmentDetailBinding
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.OneToastFragment
+import com.myniprojects.fuelmanager.utils.input
 
 
-class DetailFragment : Fragment()
+class DetailFragment : OneToastFragment()
 {
     private lateinit var viewModel: DetailFragmentVM
     private lateinit var binding: FragmentDetailBinding
@@ -60,9 +62,26 @@ class DetailFragment : Fragment()
         binding.butEdit.setOnClickListener {
             if (viewModel.editState.value!!)
             {
-                showEditConfirmation()
+                val result = Refueling.validateData(
+                    binding.edTxtLitres.input,
+                    binding.edTxtPrice.input,
+                    binding.edTxtPreviousState.input,
+                    binding.edTxtOdometerReading.input
+                )
+
+                if (result == R.string.succes_code)
+                {
+                    showEditConfirmation()
+                }
+                else
+                {
+                    showToast(result)
+                }
             }
-            viewModel.changeState()
+            else
+            {
+                viewModel.changeState()
+            }
         }
 
         binding.butCancel.setOnClickListener {
@@ -71,9 +90,9 @@ class DetailFragment : Fragment()
             {
                 edTxtLitres.setText(viewModel.refueling.value!!.litres.toString())
                 edTxtPrice.setText(viewModel.refueling.value!!.price.toString())
-                edTxtPreviousState.setText(viewModel.refueling.value!!.previousTankState.toString())
+                edTxtPreviousState.setText(viewModel.refueling.value!!.tankState.toString())
                 edTxtPlace.setText(viewModel.refueling.value!!.place)
-                edTxtOdometerReading.setText(viewModel.refueling.value!!.previousOdometerReading.toString())
+                edTxtOdometerReading.setText(viewModel.refueling.value!!.odometerReading.toString())
                 edTxtComment.setText(viewModel.refueling.value!!.comment)
             }
         }
@@ -97,25 +116,28 @@ class DetailFragment : Fragment()
 
         builder.setPositiveButton(
             "YES"
-        ) { dialog, _ ->
-            viewModel.editRefueling(
-                binding.edTxtLitres.text.toString().toDouble(),
-                binding.edTxtPrice.text.toString().toDouble(),
-                binding.edTxtPreviousState.text.toString().toByte(),
-                binding.edTxtPlace.text.toString(),
-                binding.edTxtOdometerReading.text.toString().toDouble(),
-                binding.edTxtComment.text.toString()
-            )
-            dialog.dismiss()
+        ) { _, _ ->
+
+            with(binding)
+            {
+                showToast(
+                    viewModel.editRefueling(
+                        edTxtLitres.input,
+                        edTxtPrice.input,
+                        edTxtPreviousState.input,
+                        edTxtPlace.input,
+                        edTxtOdometerReading.input,
+                        edTxtComment.input
+                    )
+                )
+            }
+            viewModel.changeState()
+
         }
 
         builder.setNegativeButton(
-            "NO"
-        ) { dialog, _ -> // Do nothing
-            Log.d("No")
-            dialog.dismiss()
-        }
-
+            "NO", null
+        )
         val alert = builder.create()
         alert.show()
     }

@@ -102,6 +102,17 @@
     <string name="car_edited">Car edited</string>
     <string name="car_added">Car added</string>
     <string name="succes_code">succes_code</string>
+    <string name="volume_empty">Volume value cannot be empty</string>
+    <string name="volume_wrong_format">Volume is in wrong format</string>
+    <string name="price_empty">Price cannot be empty</string>
+    <string name="price_wrong_format">Price is in worng format</string>
+    <string name="tank_state_empty">Tank state cannot be empty</string>
+    <string name="tank_state_wrong_format">Tank state is in wrong format</string>
+    <string name="tank_state_outside_range">State of fuel tank is expressed as a percentage and its value must be between 0 and 100</string>
+    <string name="odometer_reading_empty">Odometer reading cannot be empty</string>
+    <string name="odometer_reading_wrong_format">Odometer reading is in wrong format</string>
+    <string name="refueling_added">Refueling added</string>
+    <string name="refueling_edited">Refueling edited</string>
 
 
 </resources>

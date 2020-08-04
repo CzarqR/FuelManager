@@ -7,21 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentRefuelingBinding
-import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
-import com.myniprojects.fuelmanager.utils.getCarNamesFormatted
-import com.myniprojects.fuelmanager.utils.setActivityTitle
+import com.myniprojects.fuelmanager.utils.*
 import kotlinx.android.synthetic.main.new_refueling_dialog.view.*
 
 
-class RefuelingFragment : Fragment()
+class RefuelingFragment : OneToastFragment()
 {
 
     private lateinit var viewModel: RefuelingFragmentVM
@@ -80,16 +76,23 @@ class RefuelingFragment : Fragment()
             mDialogView.butAddRefueling.setOnClickListener {
                 with(mDialogView)
                 {
-                    viewModel.addRefueling(
-                        edTxtLitres.text.toString().toDouble(),
-                        edTxtPrice.text.toString().toDouble(),
-                        edTxtTankState.text.toString().toByte(),
-                        edTxtPlace.text.toString(),
-                        edTxtComment.text.toString(),
-                        edTxtOdometerReading.text.toString().toDouble(),
+
+                    val exitCode = viewModel.addRefueling(
+                        edTxtLitres.input,
+                        edTxtPrice.input,
+                        edTxtTankState.input,
+                        edTxtPlace.input,
+                        edTxtComment.input,
+                        edTxtOdometerReading.input,
                         mDialogView.spinnerCars.selectedItemPosition
                     )
-                    mAlertDialog.dismiss()
+
+                    showToast(exitCode)
+
+                    if (exitCode == R.string.refueling_added)
+                    {
+                        mAlertDialog.dismiss()
+                    }
                 }
             }
 

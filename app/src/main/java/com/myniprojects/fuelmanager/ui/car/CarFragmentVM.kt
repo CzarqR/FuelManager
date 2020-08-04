@@ -21,11 +21,6 @@ class CarFragmentVM(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-//    val carsString = Transformations.map(cars) {
-//        formatCars(it, application.resources)
-//    }
-
-
     init
     {
         Log.d("VM menu Create")
@@ -70,7 +65,7 @@ class CarFragmentVM(
         iconID: Byte
     ): Int
     {
-        val result = validateData(
+        val result = Car.validateData(
             brand, model, tankSize
         )
 
@@ -94,37 +89,7 @@ class CarFragmentVM(
     }
 
 
-    @StringRes
-    private fun validateData(
-        brand: String,
-        model: String,
-        tankSize: String
-    ): Int
-    {
-        return when
-        {
-            brand.isEmpty() ->
-            {
-                R.string.brand_cannot_empty
-            }
-            model.isEmpty() ->
-            {
-                R.string.model_cannot_empty
-            }
-            tankSize.isEmpty() ->
-            {
-                R.string.tank_size_cannot_empty
-            }
-            tankSize.toDoubleOrNull() == null ->
-            {
-                R.string.tank_size_wrong_format
-            }
-            else ->
-            {
-                R.string.succes_code
-            }
-        }
-    }
+
 
     override fun onCleared()
     {
@@ -168,7 +133,7 @@ class CarFragmentVM(
         carID: Long
     ): Int
     {
-        val result = validateData(brand, model, tankSize)
+        val result = Car.validateData(brand, model, tankSize)
 
         if (result == R.string.succes_code)
         {

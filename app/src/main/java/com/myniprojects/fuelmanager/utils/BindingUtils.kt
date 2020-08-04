@@ -60,7 +60,7 @@ fun TextView.setRefuelingCost(refueling: Refueling?)
             this.context.getText(R.string.litres_format),
             refueling.litres.toStringFormatted(),
             refueling.price.toStringFormatted(),
-            (refueling.litres * refueling.price).round(2).toStringFormatted(),
+            (refueling.totalPrice).round(2).toStringFormatted(),
             MainActivity.volumeUnit,
             MainActivity.currency
         )
@@ -107,8 +107,8 @@ fun TextView.setRefuelingData(refueling: Refueling?)
 
         text = this.context.getString(
             R.string.odometer_reading_format,
-            refueling.previousOdometerReading.toStringFormatted(),
-            refueling.previousTankState,
+            refueling.odometerReading.toStringFormatted(),
+            refueling.tankState,
             MainActivity.lengthUnit
         )
     }

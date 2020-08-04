@@ -2,12 +2,9 @@ package com.myniprojects.fuelmanager.ui.car
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -20,11 +17,11 @@ import com.myniprojects.fuelmanager.utils.*
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 
-class CarFragment : Fragment()
+class CarFragment : OneToastFragment()
 {
     private lateinit var viewModel: CarFragmentVM
     private lateinit var binding: FragmentCarBinding
-    private lateinit var toast: Toast
+//    private lateinit var toast: Toast
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -196,11 +193,6 @@ class CarFragment : Fragment()
         )
 
 
-
-
-
-
-
         with(mDialogView)
         {
 
@@ -274,16 +266,16 @@ class CarFragment : Fragment()
         alert.show()
     }
 
-    private fun showToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT)
-    {
-        if (this::toast.isInitialized)
-        {
-            toast.cancel()
-        }
-
-        toast = makeToast(text, length)
-
-        toast.show()
-    }
+//    private fun showToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT)
+//    {
+//        if (this::toast.isInitialized)
+//        {
+//            toast.cancel()
+//        }
+//
+//        toast = makeToast(text, length)
+//
+//        toast.show()
+//    }
 
 }

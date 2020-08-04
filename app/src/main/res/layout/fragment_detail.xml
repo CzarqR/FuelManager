@@ -85,7 +85,7 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/odometer_reading"
                 android:inputType="numberDecimal"
-                android:text="@{String.valueOf(detailViewModel.refueling.previousOdometerReading)}"
+                android:text="@{String.valueOf(detailViewModel.refueling.odometerReading)}"
                 android:textColor="@color/colorFont" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:enabled="@{detailViewModel.editState}"
                 android:hint="@string/tank_state"
                 android:inputType="number"
-                android:text="@{String.valueOf(detailViewModel.refueling.previousTankState)}"
+                android:text="@{String.valueOf(detailViewModel.refueling.tankState)}"
                 android:textColor="@color/colorFont" />
 
             <TextView

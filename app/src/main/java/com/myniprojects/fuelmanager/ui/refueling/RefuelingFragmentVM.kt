@@ -1,6 +1,7 @@
 package com.myniprojects.fuelmanager.ui.refueling
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -64,31 +65,41 @@ class RefuelingFragmentVM(
         }
     }
 
+    @StringRes
     fun addRefueling(
-        litres: Double,
-        price: Double,
-        state: Byte,
+        litres: String,
+        price: String,
+        state: String,
         place: String,
         comment: String,
-        odometerReading: Double,
+        odometerReading: String,
         selectedCar: Int,
         dateTime: Long = -1L
-    )
+    ): Int
     {
-        uiScope.launch {
-            insertRefueling(
-                Refueling(
-                    carID = _carID[selectedCar],
-                    litres = litres,
-                    price = price,
-                    previousTankState = state,
-                    previousOdometerReading = odometerReading,
-                    place = place,
-                    comment = comment,
-                    dateTimeMillis = if (dateTime == -1L) System.currentTimeMillis() else dateTime
+
+        val result = Refueling.validateData(litres, price, state, odometerReading)
+
+        if (result == R.string.succes_code)
+        {
+            uiScope.launch {
+                insertRefueling(
+                    Refueling(
+                        carID = _carID[selectedCar],
+                        litres = litres.toDouble(),
+                        price = price.toDouble(),
+                        tankState = state.toByte(),
+                        odometerReading = odometerReading.toDouble(),
+                        place = place,
+                        comment = comment,
+                        dateTimeMillis = if (dateTime == -1L) System.currentTimeMillis() else dateTime
+                    )
                 )
-            )
+
+            }
+            return R.string.refueling_added
         }
+        return result
     }
 
 
@@ -159,13 +170,16 @@ class RefuelingFragmentVM(
 
             val seriesData = ArrayList<DataEntry>()
 
-            refueling.value!!.forEach {
-                seriesData.add(
-                    ValueDataEntry(
-                        it.dateTimeChartString,
-                        it.price
+            with(refueling.value!!) {
+                for (i in (size - 1) downTo 1)
+                {
+                    seriesData.add(
+                        ValueDataEntry(
+                            this[i].dateTimeLongString,
+                            this[i].price
+                        )
                     )
-                )
+                }
             }
 
 
@@ -229,15 +243,15 @@ class RefuelingFragmentVM(
                 for (i in (size - 1) downTo 1)
                 {
                     val afterRefTankState =
-                        this[i].previousTankState + this[i].litres * 100 / tankSize
-                    val endState = this[i - 1].previousTankState
+                        this[i].tankState + this[i].litres * 100 / tankSize
+                    val endState = this[i - 1].tankState
                     val usedTank = afterRefTankState - endState
 
                     val usedLitres = usedTank * tankSize / 100
 
 
                     val distance =
-                        this[i - 1].previousOdometerReading - this[i].previousOdometerReading
+                        this[i - 1].odometerReading - this[i].odometerReading
 
                     if (distance <= 0)
                     {
