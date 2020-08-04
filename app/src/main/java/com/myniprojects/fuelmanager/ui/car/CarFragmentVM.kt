@@ -1,9 +1,11 @@
 package com.myniprojects.fuelmanager.ui.car
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Car
 import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.utils.Log
@@ -58,26 +60,69 @@ class CarFragmentVM(
     }
 
 
+    @StringRes
     fun addCar(
         brand: String,
         model: String,
         engine: String,
         fuelType: String,
-        tankSize: Double,
+        tankSize: String,
         iconID: Byte
-    )
+    ): Int
     {
-        uiScope.launch {
-            insert(
-                Car(
-                    brand = brand,
-                    model = model,
-                    engine = engine,
-                    fuelType = fuelType,
-                    tankSize = tankSize,
-                    iconID = iconID
+        val result = validateData(
+            brand, model, tankSize
+        )
+
+        if (result == R.string.succes_code)
+        {
+            uiScope.launch {
+                insert(
+                    Car(
+                        brand = brand,
+                        model = model,
+                        engine = engine,
+                        fuelType = fuelType,
+                        tankSize = tankSize.toDouble(),
+                        iconID = iconID
+                    )
                 )
-            )
+            }
+            return R.string.car_added
+        }
+        return result
+    }
+
+
+    @StringRes
+    private fun validateData(
+        brand: String,
+        model: String,
+        tankSize: String
+    ): Int
+    {
+        return when
+        {
+            brand.isEmpty() ->
+            {
+                R.string.brand_cannot_empty
+            }
+            model.isEmpty() ->
+            {
+                R.string.model_cannot_empty
+            }
+            tankSize.isEmpty() ->
+            {
+                R.string.tank_size_cannot_empty
+            }
+            tankSize.toDoubleOrNull() == null ->
+            {
+                R.string.tank_size_wrong_format
+            }
+            else ->
+            {
+                R.string.succes_code
+            }
         }
     }
 
@@ -88,7 +133,7 @@ class CarFragmentVM(
         viewModelJob.cancel()
     }
 
-    // region navigation click
+// region navigation click
 
     private val _navigateToRefueling = MutableLiveData<LongArray>()
     val navigateToRefueling: LiveData<LongArray>
@@ -112,29 +157,38 @@ class CarFragmentVM(
         _navigateToRefueling.value = null
     }
 
+    @StringRes
     fun editCar(
         brand: String,
         model: String,
         engine: String,
         fuelType: String,
         iconID: Byte,
-        tankSize: Double,
+        tankSize: String,
         carID: Long
-    )
+    ): Int
     {
-        uiScope.launch {
-            update(
-                Car(
-                    carID = carID,
-                    brand = brand,
-                    model = model,
-                    engine = engine,
-                    fuelType = fuelType,
-                    tankSize = tankSize,
-                    iconID = iconID
+        val result = validateData(brand, model, tankSize)
+
+        if (result == R.string.succes_code)
+        {
+            uiScope.launch {
+                update(
+                    Car(
+                        carID = carID,
+                        brand = brand,
+                        model = model,
+                        engine = engine,
+                        fuelType = fuelType,
+                        tankSize = tankSize.toDouble(),
+                        iconID = iconID
+                    )
                 )
-            )
+            }
+
+            return R.string.car_edited
         }
+        return result
     }
 
 
@@ -143,7 +197,7 @@ class CarFragmentVM(
     }
 
 
-    // endregion
+// endregion
 
 
 }

@@ -36,12 +36,13 @@
             tools:text="Mercedes Benz" />
 
         <ImageView
-            android:layout_width="@dimen/car_image_size"
             android:id="@+id/imgCar"
+            android:layout_width="@dimen/car_image_size"
             android:layout_height="@dimen/car_image_size"
             android:layout_margin="4dp"
             android:contentDescription="@string/car_icon"
             app:carIcon="@{car}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/car6" />

@@ -138,7 +138,7 @@ fun getMillisFromDate(
 
 fun Long.toDateFormat(dateFormat: String = DATE_FORMAT): String
 {
-    return getDate(this, DATE_FORMAT)
+    return getDate(this, dateFormat)
 }
 
 fun Long.toCalendar(): Calendar

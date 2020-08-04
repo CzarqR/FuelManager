@@ -61,5 +61,8 @@
     <color name="save_enable">@color/colorAccent</color>
     <color name="save_disable">#676249</color>
 
+    // Toast
+    <color name="toast_back">#EDD92E</color>
+
 
 </resources>

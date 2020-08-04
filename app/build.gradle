@@ -82,4 +82,7 @@ dependencies {
 
     // Shared preferences
     implementation "androidx.preference:preference-ktx:1.1.1"
+
+    // Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

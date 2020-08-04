@@ -6,9 +6,12 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
+import com.myniprojects.fuelmanager.R
+import es.dmoral.toasty.Toasty
 
 fun Fragment.hideKeyboard()
 {
@@ -47,3 +50,16 @@ fun AndroidViewModel.getString(@StringRes id: Int): String
 
 val EditText.input: String
     get() = text.toString()
+
+fun Fragment.makeToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT): Toast
+{
+    return Toasty.custom(
+        requireContext(),
+        text,
+        R.drawable.info,
+        R.color.toast_back,
+        length,
+        true,
+        true
+    )
+}

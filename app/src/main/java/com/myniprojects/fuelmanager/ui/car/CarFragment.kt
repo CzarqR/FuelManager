@@ -3,6 +3,7 @@ package com.myniprojects.fuelmanager.ui.car
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
@@ -15,9 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
-import com.myniprojects.fuelmanager.utils.Log
-import com.myniprojects.fuelmanager.utils.TopSpacingItemDecoration
-import com.myniprojects.fuelmanager.utils.setActivityTitle
+import com.myniprojects.fuelmanager.utils.*
 import kotlinx.android.synthetic.main.new_car_dialog.view.*
 
 
@@ -59,25 +58,40 @@ class CarFragment : Fragment()
                 requireContext()
             )
 
-            mDialogView.spinCar.adapter = adapter
-            mDialogView.txtTitle.text = getString(R.string.add_new_car)
-            mDialogView.butAddCar.text = getString(R.string.add_car)
 
-            mDialogView.butAddCar.setOnClickListener {
-                viewModel.addCar(
-                    mDialogView.edTxtBrand.text.toString(),
-                    mDialogView.edTxtModel.text.toString(),
-                    mDialogView.edTxtEngine.text.toString(),
-                    mDialogView.edTxtFuelType.text.toString(),
-                    mDialogView.edTxtTankSize.text.toString().toDouble(),
-                    mDialogView.spinCar.selectedItemPosition.toByte()
-                )
-                mAlertDialog.dismiss()
+            with(mDialogView)
+            {
+                spinCar.adapter = adapter
+                txtTitle.text = getString(R.string.add_new_car)
+                butAddCar.text = getString(R.string.add_car)
+
+                butAddCar.setOnClickListener {
+
+                    val exitCode = viewModel.addCar(
+
+                        edTxtBrand.input,
+                        edTxtModel.input,
+                        edTxtEngine.input,
+                        edTxtFuelType.input,
+                        edTxtTankSize.input,
+                        spinCar.selectedItemPosition.toByte()
+                    )
+
+                    if (exitCode == R.string.car_added)
+                    {
+                        mAlertDialog.dismiss()
+                    }
+
+                    showToast(exitCode)
+
+                }
+
+                butCancel.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
             }
 
-            mDialogView.butCancel.setOnClickListener {
-                mAlertDialog.dismiss()
-            }
+
         }
 
         // listener for clicked car
@@ -89,18 +103,7 @@ class CarFragment : Fragment()
             { carID -> showConfirmation(carID) }, // delete
             { dy -> binding.recViewCar.scrollBy(0, dy) }, // scroll
             {
-                if (this::toast.isInitialized)
-                {
-                    toast.cancel()
-                }
-
-                toast = Toast.makeText(
-                    requireContext(),
-                    getString(R.string.cannot_select_car),
-                    Toast.LENGTH_SHORT
-                )
-
-                toast.show()
+                showToast(R.string.cannot_select_car)
             }
 
         )
@@ -192,36 +195,57 @@ class CarFragment : Fragment()
             requireContext()
         )
 
-        mDialogView.spinCar.adapter = adapter
-        mDialogView.txtTitle.text = getString(R.string.edit_car)
-        mDialogView.butAddCar.text = getString(R.string.update)
 
-        val car = viewModel.getCar(carID)
 
-        mDialogView.edTxtBrand.setText(car.brand)
-        mDialogView.edTxtModel.setText(car.model)
-        mDialogView.edTxtEngine.setText(car.engine)
-        mDialogView.edTxtFuelType.setText(car.fuelType)
-        mDialogView.edTxtTankSize.setText(car.tankSize.toString())
 
-        mDialogView.spinCar.setSelection(car.iconID.toInt())
 
-        mDialogView.butAddCar.setOnClickListener {
-            viewModel.editCar(
-                mDialogView.edTxtBrand.text.toString(),
-                mDialogView.edTxtModel.text.toString(),
-                mDialogView.edTxtEngine.text.toString(),
-                mDialogView.edTxtFuelType.text.toString(),
-                mDialogView.spinCar.selectedItemPosition.toByte(),
-                mDialogView.edTxtTankSize.text.toString().toDouble(),
-                carID
-            )
-            mAlertDialog.dismiss()
+
+
+        with(mDialogView)
+        {
+
+
+            spinCar.adapter = adapter
+            txtTitle.text = getString(R.string.edit_car)
+            butAddCar.text = getString(R.string.update)
+
+            val car = viewModel.getCar(carID)
+
+            edTxtBrand.setText(car.brand)
+            edTxtModel.setText(car.model)
+            edTxtEngine.setText(car.engine)
+            edTxtFuelType.setText(car.fuelType)
+            edTxtTankSize.setText(car.tankSize.toString())
+
+            spinCar.setSelection(car.iconID.toInt())
+
+            butAddCar.setOnClickListener {
+
+
+                val exitCode = viewModel.editCar(
+                    edTxtBrand.text.toString(),
+                    edTxtModel.text.toString(),
+                    edTxtEngine.text.toString(),
+                    edTxtFuelType.text.toString(),
+                    spinCar.selectedItemPosition.toByte(),
+                    edTxtTankSize.text.toString(),
+                    carID
+                )
+
+                if (exitCode == R.string.car_edited)
+                {
+                    mAlertDialog.dismiss()
+                }
+
+                showToast(exitCode)
+            }
+
+            mDialogView.butCancel.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+
         }
 
-        mDialogView.butCancel.setOnClickListener {
-            mAlertDialog.dismiss()
-        }
     }
 
     private fun showConfirmation(carID: Long)
@@ -248,6 +272,18 @@ class CarFragment : Fragment()
 
         val alert = builder.create()
         alert.show()
+    }
+
+    private fun showToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT)
+    {
+        if (this::toast.isInitialized)
+        {
+            toast.cancel()
+        }
+
+        toast = makeToast(text, length)
+
+        toast.show()
     }
 
 }

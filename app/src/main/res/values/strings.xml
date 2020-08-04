@@ -95,6 +95,13 @@
     <string name="most_expensive">The most expensive refueling: %1$s %2$s</string>
     <string name="cheapest_refueling">Cheapest refueling: %1$s %2$s</string>
     <string name="average_price">Average price for 1%1$s of fuel: %2$s %3$s</string>
+    <string name="brand_cannot_empty">Brand name cannot be empty</string>
+    <string name="model_cannot_empty">Model cannot be empty</string>
+    <string name="tank_size_cannot_empty">Tank size cannot be empty</string>
+    <string name="tank_size_wrong_format">Tank size is in wrong format</string>
+    <string name="car_edited">Car edited</string>
+    <string name="car_added">Car added</string>
+    <string name="succes_code">succes_code</string>
 
 
 </resources>
