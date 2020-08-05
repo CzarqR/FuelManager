@@ -34,6 +34,40 @@ class RefuelingFragment : OneToastFragment()
             R.layout.fragment_refueling, container, false
         )
 
+        return binding.root
+    }
+
+    override fun onStop()
+    {
+        super.onStop()
+        viewModel.chartNavigated() //to clear toast
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+
+        if (viewModel.type) // 1 car
+        {
+
+            val carInfoFragment = CarInfoFragment()
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
+        }
+        else // many cars
+        {
+            val multipleCarsFragment =
+                MultipleCarsFragment()
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentCarInfo, multipleCarsFragment).commit()
+        }
+    }
+
+
+    private fun setup()
+    {
         //init viewModel
         val arguments = RefuelingFragmentArgs.fromBundle(requireArguments())
         val application = requireNotNull(this.activity).application
@@ -52,9 +86,9 @@ class RefuelingFragment : OneToastFragment()
 
         viewModel.setCarId(arguments.carID)
 
-        binding.carViewModel = viewModel
-
         binding.lifecycleOwner = this
+
+        binding.carViewModel = viewModel
 
 
         // add refueling dialog
@@ -155,35 +189,6 @@ class RefuelingFragment : OneToastFragment()
                 }
             }
         })
-
-        return binding.root
     }
 
-    override fun onStop()
-    {
-        super.onStop()
-        viewModel.chartNavigated() //to clear toast
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
-        Log.d("Create")
-
-        if (viewModel.type) // 1 car
-        {
-
-            val carInfoFragment = CarInfoFragment()
-            val transaction = childFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentCarInfo, carInfoFragment).commit()
-        }
-        else // many cars
-        {
-            val multipleCarsFragment =
-                MultipleCarsFragment()
-            val transaction = childFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentCarInfo, multipleCarsFragment).commit()
-        }
-    }
 }

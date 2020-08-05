@@ -7,6 +7,7 @@ import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -21,7 +22,6 @@ class CarFragment : OneToastFragment()
 {
     private lateinit var viewModel: CarFragmentVM
     private lateinit var binding: FragmentCarBinding
-//    private lateinit var toast: Toast
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +35,57 @@ class CarFragment : OneToastFragment()
             R.layout.fragment_car, container, false
         )
 
+        // options bar
+        setHasOptionsMenu(true)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d("Created Car")
+        setup()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater)
+        MenuCompat.setGroupDividerEnabled(menu, true)
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        )
+
+
+        val builder = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.enter_left_to_right)
+            .setExitAnim(R.anim.exit_right_to_left)
+            .setPopEnterAnim(R.anim.popenter_right_to_left)
+            .setPopExitAnim(R.anim.popexit_left_to_right)
+
+
+        val options = builder.build()
+        return try
+        {
+            requireView().findNavController().navigate(item.itemId, null, options)
+            true
+        } catch (e: IllegalArgumentException)
+        {
+            false
+        }
+
+    }
+
+    private fun setup()
+    {
         // Init view model
         val application = requireNotNull(this.activity).application
         val dataSource = AppDatabase.getInstance(application).carDAO
@@ -157,28 +208,6 @@ class CarFragment : OneToastFragment()
                 }
             }
         })
-
-
-        // options bar
-        setHasOptionsMenu(true)
-
-        return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
-    {
-        super.onCreateOptionsMenu(menu, inflater)
-        MenuCompat.setGroupDividerEnabled(menu, true)
-        inflater.inflate(R.menu.overflow_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean
-    {
-        return NavigationUI.onNavDestinationSelected(
-            item,
-            requireView().findNavController()
-        )
-
     }
 
     private fun editCarDialog(carID: Long)

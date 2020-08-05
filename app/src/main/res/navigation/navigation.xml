@@ -11,10 +11,18 @@
         android:label="@string/car_fragment_title">
         <action
             android:id="@+id/action_car_to_refueling"
-            app:destination="@id/refuelingFragment" />
+            app:destination="@id/refuelingFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:exitAnim="@anim/exit_left_to_right"
+            app:popEnterAnim="@anim/popenter_left_to_right"
+            app:popExitAnim="@anim/popexit_right_to_left" />
         <action
             android:id="@+id/action_car_to_statistic"
-            app:destination="@id/statisticFragment" />
+            app:destination="@id/statisticFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:exitAnim="@anim/exit_left_to_right"
+            app:popEnterAnim="@anim/popenter_left_to_right"
+            app:popExitAnim="@anim/popexit_right_to_left" />
     </fragment>
     <fragment
         android:id="@+id/refuelingFragment"
@@ -25,10 +33,18 @@
             app:argType="long[]" />
         <action
             android:id="@+id/action_refueling_to_detail"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:exitAnim="@anim/exit_left_to_right"
+            app:popEnterAnim="@anim/popenter_left_to_right"
+            app:popExitAnim="@anim/popexit_right_to_left" />
         <action
             android:id="@+id/action_refueling_to_chart"
-            app:destination="@id/chartFragment" />
+            app:destination="@id/chartFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:exitAnim="@anim/exit_left_to_right"
+            app:popEnterAnim="@anim/popenter_left_to_right"
+            app:popExitAnim="@anim/popexit_right_to_left" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

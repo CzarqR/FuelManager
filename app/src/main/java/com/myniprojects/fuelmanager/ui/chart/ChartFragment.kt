@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.databinding.FragmentChartBinding
 import com.myniprojects.fuelmanager.ui.refueling.RefuelingFragmentVM
+import com.myniprojects.fuelmanager.utils.setActivityTitle
 
 class ChartFragment : Fragment()
 {
@@ -50,6 +51,18 @@ class ChartFragment : Fragment()
 //                throw IllegalArgumentException("Chart type couldn't be handled")
 //            }
         }
+
+
+        setActivityTitle(
+            if (viewModel.chartType == ChartType.FUEL_EFFICIENCY)
+            {
+                R.string.fuel_efficiency
+            }
+            else
+            {
+                R.string.fuel_cost
+            }
+        )
 
         return binding.root
     }

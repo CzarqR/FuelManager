@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FuelManager</string>
     <string name="brand">Brand</string>
@@ -7,9 +8,6 @@
     <string name="model">Model</string>
     <string name="cancel">Cancel</string>
     <string name="add_car">Add vehicle</string>
-
-    <string name="car_title" translatable="false">%1$s %2$s</string>
-
 
     <string name="car_icon">Vehicle icon</string>
     <string name="add_new_refueling">Add new refueling</string>
@@ -40,8 +38,6 @@
 
 
     <string name="litres_format">%1$s%4$s for <b>%2$s</b> %5$s. Total price %3$s %5$s</string>
-    <string name="date_place_format" translatable="false"><i>%1$s - %2$s</i></string>
-    <string name="date_format" translatable="false"><i>%1$s</i></string>
 
     <string name="odometer_reading_format">Odometer reading: %1$s%3$s with tank state %2$d%%</string>
     <string name="detail_fragment_title">Refueling details</string>
@@ -54,7 +50,6 @@
     <string name="tank_size">Tank Size</string>
     <string name="fuel_efficiency">Fuel efficiency</string>
     <string name="y_axis_title_efficiency">%1$s per 1 %2$s of fuel</string>
-    <string name="odometer_reading_km" translatable="false">%1$s km</string>
     <string name="info_charts_cannot_display">To see charts and statistics You have to add at least three refueling</string>
     <string name="fuel_cost">Fuel cost</string>
     <string name="statistic">Statistic</string>
@@ -95,7 +90,6 @@
     <string name="tank_size_wrong_format">Tank size is in wrong format</string>
     <string name="car_edited">Vehicle edited</string>
     <string name="car_added">Vehicle added</string>
-    <string name="success_code" translatable="false">success_code</string>
     <string name="volume_empty">Volume value cannot be empty</string>
     <string name="volume_wrong_format">Volume is in wrong format</string>
     <string name="price_empty">Price cannot be empty</string>
@@ -107,7 +101,5 @@
     <string name="refueling_added">Refueling added</string>
     <string name="refueling_edited">Refueling edited</string>
     <string name="volume">Volume</string>
-    <string name="app_page" translatable="false">https://play.google.com/store/apps/developer?id=MyniProjects</string>
-
 
 </resources>

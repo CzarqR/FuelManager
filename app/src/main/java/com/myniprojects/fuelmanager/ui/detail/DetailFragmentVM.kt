@@ -125,23 +125,5 @@ class DetailFragmentVM(
         _editState.value = !_editState.value!!
     }
 
-    @StringRes
-    fun canEditRefueling(
-        litres: String,
-        price: String,
-        tankState: String,
-        odometerReading: String
-    ): Int
-    {
-        val result = Refueling.validateData(litres, price, tankState, odometerReading)
-
-        if (result == R.string.success_code)
-        {
-            return R.string.refueling_edited
-        }
-
-        return result
-    }
-
 
 }

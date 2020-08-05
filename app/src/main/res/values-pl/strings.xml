@@ -40,7 +40,7 @@
     <string name="refueling_many_fragment_title">Tankowania pojazdów</string>
     <string name="help_fragment_title">Pomoc</string>
     <string name="chart_title">Cena paliwa</string>
-    <string name="y_axis_title">Cena za 1 %1$s</string>
+    <string name="y_axis_title">Cena za 1 %1$s paliwa</string>
     <string name="tank_size">Rozmiar baku</string>
     <string name="fuel_efficiency">Wydajność paliwa</string>
     <string name="y_axis_title_efficiency">%1$s na 1 %2$s paliwa</string>

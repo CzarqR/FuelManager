@@ -122,10 +122,6 @@ class RefuelingFragmentVM(
 
     fun refuelingClicked(refuelingID: Long)
     {
-        refueling.value!!.forEach {
-            Log.d("Car: $it")
-        }
-
         _navigateToRefueling.value = refuelingID
     }
 
@@ -179,7 +175,6 @@ class RefuelingFragmentVM(
 
                 tooltip().positionMode(TooltipPositionMode.POINT)
 
-                title(getApplication<Application>().getString(R.string.chart_title))
 
                 yAxis(0).title(
                     getApplication<Application>().getString(
@@ -253,7 +248,6 @@ class RefuelingFragmentVM(
 
             cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
 
-            cartesian.title(getApplication<Application>().getString(R.string.fuel_efficiency))
 
             cartesian.yAxis(0)
                 .title(
