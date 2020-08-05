@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -120,6 +121,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         {
             val navController = this.findNavController(R.id.navHostFragment)
             NavigationUI.navigateUp(navController, drawerLayout)
+
+
         }
     }
 
@@ -154,10 +157,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.aboutFragment, R.id.settingsFragment, R.id.statisticFragment ->
             {
                 drawerLayout.close()
-                NavigationUI.onNavDestinationSelected(
+
+                return NavigationUI.onNavDestinationSelected(
                     item,
                     findNavController(R.id.navHostFragment)
                 )
+
+                val builder = NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .setEnterAnim(R.anim.enter_left_to_right)
+                    .setExitAnim(R.anim.exit_right_to_left)
+                    .setPopEnterAnim(R.anim.popenter_right_to_left)
+                    .setPopExitAnim(R.anim.popexit_left_to_right)
+
+
+                val options = builder.build()
+                return try
+                {
+                    findNavController(R.id.navHostFragment).navigate(item.itemId, null, options)
+                    true
+                } catch (e: IllegalArgumentException)
+                {
+                    false
+                }
+
             }
 
             R.id.ourApps ->
@@ -165,13 +188,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val browserIntent =
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/developer?id=MyniProjects")
+                        Uri.parse(getString(R.string.app_page))
                     )
                 if (null == browserIntent.resolveActivity(packageManager))
                 {
                     Toast.makeText(
                         this,
-                        getString(R.string.cannot_open_our_apps),
+                        getString(R.string.app_page),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
