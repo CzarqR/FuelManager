@@ -140,20 +140,29 @@ class RefuelingFragment : OneToastFragment()
         })
 
         viewModel.navigateToChart.observe(viewLifecycleOwner, Observer {
-            if (viewModel.canShow())
-            {
-                this.findNavController()
-                    .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
-                viewModel.chartNavigated()
-            }
-            else
-            {
-                showToast(R.string.info_charts_cannot_display)
-            }
 
+            if (it != null)
+            {
+                if (viewModel.canShow())
+                {
+                    this.findNavController()
+                        .navigate(RefuelingFragmentDirections.actionRefuelingToChart())
+                    viewModel.chartNavigated()
+                }
+                else
+                {
+                    showToast(R.string.info_charts_cannot_display)
+                }
+            }
         })
 
         return binding.root
+    }
+
+    override fun onStop()
+    {
+        super.onStop()
+        viewModel.chartNavigated() //to clear toast
     }
 
 

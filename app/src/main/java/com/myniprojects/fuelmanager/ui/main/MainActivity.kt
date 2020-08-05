@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     companion object
     {
+
+
         const val THEME_KEY: String = "THEME_KEY"
         const val CURRENCY_KEY: String = "CURRENCY_KEY"
         const val LENGTH_UNIT_KEY: String = "LENGTH_UNIT_KEY"

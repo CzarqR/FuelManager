@@ -119,7 +119,7 @@ class StatisticFragmentVM(
             var cheapest = refueling!![0].price
 
             refueling!!.forEach {
-                sumPrice += it.price
+                sumPrice += it.totalPrice
                 sumLitres += it.litres
 
                 if (mostExpensive < it.price)

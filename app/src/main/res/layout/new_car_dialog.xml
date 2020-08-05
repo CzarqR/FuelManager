@@ -141,6 +141,7 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/button_dialog_shape"
                     android:fontFamily="@font/alegreya_sans"
+                    android:textColor="@color/colorFont"
                     android:textSize="16sp" />
 
                 <Button
@@ -151,8 +152,8 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/button_dialog_shape"
                     android:fontFamily="@font/alegreya_sans"
-
                     android:text="@string/cancel"
+                    android:textColor="@color/colorFont"
                     android:textSize="16sp" />
 
             </LinearLayout>

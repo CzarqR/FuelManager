@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/detail_header_margin"
-                android:text="@string/litres"
+                android:text="@string/volume"
                 android:textColor="@color/detail_txt_header" />
 
             <EditText
@@ -41,7 +41,7 @@
                 android:backgroundTint="@color/detail_tint"
                 android:ems="10"
                 android:enabled="@{detailViewModel.editState}"
-                android:hint="@string/litres"
+                android:hint="@string/volume"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorFont" />
 

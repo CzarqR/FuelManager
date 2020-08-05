@@ -60,7 +60,7 @@ data class Car(
                 }
                 else ->
                 {
-                    R.string.succes_code
+                    R.string.success_code
                 }
             }
         }

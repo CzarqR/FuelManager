@@ -94,7 +94,7 @@ data class Refueling(
                 }
                 else ->
                 {
-                    return R.string.succes_code
+                    return R.string.success_code
                 }
             }
 

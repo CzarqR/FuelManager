@@ -19,8 +19,11 @@ import com.myniprojects.fuelmanager.database.CarDAO
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
 import com.myniprojects.fuelmanager.ui.chart.ChartType
+import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.Log
+import com.myniprojects.fuelmanager.utils.round
 import kotlinx.coroutines.*
+import java.math.RoundingMode
 
 class RefuelingFragmentVM(
     private val databaseRefueling: RefuelingDAO,
@@ -81,7 +84,7 @@ class RefuelingFragmentVM(
 
         val result = Refueling.validateData(litres, price, state, odometerReading)
 
-        if (result == R.string.succes_code)
+        if (result == R.string.success_code)
         {
             uiScope.launch {
                 insertRefueling(
@@ -178,7 +181,12 @@ class RefuelingFragmentVM(
 
                 title(getApplication<Application>().getString(R.string.chart_title))
 
-                yAxis(0).title(getApplication<Application>().getString(R.string.y_axis_title))
+                yAxis(0).title(
+                    getApplication<Application>().getString(
+                        R.string.y_axis_title,
+                        MainActivity.volumeUnit
+                    )
+                )
                 xAxis(0).labels().padding(5, 5, 5, 5)
 
             }
@@ -248,7 +256,13 @@ class RefuelingFragmentVM(
             cartesian.title(getApplication<Application>().getString(R.string.fuel_efficiency))
 
             cartesian.yAxis(0)
-                .title(getApplication<Application>().getString(R.string.y_axis_title_efficiency))
+                .title(
+                    getApplication<Application>().getString(
+                        R.string.y_axis_title_efficiency,
+                        MainActivity.lengthUnit,
+                        MainActivity.volumeUnit
+                    )
+                )
             cartesian.xAxis(0).labels().padding(5, 5, 5, 5)
 
             val seriesData = ArrayList<DataEntry>()
@@ -295,7 +309,7 @@ class RefuelingFragmentVM(
                     seriesData.add(
                         ValueDataEntry(
                             this[i].dateTimeChartString,
-                            efficiency
+                            efficiency.round(3, RoundingMode.HALF_UP)
                         )
                     )
 

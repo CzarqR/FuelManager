@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/litres"
-                android:hint="@string/litres"
+                android:hint="@string/volume"
                 android:inputType="numberDecimal"
                 android:singleLine="true"
                 android:textColor="@color/colorFont" />

@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.Refueling
 import com.myniprojects.fuelmanager.database.RefuelingDAO
+import com.myniprojects.fuelmanager.ui.main.MainActivity
 import com.myniprojects.fuelmanager.utils.Log
 import com.myniprojects.fuelmanager.utils.getString
 import kotlinx.coroutines.*
@@ -43,7 +44,8 @@ class DetailFragmentVM(
                 getApplication<Application>().getString(
                     R.string.share_message,
                     tmp.place,
-                    tmp.price.toString()
+                    tmp.price.toString(),
+                    MainActivity.currency
                 )
             }
             else
@@ -81,7 +83,7 @@ class DetailFragmentVM(
     {
         val result = Refueling.validateData(litres, price, tankState, odometerReading)
 
-        if (result == R.string.succes_code)
+        if (result == R.string.success_code)
         {
             uiScope.launch {
                 update(
@@ -133,7 +135,7 @@ class DetailFragmentVM(
     {
         val result = Refueling.validateData(litres, price, tankState, odometerReading)
 
-        if (result == R.string.succes_code)
+        if (result == R.string.success_code)
         {
             return R.string.refueling_edited
         }

@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import com.myniprojects.fuelmanager.R
@@ -56,10 +57,12 @@ fun Fragment.makeToast(@StringRes text: Int, length: Int = Toast.LENGTH_SHORT): 
     return Toasty.custom(
         requireContext(),
         text,
-        R.drawable.info,
+        ContextCompat.getDrawable(requireContext(), R.drawable.info),
         R.color.toast_back,
+        R.color.colorFont,
         length,
         true,
         true
     )
+
 }

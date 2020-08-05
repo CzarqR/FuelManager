@@ -237,7 +237,6 @@ class CarFragment : OneToastFragment()
             }
 
         }
-
     }
 
     private fun showConfirmation(carID: Long)

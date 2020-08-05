@@ -69,7 +69,7 @@ class CarFragmentVM(
             brand, model, tankSize
         )
 
-        if (result == R.string.succes_code)
+        if (result == R.string.success_code)
         {
             uiScope.launch {
                 insert(
@@ -135,7 +135,7 @@ class CarFragmentVM(
     {
         val result = Car.validateData(brand, model, tankSize)
 
-        if (result == R.string.succes_code)
+        if (result == R.string.success_code)
         {
             uiScope.launch {
                 update(

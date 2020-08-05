@@ -80,7 +80,7 @@ class DetailFragment : OneToastFragment()
                     binding.edTxtOdometerReading.input
                 )
 
-                if (result == R.string.succes_code)
+                if (result == R.string.success_code)
                 {
                     showEditConfirmation()
                 }
