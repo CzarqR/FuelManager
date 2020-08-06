@@ -95,15 +95,38 @@
     <string name="refueling_edited">Tankowanie edytowane</string>
     <string name="volume">Objętość</string>
 
-    <string-array name="help_titles">
-        <item>Dodaj nowy pojazd</item>
-        <item>Edytuj istniejący pojazd</item>
-    </string-array>
 
+    <string-array name="help_titles">
+        <item> Co ta aplikacja potrafi? </item>
+        <item> Dodawanie nowego pojazdu </item>
+        <item> Edycja pojazdu </item>
+        <item> Usuwanie pojazdu </item>
+        <item> Wybór pojazdu </item>
+        <item> Dodaj tankowanie </item>
+        <item> Edytuj tankowanie </item>
+        <item> Udostępnij tankowanie </item>
+        <item> Wykresy </item>
+        <item> Wykres efektywności paliwa </item>
+        <item> Statystyki </item>
+        <item> Ustawienia </item>
+        <item> Zasugi </item>
+    </string-array>
 
     <string-array name="help_content">
-        <item>Aby dodać nowy pojazd kliknij przycisk w prawym dolnym rogu. Marka, model oraz rozmiar baku są wymagene.</item>
-        <item>Aby edytować pojazd przytrzymaj sygnaturę pojazdu a zobaczysz okno edycji.</item>
+        <item> Aplikacja pomaga w śledzeniu tankowań w Twoich pojazdach. Po dodaniu kilku tankowań możesz sprawdzić ile pali Twój samochód, które paliwo jest wydajniejsze, ceny paliw w wybranym zakresie dat lub ile wydajesz na paliwo. Aby uzyskać jak największe korzyści z aplikacji, ważne jest, aby wprowadzić poprawne dane dotyczące tankowania i podać prawidłowy rozmiar zbiornika paliwa przy dodawaniu pojazdu. </item>
+        <item> Aby dodać nowy pojazd, kliknij przycisk w prawym dolnym rogu. Marka, model i rozmiar baku są wymagane. </item>
+        <item> Aby edytować istniejący pojazd przytrzymaj samochód a zobaczysz okno edycji. </item>
+        <item> Aby usunąć istniejący pojazd przesuń palcem po pojeździe w prawą stronę a zobaczysz przycisk usuwania po lewej stronie samochodu. </item>
+        <item> Aby wybrać pojazd, wystarczy kliknąć na niego. Jeśli chcesz sprawdzić tankowanie z więcej niż jednego pojazdu, możesz je wybrać przesuwając pojazd w lewą stronę. Po wybraniu wszystkich pojazdów kliknij środkowy przycisk na dole. Możesz wybrać do 8 pojazdów, każdy będzie miał inny kolor, abyś mógł je rozróżnić. </item>
+        <item> Aby dodać tankowanie, przejdź do wybranego pojazdu i kliknij przycisk w prawym dolnym rogu. Wymagana są objętość, cena, odczyt licznika i stan baku. Jeśli wybierzesz więcej niż jeden pojazd, możesz wybrać, do którego chcesz dodać tankowanie. </item>
+        <item> Aby edytować tankowanie kliknij na tankowanie, które chcesz edytować, a przejdziesz do szczegółowego opisu, gdzie możesz je edytować. </item>
+        <item> We fragmencie szczegółów możesz udostępnić swoje tankowanie, jeśli chcesz komuś powiedzieć, gdzie i za jaką cenę znalazłeś paliwo. </item>
+        <item> Aby zobaczyć wykresy, wybierz samochód i kliknij przycisk w prawym górnym rogu, obok danych pojazdu. Następnie wybierz jeden wykres, który chcesz zobaczyć. (obecnie nasza aplikacja może wyświetlać wykresy tylko dla jednego samochodu w jednym momencie) </item>
+        <item> Ta tabela pokazuje, ile kilometrów możesz przejechać na 1 litrze paliwa. Jeśli jakość paliwa spadnie (lub gorzej, Twoje umiejętności ekonomicznej jazdy), wykres to pokaże. </item>
+        <item> Aby zobaczyć statystyki wszystkich samochodów, po prostu wybierz Statystyki z menu panelu po lewej stronie lub menu górnego (3 kropki). Jeśli chcesz uzyskać statystyki z wybranych pojazdów, po prostu wybierz je, przesuwając w lewo i po wybraniu wszystkich kliknij pierwszy przycisk na dole z lupą. </item>
+        <item> W ustawieniach Możesz zmienić walutę, jednostkę objętości, jednostkę długości lub tryb nocny. Aby zastosować zmiany, kliknij przycisk dysku w prawym dolnym rogu ekranu. Aby przywrócić ustawienia domyślne, kliknij pierwszy przycisk na dole ekranu z kołem zębatym. </item>
+        <item> Wszystkie piękne obrazy i ikony pochodzą z flaticon.com. Dzięki! &#x1F49A;</item>
     </string-array>
+
 
 </resources>

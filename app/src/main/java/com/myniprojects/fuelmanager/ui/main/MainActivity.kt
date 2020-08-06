@@ -3,6 +3,7 @@ package com.myniprojects.fuelmanager.ui.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
@@ -158,31 +159,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             {
                 drawerLayout.close()
 
-                return NavigationUI.onNavDestinationSelected(
-                    item,
-                    findNavController(R.id.navHostFragment)
-                )
-
-                val builder = NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .setEnterAnim(R.anim.enter_left_to_right)
-                    .setExitAnim(R.anim.exit_right_to_left)
-                    .setPopEnterAnim(R.anim.popenter_right_to_left)
-                    .setPopExitAnim(R.anim.popexit_left_to_right)
-
-
-                val options = builder.build()
-                return try
+                return if (findNavController(R.id.navHostFragment).currentDestination?.id != item.itemId)
                 {
-                    findNavController(R.id.navHostFragment).navigate(item.itemId, null, options)
-                    true
-                } catch (e: IllegalArgumentException)
+                    val builder = NavOptions.Builder()
+                        .setLaunchSingleTop(true)
+                        .setEnterAnim(R.anim.enter_left_to_right)
+                        .setExitAnim(R.anim.exit_right_to_left)
+                        .setPopEnterAnim(R.anim.popenter_right_to_left)
+                        .setPopExitAnim(R.anim.popexit_left_to_right)
+
+                    if (item.order and Menu.CATEGORY_SECONDARY == 0)
+                    {
+                        builder.setPopUpTo(
+                            R.id.carFragment,
+                            false
+                        )
+                    }
+
+                    val options = builder.build()
+                    return try
+                    {
+                        findNavController(R.id.navHostFragment).navigate(item.itemId, null, options)
+                        true
+                    }
+                    catch (e: IllegalArgumentException)
+                    {
+                        false
+                    }
+                }
+                else
                 {
                     false
                 }
-
             }
-
             R.id.ourApps ->
             {
                 val browserIntent =

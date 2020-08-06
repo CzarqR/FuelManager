@@ -109,7 +109,6 @@
     <string name="volume">Volume</string>
     <string name="app_page" translatable="false">https://play.google.com/store/apps/developer?id=MyniProjects</string>
 
-
     <string name="help_text_format" translatable="false"><![CDATA[
     <big><b> &#8226; %1$s </b></big> <br/> <br/>
     &nbsp;&nbsp;&nbsp; <i> %2$s </i>
@@ -117,14 +116,35 @@
 
 
     <string-array name="help_titles">
+        <item>What this app can do?</item>
         <item>Adding new vehicle</item>
-        <item>Editing existing vehicle</item>
+        <item>Editing vehicle</item>
+        <item>Deleting vehicle</item>
+        <item>Selecting vehicle</item>
+        <item>Adding refueling</item>
+        <item>Editing refueling</item>
+        <item>Editing refueling</item>
+        <item>Charts</item>
+        <item>Fuel efficiency chart</item>
+        <item>Statistics</item>
+        <item>Settings</item>
+        <item>Credits</item>
     </string-array>
 
-
     <string-array name="help_content">
-        <item>To add new vehicle click button in the bottom right corner. Brand, model, and tank size are required.</item>
-        <item>To edit existing vehicle hold Your vehicle signature and You will see edit window.</item>
+        <item>This app can help to track refueling in Your vehicles. After adding several refueling You can check how much Your car consumes fuel, which fuel is more efficient, fuel prices in the selected date range, or how much do You spend on fuel. To get the most benefit from the app it is important to input correct data about Your refueling and add correct tank size while adding vehicle.</item>
+        <item>To add a new vehicle click button in the bottom right corner. Brand, model, and tank size are required.</item>
+        <item>To edit existing vehicle hold vehicle signature and You will see edit window.</item>
+        <item>To delete existing vehicle swap vehicle signature to the right and You will see delete button on the left of the car.</item>
+        <item>To select a vehicle just click on the signature. If You want to inspect refueling from more than one vehicle You can select them by sliding car signature in left. After selecting all wanted cars click the middle button at the bottom. You can select up to 8 vehicles and each will have different color differentiate them.</item>
+        <item>To add refueling go to the selected vehicle and click on the button in the bottom right corner. Volume, price, odometer reading, and tank state are required. If You select more than vehicle You can choose to which You want to add refueling.</item>
+        <item>To edit refueling click on refueling which You want to edit and You will go to detail fragment where You can edit it.</item>
+        <item>In the detail fragment You can share Your refueling if You want to let someone know where and for what price You found fuel.</item>
+        <item>To see charts select car and click on the button in the top right corner, next to car signature. Then pick one chart that You want to see. (currently, our app can show charts for only one car at one moment)</item>
+        <item>This chart shows how many kilometers can You drive on 1 liter of fuel. If the fuel quality drops (or worse, Your eco-driving skills), the graph will show that.</item>
+        <item>To see statistics of all cars just select Statistic from the left panel menu or top menu (3 dots). If You want to get statistic from selected vehicles just select them by sliding to the left and after selecting all click first button on the bottom (the on with loupe).</item>
+        <item>In settings You can change currency, volume unit, length unit, or dark mode. To apply changes click on the disk button at the right bottom of the screen. To restore default settings click the first button on the bottom of the screen with gear.</item>
+        <item>All these beautiful images and icons come from flaticon.com. Thanks! &#x1F49A;</item>
     </string-array>
 
 </resources>
