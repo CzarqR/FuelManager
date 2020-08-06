@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.myniprojects.fuelmanager.R
 import com.myniprojects.fuelmanager.database.AppDatabase
 import com.myniprojects.fuelmanager.databinding.FragmentCarBinding
@@ -57,30 +56,39 @@ class CarFragment : OneToastFragment()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
-
-        return NavigationUI.onNavDestinationSelected(
-            item,
-            requireView().findNavController()
-        )
-
-
-        val builder = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.enter_left_to_right)
-            .setExitAnim(R.anim.exit_right_to_left)
-            .setPopEnterAnim(R.anim.popenter_right_to_left)
-            .setPopExitAnim(R.anim.popexit_left_to_right)
-
-
-        val options = builder.build()
-        return try
+        return if (requireView().findNavController().currentDestination?.id != item.itemId)
         {
-            requireView().findNavController().navigate(item.itemId, null, options)
-            true
-        } catch (e: IllegalArgumentException)
+            val builder = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setEnterAnim(R.anim.enter_left_to_right)
+                .setExitAnim(R.anim.exit_right_to_left)
+                .setPopEnterAnim(R.anim.popenter_right_to_left)
+                .setPopExitAnim(R.anim.popexit_left_to_right)
+
+            if (item.order and Menu.CATEGORY_SECONDARY == 0)
+            {
+                builder.setPopUpTo(
+                    R.id.carFragment,
+                    false
+                )
+            }
+
+            val options = builder.build()
+            return try
+            {
+                requireView().findNavController().navigate(item.itemId, null, options)
+                true
+            }
+            catch (e: IllegalArgumentException)
+            {
+                false
+            }
+        }
+        else
         {
             false
         }
+
 
     }
 
