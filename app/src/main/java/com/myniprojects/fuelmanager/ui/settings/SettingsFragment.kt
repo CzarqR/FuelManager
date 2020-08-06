@@ -1,5 +1,6 @@
 package com.myniprojects.fuelmanager.ui.settings
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -159,7 +160,15 @@ class SettingsFragment : Fragment()
             dialog.dismiss()
         }
 
-        builder.setIcon(R.drawable.default_settings)
+        val nightModeFlags = requireContext().resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+
+        when (nightModeFlags)
+        {
+            Configuration.UI_MODE_NIGHT_YES -> builder.setIcon(R.drawable.default_setting_white)
+            else -> builder.setIcon(R.drawable.default_settings)
+        }
+
 
         val alert = builder.create()
         alert.show()

@@ -1,6 +1,7 @@
 package com.myniprojects.fuelmanager.ui.detail
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
@@ -155,7 +156,7 @@ class DetailFragment : OneToastFragment()
         builder.setMessage(getString(R.string.edit_dialog_message))
 
         builder.setPositiveButton(
-            "YES"
+            getString(R.string.yes)
         ) { _, _ ->
 
             with(binding)
@@ -175,8 +176,19 @@ class DetailFragment : OneToastFragment()
             setEditTextToDefault()
         }
 
+
+        val nightModeFlags = requireContext().resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+
+        when (nightModeFlags)
+        {
+            Configuration.UI_MODE_NIGHT_YES -> builder.setIcon(R.drawable.save_white)
+            else -> builder.setIcon(R.drawable.save)
+        }
+
+
         builder.setNegativeButton(
-            "NO", null
+            getString(R.string.no), null
         )
         val alert = builder.create()
         alert.show()

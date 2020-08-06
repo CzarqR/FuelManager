@@ -102,4 +102,15 @@
     <string name="refueling_edited">Refueling edited</string>
     <string name="volume">Volume</string>
 
+    <string-array name="help_titles">
+        <item>Adding new vehicle</item>
+        <item>Editing existing vehicle</item>
+    </string-array>
+
+
+    <string-array name="help_content">
+        <item>To add new vehicle click button in the bottom right corner. Brand, model, and tank size are required.</item>
+        <item>To edit existing vehicle hold Your vehicle signature and You will see edit window.</item>
+    </string-array>
+
 </resources>

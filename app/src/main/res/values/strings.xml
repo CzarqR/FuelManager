@@ -110,4 +110,21 @@
     <string name="app_page" translatable="false">https://play.google.com/store/apps/developer?id=MyniProjects</string>
 
 
+    <string name="help_text_format" translatable="false"><![CDATA[
+    <big><b> &#8226; %1$s </b></big> <br/> <br/>
+    &nbsp;&nbsp;&nbsp; <i> %2$s </i>
+    ]]></string>
+
+
+    <string-array name="help_titles">
+        <item>Adding new vehicle</item>
+        <item>Editing existing vehicle</item>
+    </string-array>
+
+
+    <string-array name="help_content">
+        <item>To add new vehicle click button in the bottom right corner. Brand, model, and tank size are required.</item>
+        <item>To edit existing vehicle hold Your vehicle signature and You will see edit window.</item>
+    </string-array>
+
 </resources>

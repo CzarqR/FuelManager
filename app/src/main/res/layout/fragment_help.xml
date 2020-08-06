@@ -7,13 +7,14 @@
     tools:context=".ui.help.HelpFragment">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        android:id="@+id/linLayHelpContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:text="Help"
-        android:textSize="18sp" />
+
+        android:orientation="vertical">
+
+    </LinearLayout>
 
 
 </ScrollView>

@@ -100,12 +100,7 @@
                         android:textSize="20sp"
                         tools:text="Numbers of refueling: 25" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@color/color_separator" />
+                    <View style="@style/Divider" />
 
                     <TextView
                         android:id="@+id/txtTotalSum"
@@ -118,12 +113,7 @@
                         tools:text="Total price: 122.14$" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@color/color_separator" />
+                    <View style="@style/Divider" />
 
                     <TextView
                         android:id="@+id/txtTotalLitres"
@@ -136,12 +126,7 @@
                         tools:text="Total litres: 122.14L" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@color/color_separator" />
+                    <View style="@style/Divider" />
 
                     <TextView
                         android:id="@+id/txtMostExpensive"
@@ -154,12 +139,7 @@
                         tools:text="Most expensive refueling: 122.14$" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@color/color_separator" />
+                    <View style="@style/Divider" />
 
                     <TextView
                         android:id="@+id/txtCheapest"
@@ -172,12 +152,7 @@
                         tools:text="Cheapest refueling: 122.14$" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@color/color_separator" />
+                    <View style="@style/Divider" />
 
                     <TextView
                         android:id="@+id/txtAvgPrice"

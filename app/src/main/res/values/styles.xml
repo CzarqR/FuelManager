@@ -36,4 +36,17 @@
         </item>    <!--days of the week-->
     </style>
 
+    <style name="GreenText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/color_separator</item>
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+    </style>
+
 </resources>

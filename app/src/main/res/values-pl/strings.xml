@@ -94,4 +94,16 @@
     <string name="refueling_added">Tankowanie dodane</string>
     <string name="refueling_edited">Tankowanie edytowane</string>
     <string name="volume">Objętość</string>
+
+    <string-array name="help_titles">
+        <item>Dodaj nowy pojazd</item>
+        <item>Edytuj istniejący pojazd</item>
+    </string-array>
+
+
+    <string-array name="help_content">
+        <item>Aby dodać nowy pojazd kliknij przycisk w prawym dolnym rogu. Marka, model oraz rozmiar baku są wymagene.</item>
+        <item>Aby edytować pojazd przytrzymaj sygnaturę pojazdu a zobaczysz okno edycji.</item>
+    </string-array>
+
 </resources>
