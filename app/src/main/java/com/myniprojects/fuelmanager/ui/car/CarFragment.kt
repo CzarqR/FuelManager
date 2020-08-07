@@ -7,6 +7,8 @@ import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -65,10 +67,18 @@ class CarFragment : OneToastFragment()
                 .setPopEnterAnim(R.anim.popenter_right_to_left)
                 .setPopExitAnim(R.anim.popexit_left_to_right)
 
+
             if (item.order and Menu.CATEGORY_SECONDARY == 0)
             {
+                var startDestination: NavDestination? =
+                    requireView().findNavController().graph
+                while (startDestination is NavGraph)
+                {
+                    val parent = startDestination
+                    startDestination = parent.findNode(parent.startDestination)
+                }
                 builder.setPopUpTo(
-                    R.id.carFragment,
+                    startDestination!!.id,
                     false
                 )
             }
@@ -166,7 +176,11 @@ class CarFragment : OneToastFragment()
 
 
         val adapter =
-            CarRecyclerAdapter(carListener, resources.getIntArray(R.array.car_colors).size)
+            CarRecyclerAdapter(
+                carListener,
+                resources.getIntArray(R.array.car_colors).size,
+                resources.displayMetrics.widthPixels / 9
+            )
 
         binding.butSelectedMany.setOnClickListener {
             val longArray: LongArray = adapter.selectedCars.value!!.toLongArray()

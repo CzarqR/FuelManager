@@ -15,6 +15,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -153,6 +155,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean
     {
+
+//            drawerLayout.close()
+//            return NavigationUI.onNavDestinationSelected(
+//                item,
+//                findNavController(R.id.navHostFragment)
+//            )
+
+
         return when (item.itemId)
         {
             R.id.aboutFragment, R.id.settingsFragment, R.id.statisticFragment ->
@@ -170,8 +180,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     if (item.order and Menu.CATEGORY_SECONDARY == 0)
                     {
+                        var startDestination: NavDestination? =
+                            findNavController(R.id.navHostFragment).graph
+
+                        while (startDestination is NavGraph)
+                        {
+                            val parent = startDestination
+                            startDestination = parent.findNode(parent.startDestination)
+                        }
+
                         builder.setPopUpTo(
-                            R.id.carFragment,
+                            startDestination!!.id,
                             false
                         )
                     }
@@ -203,7 +222,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 {
                     Toast.makeText(
                         this,
-                        getString(R.string.app_page),
+                        getString(R.string.cannot_open_our_apps),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -223,3 +242,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 }
+
+

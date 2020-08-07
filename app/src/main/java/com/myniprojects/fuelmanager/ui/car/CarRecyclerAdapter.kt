@@ -19,7 +19,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 
-class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int) :
+class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int, panelSize: Int) :
         ListAdapter<Car, CarRecyclerAdapter.ViewHolder>(
             CarDiffCallback()
         )
@@ -28,11 +28,14 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
     {
         var maxSize: Int = 8 // 8 colors in array for different colors
             private set
+
+        var PANEL_SIZE = 125
     }
 
     init
     {
         maxSize = maxSelect
+        PANEL_SIZE = panelSize
     }
 
     private val _selectedCars: MutableLiveData<ArrayList<Long>> = MutableLiveData()
@@ -114,7 +117,7 @@ class CarRecyclerAdapter(private val clickListener: CarListener, maxSelect: Int)
 
             private const val LONG_CLICK_TIME = 550L
             private const val CLICK_DISTANCE = 75
-            private const val PANEL_SIZE = 125
+            //private const val PANEL_SIZE = 240
         }
 
 

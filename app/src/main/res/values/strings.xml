@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FuelManager</string>
+    <string name="app_name">Fuel Manager</string>
     <string name="brand">Brand</string>
     <string name="add_new_car">Add new vehicle</string>
     <string name="fuel_type">Fuel Type</string>
@@ -49,7 +49,6 @@
     <string name="refueling_1_fragment_title">Selected vehicle refueling</string>
     <string name="refueling_many_fragment_title">Selected vehicles refueling</string>
     <string name="help_fragment_title">Help</string>
-    <string name="chart_title">"Fuel price "</string>
     <string name="y_axis_title">Price for 1 %1$s of fuel</string>
     <string name="tank_size">Tank Size</string>
     <string name="fuel_efficiency">Fuel efficiency</string>
